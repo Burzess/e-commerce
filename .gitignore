@@ -1,7 +1,4 @@
-
-database/
-!**/src/datbase/
-
+*.json
 ### IntelliJ IDEA ###
 out/
 !**/src/main/**/out/
