@@ -1,3 +1,7 @@
+
+database/
+!**/src/datbase/
+
 ### IntelliJ IDEA ###
 out/
 !**/src/main/**/out/

@@ -1,4 +1,4 @@
-package NodeUser;
+package node.NodeUser;
 
 public class NodeUser {
     private int id_user;
@@ -8,6 +8,10 @@ public class NodeUser {
     public NodeUser(int id_user, String nama, String email) {
         this.id_user = id_user;
         this.nama = nama;
+        this.email = email;
+    }
+
+    public void setEmail(String email) {
         this.email = email;
     }
 

@@ -1,4 +1,4 @@
-package NodeJSON;
+package node.NodeJSON;
 
 public class NodeJSONUser {
     private String id_user;

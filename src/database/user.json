@@ -1,17 +1,17 @@
 [
   {
-    "nama": "Halim",
+    "nama": "user1",
     "id_user": 1,
-    "email": "halim@gmail.com"
+    "email": "anonim@gmail.com"
   },
   {
-    "nama": "Ibrahim",
+    "nama": "user2",
     "id_user": 2,
-    "email": "ibrahim@gmail.com"
+    "email": "user2@gmail.com"
   },
   {
-    "nama": "Abdurrahman",
+    "nama": "user4",
     "id_user": 4,
-    "email": "abdurrahman@gmail.com"
+    "email": "user4@gmail.com"
   }
 ]

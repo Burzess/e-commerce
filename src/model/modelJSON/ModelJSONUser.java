@@ -1,7 +1,8 @@
-package modelJSON;
+package model.modelJSON;
 
-import NodeJSON.NodeJSONUser;
-import NodeUser.NodeUser;
+import node.NodeJSON.NodeJSONUser;
+import node.NodeUser.NodeUser;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.json.simple.JSONArray;
@@ -87,9 +88,11 @@ public class ModelJSONUser {
         JSONParser parser = new JSONParser();
         try {
             Reader reader = new FileReader(fname);
-            org.json.simple.JSONArray arrayUser = (org.json.simple.JSONArray) parser.parse(reader);
+            JSONArray arrayUser = (JSONArray) parser.parse(reader);
             listUser = convertToArrayLIst(arrayUser);
-        } catch (FileNotFoundException | ParseException e) {
+        } catch (FileNotFoundException e) {
+            System.out.println("error: " + e.getMessage());
+        } catch (ParseException e) {
             System.out.println("error: " + e.getMessage());
         } catch (IOException e){
             System.out.println("error: " + e.getMessage());
@@ -98,26 +101,61 @@ public class ModelJSONUser {
     }
 
     public void appendToFileJSON(List<NodeUser> listUser) {
-        List<NodeUser> existingList = readFromFile();
+        List<NodeUser> userList = readFromFile();
 
-        if (existingList == null) {
-            existingList = new ArrayList<>();
+        if (userList == null) {
+            userList = new ArrayList<>();
+        }
+        System.out.println(userList.size());
+
+        int i = 0;
+        for (NodeUser user : userList) {
+            if (user.getId_user() == listUser.get(i).getId_user()) {
+                System.out.println("id telah tersedia");
+                return;
+            }
         }
 
-        existingList.addAll(listUser);
+        userList.addAll(listUser);
+        writeFileJSON(userList);
 
-        writeFileJSON(existingList);
     }
 
-    public void deleteById(int id) {
+    public boolean deleteByIdJSONUser(int userId) {
+        List<NodeUser> userList = readFromFile();
 
-        List<NodeUser> existingList = readFromFile();
-
-        if (existingList != null) {
-            existingList.removeIf(user -> user.getId_user() == id);
-
-            writeFileJSON(existingList);
+        if(userList != null){
+            if (userList.removeIf(user -> user.getId_user() == userId)){
+                writeFileJSON(userList);
+                System.out.println("delete success");
+                return true;
+            } else {
+                System.out.println("id tidak ditemukan");
+                return false;
+            }
         }
+
+        System.out.println("data kosong");
+        return false;
     }
+
+    public boolean updateJSONUser(int userId, String email){
+        List<NodeUser> userList = readFromFile();
+
+        if (userList != null){
+            for (NodeUser user : userList) {
+                if (user.getId_user() == userId){
+                    user.setEmail(email);
+                    writeFileJSON(userList);
+                    System.out.println("Data berhasil di perbarui");
+                    return true;
+                }
+            }
+        }
+
+        System.out.println("Data kosong");
+        return false;
+    }
+
 
 }
