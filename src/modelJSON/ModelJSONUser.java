@@ -1,4 +1,4 @@
-package model.modelJSON;
+package modelJSON;
 
 import node.NodeJSON.NodeJSONUser;
 import node.NodeUser.NodeUser;
@@ -42,6 +42,7 @@ public class ModelJSONUser {
                 JSONObject objUser = new JSONObject();
                 objUser.put(nodeJSONUser.getId_user(), user.getId_user());
                 objUser.put(nodeJSONUser.getNama(), user.getNama());
+                objUser.put(nodeJSONUser.getUserName(), user.getUserName());
                 objUser.put(nodeJSONUser.getEmail(), user.getEmail());
                 arrayUser.add(objUser);
             }
@@ -72,8 +73,9 @@ public class ModelJSONUser {
                 NodeJSONUser nodeJSONUser = new NodeJSONUser();
                 int id_user = Integer.parseInt(user.get(nodeJSONUser.getId_user()).toString());
                 String nama = user.get(nodeJSONUser.getNama()).toString();
+                String user_name = user.get(nodeJSONUser.getUserName()).toString();
                 String email = user.get(nodeJSONUser.getEmail()).toString();
-                listUser.add(new NodeUser(id_user, nama, email));
+                listUser.add(new NodeUser(id_user, nama,user_name, email));
             }
             return listUser;
         }

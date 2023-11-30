@@ -1,0 +1,20 @@
+[
+  {
+    "nama": "abi",
+    "id_user": 1,
+    "userName": "user1",
+    "email": "user1@gmail.com"
+  },
+  {
+    "nama": "aba",
+    "id_user": 2,
+    "userName": "user2",
+    "email": "user2@gmail.com"
+  },
+  {
+    "nama": "adi",
+    "id_user": 4,
+    "userName": "user4",
+    "email": "user4@gmail.com"
+  }
+]
