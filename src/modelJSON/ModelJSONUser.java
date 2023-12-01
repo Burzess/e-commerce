@@ -1,7 +1,7 @@
 package modelJSON;
 
 import node.NodeJSON.NodeJSONUser;
-import node.NodeUser.NodeUser;
+import node.NodeClass.NodeUser;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
