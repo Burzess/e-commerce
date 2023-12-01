@@ -4,7 +4,6 @@ public class NodeJSONUser {
     private String id_user;
     private String nama;
     private String userName;
-
     private String email;
 
     public NodeJSONUser(){

@@ -1,4 +1,4 @@
-package node.NodeUser;
+package node.NodeClass;
 
 public class NodeUser {
     private int id_user;

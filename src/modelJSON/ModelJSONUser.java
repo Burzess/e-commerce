@@ -1,7 +1,7 @@
 package modelJSON;
 
 import node.NodeJSON.NodeJSONUser;
-import node.NodeUser.NodeUser;
+import node.NodeClass.NodeUser;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -17,6 +17,7 @@ import java.util.List;
 
 public class ModelJSONUser {
     String fname = "src/database/user.json";
+    private NodeJSONUser nodeJSONUser = new NodeJSONUser();
 
     public boolean cekFile(){
         boolean cek = false;
@@ -37,7 +38,6 @@ public class ModelJSONUser {
             return null;
         } else {
             JSONArray arrayUser = new JSONArray();
-            NodeJSONUser nodeJSONUser = new NodeJSONUser();
             for (NodeUser user:listUser) {
                 JSONObject objUser = new JSONObject();
                 objUser.put(nodeJSONUser.getId_user(), user.getId_user());

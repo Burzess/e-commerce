@@ -1,4 +1,4 @@
-import node.NodeUser.NodeUser;
+import node.NodeClass.NodeUser;
 import modelJSON.ModelJSONUser;
 
 import java.util.ArrayList;
