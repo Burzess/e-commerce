@@ -14,6 +14,9 @@ public class NodeBarang {
         this.kategori = kategori;
         this.stok = stok;
     }
+    public NodeBarang(NodeBarang that) {
+        this(that.getId_barang(),that.getNamaBarang(),that.harga,that.getKategori(),that.stok);
+    }
 
     public int getId_barang() {
         return id_barang;
