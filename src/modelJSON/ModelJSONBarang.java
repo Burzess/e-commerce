@@ -158,4 +158,22 @@ public class ModelJSONBarang {
         return false;
     }
 
+    public boolean updateJSONStokBarang(int barangId, int stok){
+        List<NodeBarang> barangList = readFromFile();
+
+        if (barangList != null){
+            for (NodeBarang barang : barangList) {
+                if (barang.getId_barang() == barangId){
+                    barang.setStok(stok);
+                    writeFileJSON(barangList);
+                    System.out.println("Data berhasil di perbarui");
+                    return true;
+                }
+            }
+        }
+
+        System.out.println("Data kosong");
+        return false;
+    }
+
 }

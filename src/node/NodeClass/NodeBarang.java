@@ -48,6 +48,6 @@ public class NodeBarang {
     }
 
     public void setStok(int stok) {
-        this.stok = stok;
+        this.stok += stok;
     }
 }
