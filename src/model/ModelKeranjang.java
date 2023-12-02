@@ -3,15 +3,14 @@ package model;
 import node.NodeClass.NodeProduk;
 import node.NodeClass.NodeKeranjang;
 import node.NodeClass.NodeUser;
-import model.Fake;
 
 import java.util.ArrayList;
 
 public class ModelKeranjang {
     int counter = 0;
-    Fake.FakeModelGoods barangGlobal;
-    ArrayList <NodeKeranjang> listKeranjang;
-    public ModelKeranjang(Fake.FakeModelGoods listBarang) {
+    ArrayList<NodeProduk> barangGlobal;
+    ArrayList<NodeKeranjang> listKeranjang;
+    public ModelKeranjang(ArrayList<NodeProduk> listBarang) {
         counter = 0;
         listKeranjang = new ArrayList<>();
         barangGlobal = listBarang;
@@ -33,7 +32,7 @@ public class ModelKeranjang {
             if (idBarang == 0) {
                 continue;
             }
-            NodeProduk tempBarang = new NodeProduk(barangGlobal.getGoods(idBarang));
+            NodeProduk tempBarang = new NodeProduk(barangGlobal.sort(););
             int stokBarang = Integer.parseInt(eachStuff[1]);
             tempBarang.setStok(stokBarang);
             listKeranjang.get(idKeranjang).addBarang(tempBarang);

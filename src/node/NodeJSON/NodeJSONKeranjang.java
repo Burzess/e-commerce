@@ -1,19 +1,16 @@
 package node.NodeJSON;
 
-import node.NodeClass.NodeBarang;
-import node.NodeClass.NodeUser;
-
 import java.util.ArrayList;
 
 public class NodeJSONKeranjang {
     private String Id;
-    private NodeJSONUser user;
-    private ArrayList<NodeJSONBarang> listBarang;
+    private String user;
+    private String  listBarang;
     private String totalHarga;
     public NodeJSONKeranjang() {
         Id = "idKeranjang";
-        user = new NodeJSONUser();
-        listBarang = new ArrayList<>();
+        user = "userObject";
+        listBarang = "listBarang";
         totalHarga = "totalHarga";
     }
 
@@ -25,19 +22,19 @@ public class NodeJSONKeranjang {
         Id = id;
     }
 
-    public NodeJSONUser getUser() {
+    public String getUser() {
         return user;
     }
 
-    public void setUser(NodeJSONUser user) {
+    public void setUser(String  user) {
         this.user = user;
     }
 
-    public ArrayList<NodeJSONBarang> getListBarang() {
+    public String  getListBarang() {
         return listBarang;
     }
 
-    public void setListBarang(ArrayList<NodeJSONBarang> listBarang) {
+    public void setListBarang(String listBarang) {
         this.listBarang = listBarang;
     }
 

@@ -2,10 +2,11 @@ package modelJSON;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import node.NodeClass.NodeBarang;
 import node.NodeClass.NodeKeranjang;
-import node.NodeJSON.NodeJSONBarang;
+import node.NodeClass.NodeProduk;
+import node.NodeClass.NodeUser;
 import node.NodeJSON.NodeJSONKeranjang;
+import node.NodeJSON.NodeJSONUser;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -26,8 +27,8 @@ public class ModelJSONKeranjang {
             if (file.exists()){
                 cek = true;
             }
-        } catch (Exception asu){
-            System.out.println(asu.getMessage());
+        } catch (Exception e){
+            System.out.println(e.getMessage());
         }
         return cek;
     }
@@ -42,7 +43,7 @@ public class ModelJSONKeranjang {
                 objUser.put(nodeJSONKeranjang.getId(), keranjang.getId());
                 objUser.put(nodeJSONKeranjang.getUser(), keranjang.getUser());
                 objUser.put(nodeJSONKeranjang.getListBarang(), keranjang.getListBarang());
-                objUser.put(nodeJSONKeranjang.getTotalHarga(), keranjang.getListBarang());
+                objUser.put(nodeJSONKeranjang.getTotalHarga(), keranjang.getTotalHarga());
                 arrayKeranjang.add(objUser);
             }
             return arrayKeranjang;
@@ -62,36 +63,37 @@ public class ModelJSONKeranjang {
         }
     }
 
-    public List<NodeBarang> convertToArrayLIst(JSONArray arrayKeranjang){
+    public List<NodeKeranjang> convertToArrayList(JSONArray arrayKeranjang){
         if(arrayKeranjang==null){
             return null;
         } else {
-            List<NodeBarang> listBarang = new ArrayList<>();
+            List<NodeKeranjang> listKeranjang = new ArrayList<>();
             for (Object objKeranjang : arrayKeranjang) {
                 JSONObject keranjang = (JSONObject) objKeranjang;
                 NodeJSONKeranjang nodeJSONKeranjang = new NodeJSONKeranjang();
-                int id_Barang = Integer.parseInt(barang.get(nodeJSONBarang.getId_barang()).toString());
-                String nama = barang.get(nodeJSONBarang.getNamaBarang()).toString();
-                int harga = Integer.parseInt(barang.get(nodeJSONBarang.getHarga()).toString());
-                String kategori = barang.get(nodeJSONBarang.getKategori()).toString();
-                int stok = Integer.parseInt(barang.get(nodeJSONBarang.getStok()).toString());
-                listBarang.add(new NodeBarang(id_Barang, nama,harga, kategori, stok));
+                int id_Keranjang = Integer.parseInt(keranjang.get(nodeJSONKeranjang.getId()).toString());
+                NodeJSONUser userJson = (NodeJSONUser) keranjang.get(nodeJSONKeranjang.getUser());
+                int id_User = Integer.parseInt(userJson.getId_user());
+                NodeUser user = (NodeUser) keranjang.get(nodeJSONKeranjang.getUser());
+                ArrayList<NodeProduk> listProduk = (ArrayList<NodeProduk>) keranjang.get(nodeJSONKeranjang.getListBarang());
+                int total = Integer.parseInt(keranjang.get(nodeJSONKeranjang.getTotalHarga()).toString());
+                listKeranjang.add(new NodeKeranjang(id_Keranjang,user,listProduk,total));
             }
-            return listBarang;
+            return listKeranjang;
         }
     }
 
-    public List<NodeBarang> readFromFile(){
+    public List<NodeKeranjang> readFromFile(){
         if (!cekFile()){
             return null;
         }
 
-        List<NodeBarang> listBarang = null;
+        List<NodeKeranjang> listKeranjang = null;
         JSONParser parser = new JSONParser();
         try {
             Reader reader = new FileReader(fname);
             JSONArray arrayBarang = (JSONArray) parser.parse(reader);
-            listBarang = convertToArrayLIst(arrayBarang);
+            listKeranjang = convertToArrayList(arrayBarang);
         } catch (FileNotFoundException e) {
             System.out.println("error: " + e.getMessage());
         } catch (ParseException e) {
@@ -99,80 +101,26 @@ public class ModelJSONKeranjang {
         } catch (IOException e){
             System.out.println("error: " + e.getMessage());
         }
-        return listBarang;
+        return listKeranjang;
     }
 
-    public void appendToFileJSON(List<NodeBarang> listBarang) {
-        List<NodeBarang> barangList = readFromFile();
+    public void appendToFileJSON(List<NodeKeranjang> listKeranjang) {
+        List<NodeKeranjang> keranjangList = readFromFile();
 
-        if (barangList == null) {
-            barangList = new ArrayList<>();
+        if (keranjangList == null) {
+            keranjangList = new ArrayList<>();
         }
-        System.out.println(barangList.size());
+        System.out.println(keranjangList.size());
 
         int i = 0;
-        for (NodeBarang barang : barangList) {
-            if (barang.getId_barang() == listBarang.get(i).getId_barang()) {
+        for (NodeKeranjang keranjang : keranjangList) {
+            if (keranjang.getId() == listKeranjang.get(i).getId()) {
                 System.out.println("id telah tersedia");
                 return;
             }
         }
 
-        barangList.addAll(listBarang);
-        writeFileJSON(barangList);
+        keranjangList.addAll(listKeranjang);
+        writeFileJSON(keranjangList);
     }
-
-    public boolean deleteByIdJSONUser(int barangId) {
-        List<NodeBarang> barangList = readFromFile();
-
-        if(barangList != null){
-            if (barangList.removeIf(barang -> barang.getId_barang() == barangId)){
-                writeFileJSON(barangList);
-                System.out.println("delete success");
-                return true;
-            } else {
-                System.out.println("id tidak ditemukan");
-                return false;
-            }
-        }
-
-        System.out.println("data kosong");
-        return false;
-    }
-    public boolean updateJSONNamaBarang(int barangId, String nama){
-        List<NodeBarang> barangList = readFromFile();
-
-        if (barangList != null){
-            for (NodeBarang barang : barangList) {
-                if (barang.getId_barang() == barangId){
-                    barang.setNamaBarang(nama);
-                    writeFileJSON(barangList);
-                    System.out.println("Data berhasil di perbarui");
-                    return true;
-                }
-            }
-        }
-
-        System.out.println("Data kosong");
-        return false;
-    }
-
-    public boolean updateJSONStokBarang(int barangId, int stok){
-        List<NodeBarang> barangList = readFromFile();
-
-        if (barangList != null){
-            for (NodeBarang barang : barangList) {
-                if (barang.getId_barang() == barangId){
-                    barang.setStok(stok);
-                    writeFileJSON(barangList);
-                    System.out.println("Data berhasil di perbarui");
-                    return true;
-                }
-            }
-        }
-
-        System.out.println("Data kosong");
-        return false;
-    }
-
 }
