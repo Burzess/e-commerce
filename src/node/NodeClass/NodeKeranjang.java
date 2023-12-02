@@ -1,7 +1,5 @@
 package node.NodeClass;
 
-import model.Fake;
-
 import java.util.ArrayList;
 
 public class NodeKeranjang {
