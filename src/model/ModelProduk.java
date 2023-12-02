@@ -34,6 +34,16 @@ public class ModelProduk {
         }
         return null;
     }
+
+    public static int searchProduk(int id, ArrayList<NodeProduk> produkList){
+        for (NodeProduk produk: produkList){
+            if (produk.getId_barang() == id){
+                return id;
+            }
+        }
+        return 0;
+    }
+
     public void addProduk(NodeProduk produk){
         this.produkList.add(produk);
     }
