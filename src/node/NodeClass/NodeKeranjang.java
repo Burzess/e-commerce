@@ -33,4 +33,12 @@ public class NodeKeranjang {
             System.out.println(g.getNamaBarang());
         }
     }
+
+    public NodeUser getUser() {
+        return user;
+    }
+
+    public ArrayList<NodeBarang> getListBarang() {
+        return listBarang;
+    }
 }
