@@ -11,7 +11,6 @@ public class ModelUser {
 
     public ModelUser() {
         this.userList = ModelJSONUser.readFromFile();
-        System.out.println(userList.isEmpty());
         if (userList == null){
             this.userList = new ArrayList<>();
         }
