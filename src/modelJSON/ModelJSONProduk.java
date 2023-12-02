@@ -2,10 +2,8 @@ package modelJSON;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import node.NodeClass.NodeBarang;
-import node.NodeClass.NodeUser;
-import node.NodeJSON.NodeJSONBarang;
-import node.NodeJSON.NodeJSONUser;
+import node.NodeClass.NodeProduk;
+import node.NodeJSON.NodeJSONProduk;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -15,11 +13,11 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ModelJSONBarang {
-    String fname = "src/database/barang.json";
-    private NodeJSONBarang nodeJSONBarang = new NodeJSONBarang();
+public class ModelJSONProduk {
+    public static String fname = "src/database/barang.json";
+    private static NodeJSONProduk nodeJSONBarang = new NodeJSONProduk();
 
-    public boolean cekFile(){
+    public static boolean cekFile(){
         boolean cek = false;
         try {
             java.io.File file = new java.io.File(fname);
@@ -32,12 +30,12 @@ public class ModelJSONBarang {
         return cek;
     }
 
-    public JSONArray convertToArrayJSON(List<NodeBarang> listBarang){
+    public static JSONArray convertToArrayJSON(List<NodeProduk> listBarang){
         if (listBarang == null){
             return null;
         } else {
             JSONArray arrayBarang = new JSONArray();
-            for (NodeBarang barang:listBarang) {
+            for (NodeProduk barang:listBarang) {
                 JSONObject objUser = new JSONObject();
                 objUser.put(nodeJSONBarang.getId_barang(), barang.getId_barang());
                 objUser.put(nodeJSONBarang.getNamaBarang(), barang.getNamaBarang());
@@ -50,7 +48,7 @@ public class ModelJSONBarang {
         }
     }
 
-    public void writeFileJSON(List<NodeBarang> listBarang) {
+    public static void writeFileJSON(List<NodeProduk> listBarang) {
         JSONArray arrayBarang = convertToArrayJSON(listBarang);
 
         try (FileWriter file = new FileWriter(fname)) {
@@ -63,31 +61,31 @@ public class ModelJSONBarang {
         }
     }
 
-    public List<NodeBarang> convertToArrayLIst(JSONArray arrayBarang){
+    public static List<NodeProduk> convertToArrayLIst(JSONArray arrayBarang){
         if(arrayBarang==null){
             return null;
         } else {
-            List<NodeBarang> listBarang = new ArrayList<>();
+            List<NodeProduk> listBarang = new ArrayList<>();
             for (Object objBarang : arrayBarang) {
                 JSONObject barang = (JSONObject) objBarang;
-                NodeJSONBarang nodeJSONBarang = new NodeJSONBarang();
+                NodeJSONProduk nodeJSONBarang = new NodeJSONProduk();
                 int id_Barang = Integer.parseInt(barang.get(nodeJSONBarang.getId_barang()).toString());
                 String nama = barang.get(nodeJSONBarang.getNamaBarang()).toString();
                 int harga = Integer.parseInt(barang.get(nodeJSONBarang.getHarga()).toString());
                 String kategori = barang.get(nodeJSONBarang.getKategori()).toString();
                 int stok = Integer.parseInt(barang.get(nodeJSONBarang.getStok()).toString());
-                listBarang.add(new NodeBarang(id_Barang, nama,harga, kategori, stok));
+                listBarang.add(new NodeProduk(id_Barang, nama,harga, kategori, stok));
             }
             return listBarang;
         }
     }
 
-    public List<NodeBarang> readFromFile(){
+    public static List<NodeProduk> readFromFile(){
         if (!cekFile()){
             return null;
         }
 
-        List<NodeBarang> listBarang = null;
+        List<NodeProduk> listBarang = null;
         JSONParser parser = new JSONParser();
         try {
             Reader reader = new FileReader(fname);
@@ -103,8 +101,8 @@ public class ModelJSONBarang {
         return listBarang;
     }
 
-    public void appendToFileJSON(List<NodeBarang> listBarang) {
-        List<NodeBarang> barangList = readFromFile();
+    public void appendToFileJSON(List<NodeProduk> listBarang) {
+        List<NodeProduk> barangList = readFromFile();
 
         if (barangList == null) {
             barangList = new ArrayList<>();
@@ -112,7 +110,7 @@ public class ModelJSONBarang {
         System.out.println(barangList.size());
 
         int i = 0;
-        for (NodeBarang barang : barangList) {
+        for (NodeProduk barang : barangList) {
             if (barang.getId_barang() == listBarang.get(i).getId_barang()) {
                 System.out.println("id telah tersedia");
                 return;
@@ -124,7 +122,7 @@ public class ModelJSONBarang {
     }
 
     public boolean deleteByIdJSONUser(int barangId) {
-        List<NodeBarang> barangList = readFromFile();
+        List<NodeProduk> barangList = readFromFile();
 
         if(barangList != null){
             if (barangList.removeIf(barang -> barang.getId_barang() == barangId)){
@@ -141,10 +139,10 @@ public class ModelJSONBarang {
         return false;
     }
     public boolean updateJSONNamaBarang(int barangId, String nama){
-        List<NodeBarang> barangList = readFromFile();
+        List<NodeProduk> barangList = readFromFile();
 
         if (barangList != null){
-            for (NodeBarang barang : barangList) {
+            for (NodeProduk barang : barangList) {
                 if (barang.getId_barang() == barangId){
                     barang.setNamaBarang(nama);
                     writeFileJSON(barangList);
@@ -159,10 +157,10 @@ public class ModelJSONBarang {
     }
 
     public boolean updateJSONStokBarang(int barangId, int stok){
-        List<NodeBarang> barangList = readFromFile();
+        List<NodeProduk> barangList = readFromFile();
 
         if (barangList != null){
-            for (NodeBarang barang : barangList) {
+            for (NodeProduk barang : barangList) {
                 if (barang.getId_barang() == barangId){
                     barang.setStok(stok);
                     writeFileJSON(barangList);
