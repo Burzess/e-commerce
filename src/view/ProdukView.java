@@ -41,6 +41,7 @@ public class ProdukView {
                     """);
             String comm = input.nextLine();
             produkController.updateProduk(a, comm);
+            System.out.println("Berhasil update");
         }
     }
 }
