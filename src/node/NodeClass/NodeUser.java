@@ -2,27 +2,32 @@ package node.NodeClass;
 
 public class NodeUser {
     private int id_user;
-    private String nama;
+    private final String nama;
     private String userName;
-    private String email;
+    private String password;
 
-    public NodeUser(int id_user, String nama, String userName,String email) {
+    public NodeUser(int id_user, String nama, String userName,String password) {
         this.id_user = id_user;
         this.nama = nama;
         this.userName = userName;
-        this.email = email;
+        this.password = password;
     }
 
-    public String getUserName() {
-        return userName;
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+
+    public String getUserName() {
+        return userName;
     }
 
     public int getId_user() {
@@ -33,7 +38,7 @@ public class NodeUser {
         return nama;
     }
 
-    public String getEmail() {
-        return email;
+    public String getPassword() {
+        return password;
     }
 }

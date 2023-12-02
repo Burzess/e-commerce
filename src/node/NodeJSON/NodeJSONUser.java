@@ -4,13 +4,13 @@ public class NodeJSONUser {
     private String id_user;
     private String nama;
     private String userName;
-    private String email;
+    private String password;
 
     public NodeJSONUser(){
         id_user = "id_user";
         nama = "nama";
         userName = "userName";
-        email = "email";
+        password = "password";
     }
 
     public String getUserName() {
@@ -25,7 +25,7 @@ public class NodeJSONUser {
         return nama;
     }
 
-    public String getEmail() {
-        return email;
+    public String getPassword() {
+        return password;
     }
 }

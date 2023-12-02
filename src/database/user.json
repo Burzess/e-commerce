@@ -1,26 +1,14 @@
 [
   {
-    "nama": "abi",
+    "password": "sua123",
+    "nama": "sukiman",
     "id_user": 1,
-    "userName": "user1",
-    "email": "user1@gmail.com"
+    "userName": "sususu"
   },
   {
+    "password": "user234",
     "nama": "aba",
     "id_user": 2,
-    "userName": "user2",
-    "email": "user2@gmail.com"
-  },
-  {
-    "nama": "adi",
-    "id_user": 4,
-    "userName": "user4",
-    "email": "user4@gmail.com"
-  },
-  {
-    "nama": "ado",
-    "id_user": 5,
-    "userName": "user5",
-    "email": "user5@gmail.com"
+    "userName": "user2"
   }
 ]
