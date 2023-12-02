@@ -1,6 +1,6 @@
 package model;
 
-import node.NodeClass.NodeBarang;
+import node.NodeClass.NodeProduk;
 import node.NodeClass.NodeKeranjang;
 import node.NodeClass.NodeUser;
 import model.Fake;
@@ -33,7 +33,7 @@ public class ModelKeranjang {
             if (idBarang == 0) {
                 continue;
             }
-            NodeBarang tempBarang = new NodeBarang(barangGlobal.getGoods(idBarang));
+            NodeProduk tempBarang = new NodeProduk(barangGlobal.getGoods(idBarang));
             int stokBarang = Integer.parseInt(eachStuff[1]);
             tempBarang.setStok(stokBarang);
             listKeranjang.get(idKeranjang).addBarang(tempBarang);

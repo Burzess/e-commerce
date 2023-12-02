@@ -1,13 +1,13 @@
 package node.NodeJSON;
 
-public class NodeJSONBarang {
+public class NodeJSONProduk {
     private String  id_barang;
     private String namaBarang;
     private String  harga;
     private String kategori;
     private String  stok;
 
-    public NodeJSONBarang() {
+    public NodeJSONProduk() {
         this.id_barang = "id_barang";
         this.namaBarang = "namaBarang";
         this.harga = "harga";

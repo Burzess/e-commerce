@@ -1,20 +1,20 @@
 package node.NodeClass;
 
-public class NodeBarang {
+public class NodeProduk {
     private int id_barang;
     private String namaBarang;
     private int harga;
     private String kategori;
     private int stok;
 
-    public NodeBarang(int id_barang, String namaBarang, int harga, String kategori, int stok) {
+    public NodeProduk(int id_barang, String namaBarang, int harga, String kategori, int stok) {
         this.id_barang = id_barang;
         this.namaBarang = namaBarang;
         this.harga = harga;
         this.kategori = kategori;
         this.stok = stok;
     }
-    public NodeBarang(NodeBarang that) {
+    public NodeProduk(NodeProduk that) {
         this(that.getId_barang(),that.getNamaBarang(),that.harga,that.getKategori(),that.stok);
     }
 
@@ -52,5 +52,10 @@ public class NodeBarang {
 
     public void setStok(int stok) {
         this.stok += stok;
+    }
+
+    public String viewDataProduk(){
+        String data = "Nama: "+namaBarang+"\nHarga: "+harga+"\nKategori: "+kategori+"\nStok: "+stok+"\n";
+        return data;
     }
 }
