@@ -2,12 +2,13 @@ package controller;
 
 import model.ModelProduk;
 import node.NodeClass.NodeProduk;
+import node.NodeClass.NodeUser;
 
 public class ProdukController {
     private int id = 0;
-    public void addProduk(String nB, int hg, String ktg, int stok){
+    public void addProduk(String nB, int hg, String ktg, int stok, NodeUser user){
         if(ModelProduk.cekBarang(nB)){
-            NodeProduk produk = new NodeProduk(id, nB, hg, ktg, stok);
+            NodeProduk produk = new NodeProduk(id, nB, hg, ktg, stok, user);
             ModelProduk.addProdukModel(produk);
             id++;
             System.out.println("Produk Berhasil ditambah!!");

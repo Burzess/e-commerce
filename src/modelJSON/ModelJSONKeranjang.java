@@ -92,7 +92,7 @@ public class ModelJSONKeranjang {
                 NodeUser nodeUser = convertObjUser(userObject);
 
                 JSONArray arrayProduk = (JSONArray) keranjang.get(nodeJSONKeranjang.getListBarang());
-                ArrayList<NodeProduk> listProduk = convertJSONArrayProduk(arrayProduk);
+                ArrayList<NodeProduk> listProduk = convertJSONArrayProduk(arrayProduk, nodeUser);
                 int total = Integer.parseInt(keranjang.get(nodeJSONKeranjang.getTotalHarga()).toString());
                 listKeranjang.add(new NodeKeranjang(id_Keranjang,nodeUser,listProduk,total));
             }
@@ -100,7 +100,7 @@ public class ModelJSONKeranjang {
         }
     }
 
-    public NodeUser convertObjUser(JSONObject userObject){
+    public static NodeUser convertObjUser(JSONObject userObject){
         NodeJSONUser userJson = new NodeJSONUser();
         int id_user = Integer.parseInt(userObject.get(userJson.getId_user()).toString());
         String nama = (userObject != null && userObject.get(userJson.getNama()) != null)
@@ -117,7 +117,7 @@ public class ModelJSONKeranjang {
         return new NodeUser(id_user, nama, user_name, password);
     }
 
-    public ArrayList<NodeProduk> convertJSONArrayProduk(JSONArray arrayProduk){
+    public ArrayList<NodeProduk> convertJSONArrayProduk(JSONArray arrayProduk, NodeUser user){
         if(arrayProduk==null){
             return null;
         } else {
@@ -130,7 +130,7 @@ public class ModelJSONKeranjang {
                 int harga = Integer.parseInt(barang.get(nodeJSONBarang.getHarga()).toString());
                 String kategori = barang.get(nodeJSONBarang.getKategori()).toString();
                 int stok = Integer.parseInt(barang.get(nodeJSONBarang.getStok()).toString());
-                listBarang.add(new NodeProduk(id_Barang, nama,harga, kategori, stok));
+                listBarang.add(new NodeProduk(id_Barang, nama,harga, kategori, stok, user));
             }
             return listBarang;
         }
