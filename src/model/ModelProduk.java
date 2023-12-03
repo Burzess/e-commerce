@@ -8,6 +8,7 @@ import java.util.List;
 
 public class ModelProduk {
     public static List<NodeProduk> produkList;
+    private int id = 0;
 
     public ModelProduk(List<NodeProduk> produkList) {
         this.produkList = ModelJSONProduk.readFromFile();
@@ -20,9 +21,11 @@ public class ModelProduk {
             ModelJSONProduk.writeFileJSON(produkList);
         }));
     }
-    public static void addProdukModel(NodeProduk produk){
-        produkList.add(produk);
-    }
+
+//    public List<NodeProduk> getProdukList() {
+//        return produkList;
+//    }
+
     public static NodeProduk searchProduk(int id){
         for (NodeProduk produk: produkList){
             if (produk.getId_barang() == id){
@@ -52,14 +55,5 @@ public class ModelProduk {
             case 3->updateProduk.setKategori(data);
             case 4-> updateProduk.setStok(Integer.parseInt(data));
         }
-    }
-
-    public static boolean cekBarang(String nama){
-        for (NodeProduk barang: produkList){
-            if (barang.getNamaBarang().equals(nama)){
-                return false;
-            }
-        }
-        return true;
     }
 }
