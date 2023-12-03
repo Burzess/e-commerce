@@ -34,7 +34,19 @@ public class KeranjangController {
         ker.addKeranjang(1);
         ker.addProduk(1,"1-10,2-7,3-5");
         ker.addKeranjang(2);
-        ker.addProduk(2,"2-4,1-4");
+        ker.addProduk(2,"2-1,1-1");
+//        ker.modelKeranjang.delKeranjang(1);
+//        for (NodeKeranjang t: ker.modelKeranjang.getListKeranjang()) {
+//            System.out.println("id ker "+t.getId());
+//        }
+//        System.out.println("#");
+//        System.out.println("status del "+ker.modelKeranjang.delKeranjang(1));
+//        ker.delKeranjang(1);
+//        for (NodeKeranjang t: ker.modelKeranjang.getListKeranjang()) {
+//            System.out.println("id ker "+t.getId());
+//        }
+        System.out.println(ker.modelKeranjang.getListKeranjang().get(0).getTotalHarga());
+        System.out.println(ker.modelKeranjang.getListKeranjang().get(1).getTotalHarga());
     }
 
     public void addKeranjang(int Id) {
