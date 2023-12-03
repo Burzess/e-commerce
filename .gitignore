@@ -5,6 +5,7 @@ out/
 !**/src/test/**/out/
 e-commerce.iml
 .idea
+./.idea/misc.xml
 
 ### Eclipse ###
 .apt_generated
