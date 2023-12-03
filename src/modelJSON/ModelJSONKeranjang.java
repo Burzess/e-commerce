@@ -19,7 +19,7 @@ import java.util.List;
 
 public class ModelJSONKeranjang {
     static final String fname = "src/database/keranjang.json";
-    private NodeJSONKeranjang nodeJSONKeranjang = new NodeJSONKeranjang();
+    private static NodeJSONKeranjang nodeJSONKeranjang = new NodeJSONKeranjang();
 
     public static boolean cekFile(){
         boolean cek = false;
@@ -48,7 +48,7 @@ public class ModelJSONKeranjang {
         }
     }
 
-    public JSONArray convertToArrayJSON(List<NodeKeranjang> listKeranjang){
+    public static JSONArray convertToArrayJSON(ArrayList<NodeKeranjang> listKeranjang){
         if (listKeranjang == null){
             return null;
         } else {
@@ -65,7 +65,7 @@ public class ModelJSONKeranjang {
         }
     }
 
-    public static void writeFileJSON(List<NodeKeranjang> listKeranjang) {
+    public static void writeFileJSON(ArrayList<NodeKeranjang> listKeranjang) {
         JSONArray arrayKeranjang = convertToArrayJSON(listKeranjang);
 
         try (FileWriter file = new FileWriter(fname)) {
