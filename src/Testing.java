@@ -25,8 +25,6 @@ public class Testing {
 
         List<NodeKeranjang> ker = modelJSONKeranjang.readFromFile();
 
-        System.out.println("jancok "+    ker.get(0).getListBarang());
-
         for (NodeKeranjang keranjang : ker) {
             System.out.println("Id keranjang: " + keranjang.getId());
             System.out.println("user: ");

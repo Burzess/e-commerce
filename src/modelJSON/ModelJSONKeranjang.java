@@ -19,7 +19,7 @@ import java.util.List;
 
 public class ModelJSONKeranjang {
     static final String fname = "src/database/keranjang.json";
-    private static NodeJSONKeranjang nodeJSONKeranjang = new NodeJSONKeranjang();
+    private NodeJSONKeranjang nodeJSONKeranjang = new NodeJSONKeranjang();
 
     public static boolean cekFile(){
         boolean cek = false;
@@ -34,7 +34,21 @@ public class ModelJSONKeranjang {
         return cek;
     }
 
-    public static JSONArray convertToArrayJSON(List<NodeKeranjang> listKeranjang){
+    public static void createFileJSON() {
+        try {
+            File file = new File(fname);
+
+            if (file.createNewFile()) {
+                System.out.println("File JSON berhasil dibuat: " + fname);
+            } else {
+                System.out.println("File JSON sudah ada: " + fname);
+            }
+        } catch (IOException e) {
+            System.out.println("Error saat membuat file JSON: " + e.getMessage());
+        }
+    }
+
+    public JSONArray convertToArrayJSON(List<NodeKeranjang> listKeranjang){
         if (listKeranjang == null){
             return null;
         } else {
@@ -51,7 +65,7 @@ public class ModelJSONKeranjang {
         }
     }
 
-    public static void writeFileJSON(List<NodeKeranjang> listKeranjang) {
+    public void writeFileJSON(List<NodeKeranjang> listKeranjang) {
         JSONArray arrayKeranjang = convertToArrayJSON(listKeranjang);
 
         try (FileWriter file = new FileWriter(fname)) {
@@ -64,11 +78,11 @@ public class ModelJSONKeranjang {
         }
     }
 
-    public static ArrayList<NodeKeranjang> convertToArrayList(JSONArray arrayKeranjang){
+    public List<NodeKeranjang> convertToArrayList(JSONArray arrayKeranjang){
         if(arrayKeranjang==null){
             return null;
         } else {
-            ArrayList<NodeKeranjang> listKeranjang = new ArrayList<>();
+            List<NodeKeranjang> listKeranjang = new ArrayList<>();
             for (Object objKeranjang : arrayKeranjang) {
                 JSONObject keranjang = (JSONObject) objKeranjang;
                 NodeJSONKeranjang nodeJSONKeranjang = new NodeJSONKeranjang();
@@ -86,7 +100,7 @@ public class ModelJSONKeranjang {
         }
     }
 
-    public static NodeUser convertObjUser(JSONObject userObject){
+    public NodeUser convertObjUser(JSONObject userObject){
         NodeJSONUser userJson = new NodeJSONUser();
         int id_user = Integer.parseInt(userObject.get(userJson.getId_user()).toString());
         String nama = (userObject != null && userObject.get(userJson.getNama()) != null)
@@ -103,7 +117,7 @@ public class ModelJSONKeranjang {
         return new NodeUser(id_user, nama, user_name, password);
     }
 
-    public static ArrayList<NodeProduk> convertJSONArrayProduk(JSONArray arrayProduk){
+    public ArrayList<NodeProduk> convertJSONArrayProduk(JSONArray arrayProduk){
         if(arrayProduk==null){
             return null;
         } else {
@@ -122,12 +136,13 @@ public class ModelJSONKeranjang {
         }
     }
 
-    public static ArrayList<NodeKeranjang> readFromFile(){
+    public List<NodeKeranjang> readFromFile(){
         if (!cekFile()){
+            createFileJSON();
             return null;
         }
 
-        ArrayList<NodeKeranjang> listKeranjang = null;
+        List<NodeKeranjang> listKeranjang = null;
         JSONParser parser = new JSONParser();
         try {
             Reader reader = new FileReader(fname);

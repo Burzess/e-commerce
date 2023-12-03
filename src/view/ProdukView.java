@@ -8,9 +8,19 @@ public class ProdukView {
     private ProdukController produkController;
     private Scanner input;
 
-    public ProdukView(ProdukController produkController, Scanner scanner) {
-        this.produkController = produkController;
-        this.input = scanner;
+    public void addProdukView(){
+        System.out.println("---Add Produk---");
+        System.out.print("Masukkan Nama Produk: ");
+        String nama = input.nextLine();
+        System.out.print("Masukkan Harga: ");
+        int hg = input.nextInt();
+        input.nextLine();
+        System.out.print("Masukkan Kategori: ");
+        String ktg = input.nextLine();
+        System.out.print("Masukkan Jumlah Stok: ");
+        int stok = input.nextInt();
+        input.nextLine();
+        produkController.addProduk(nama, hg, ktg, stok);
     }
 
     public int viewwProduk(){
