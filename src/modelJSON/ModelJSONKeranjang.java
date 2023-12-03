@@ -65,7 +65,7 @@ public class ModelJSONKeranjang {
         }
     }
 
-    public void writeFileJSON(List<NodeKeranjang> listKeranjang) {
+    public static void writeFileJSON(List<NodeKeranjang> listKeranjang) {
         JSONArray arrayKeranjang = convertToArrayJSON(listKeranjang);
 
         try (FileWriter file = new FileWriter(fname)) {
@@ -78,11 +78,11 @@ public class ModelJSONKeranjang {
         }
     }
 
-    public List<NodeKeranjang> convertToArrayList(JSONArray arrayKeranjang){
+    public static ArrayList<NodeKeranjang> convertToArrayList(JSONArray arrayKeranjang){
         if(arrayKeranjang==null){
             return null;
         } else {
-            List<NodeKeranjang> listKeranjang = new ArrayList<>();
+            ArrayList<NodeKeranjang> listKeranjang = new ArrayList<>();
             for (Object objKeranjang : arrayKeranjang) {
                 JSONObject keranjang = (JSONObject) objKeranjang;
                 NodeJSONKeranjang nodeJSONKeranjang = new NodeJSONKeranjang();
@@ -117,7 +117,7 @@ public class ModelJSONKeranjang {
         return new NodeUser(id_user, nama, user_name, password);
     }
 
-    public ArrayList<NodeProduk> convertJSONArrayProduk(JSONArray arrayProduk, NodeUser user){
+    public static ArrayList<NodeProduk> convertJSONArrayProduk(JSONArray arrayProduk, NodeUser user){
         if(arrayProduk==null){
             return null;
         } else {
@@ -136,13 +136,13 @@ public class ModelJSONKeranjang {
         }
     }
 
-    public List<NodeKeranjang> readFromFile(){
+    public static ArrayList<NodeKeranjang> readFromFile(){
         if (!cekFile()){
             createFileJSON();
             return null;
         }
 
-        List<NodeKeranjang> listKeranjang = null;
+        ArrayList<NodeKeranjang> listKeranjang = null;
         JSONParser parser = new JSONParser();
         try {
             Reader reader = new FileReader(fname);
