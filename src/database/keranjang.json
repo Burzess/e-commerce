@@ -1,0 +1,13 @@
+[
+  {
+    "idKeranjang": 1,
+    "listBarang": [],
+    "totalHarga": 0,
+    "userObject": {
+      "id_user": 1,
+      "nama": "Alif",
+      "userName": "sleepy",
+      "password": "ikan"
+    }
+  }
+]
