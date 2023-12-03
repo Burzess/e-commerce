@@ -2,6 +2,7 @@ import modelJSON.ModelJSONKeranjang;
 import node.NodeClass.NodeKeranjang;
 import node.NodeClass.NodeProduk;
 import node.NodeClass.NodeUser;
+import view.ProdukView;
 import view.UserView;
 
 import java.util.ArrayList;
@@ -12,8 +13,8 @@ public class Testing {
     public static NodeUser Mainuser = new NodeUser(1, "halim", "limmm", "123");
     public static void main(String[] args) {
 
-        System.out.println(ModelJSONKeranjang.cekFile());
-//        NodeUser nodeUser = new NodeUser(1, "halim", "limmm", "123");
+        ProdukView produkView = new ProdukView();
+        produkView.addProdukView(Mainuser);
         ArrayList<NodeProduk> nodeProduk = new ArrayList<>();
         nodeProduk.add(new NodeProduk(1, "Ban Mobil", 500000, "Otomotif", 5, Mainuser));
         nodeProduk.add(new NodeProduk(2, "Knalpot", 50000, "Otomotif", 10, Mainuser));
