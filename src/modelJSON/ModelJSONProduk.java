@@ -3,6 +3,7 @@ package modelJSON;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import node.NodeClass.NodeProduk;
+import node.NodeClass.NodeUser;
 import node.NodeJSON.NodeJSONProduk;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -81,14 +82,20 @@ public class ModelJSONProduk {
         } else {
             List<NodeProduk> listBarang = new ArrayList<>();
             for (Object objBarang : arrayBarang) {
+
                 JSONObject barang = (JSONObject) objBarang;
                 NodeJSONProduk nodeJSONBarang = new NodeJSONProduk();
+
                 int id_Barang = Integer.parseInt(barang.get(nodeJSONBarang.getId_barang()).toString());
                 String nama = barang.get(nodeJSONBarang.getNamaBarang()).toString();
                 int harga = Integer.parseInt(barang.get(nodeJSONBarang.getHarga()).toString());
                 String kategori = barang.get(nodeJSONBarang.getKategori()).toString();
                 int stok = Integer.parseInt(barang.get(nodeJSONBarang.getStok()).toString());
-                listBarang.add(new NodeProduk(id_Barang, nama,harga, kategori, stok));
+
+                JSONObject userObj = (JSONObject) barang.get(nodeJSONBarang.getUser());
+                NodeUser userr = ModelJSONKeranjang.convertObjUser(userObj);
+
+                listBarang.add(new NodeProduk(id_Barang, nama,harga, kategori, stok, userr));
             }
             return listBarang;
         }

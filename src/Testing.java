@@ -9,17 +9,18 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Testing {
+    public static NodeUser Mainuser = new NodeUser(1, "halim", "limmm", "123");
     public static void main(String[] args) {
 
         ModelJSONKeranjang modelJSONKeranjang = new ModelJSONKeranjang();
         System.out.println(ModelJSONKeranjang.cekFile());
-        NodeUser nodeUser = new NodeUser(1, "halim", "limmm", "123");
+//        NodeUser nodeUser = new NodeUser(1, "halim", "limmm", "123");
         ArrayList<NodeProduk> nodeProduk = new ArrayList<>();
-        nodeProduk.add(new NodeProduk(1, "Ban Mobil", 500000, "Otomotif", 5));
-        nodeProduk.add(new NodeProduk(2, "Knalpot", 50000, "Otomotif", 10));
-        nodeProduk.add(new NodeProduk(3, "Kaca Film", 5100000, "Otomotif", 3));
+        nodeProduk.add(new NodeProduk(1, "Ban Mobil", 500000, "Otomotif", 5, Mainuser));
+        nodeProduk.add(new NodeProduk(2, "Knalpot", 50000, "Otomotif", 10, Mainuser));
+        nodeProduk.add(new NodeProduk(3, "Kaca Film", 5100000, "Otomotif", 3, Mainuser));
         List<NodeKeranjang> nodeKeranjang = new ArrayList<>();
-        nodeKeranjang.add(new NodeKeranjang(1, nodeUser,nodeProduk, 5650000));
+        nodeKeranjang.add(new NodeKeranjang(1, Mainuser,nodeProduk, 5650000));
 
         modelJSONKeranjang.writeFileJSON(nodeKeranjang);
 

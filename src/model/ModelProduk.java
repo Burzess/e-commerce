@@ -41,9 +41,6 @@ public class ModelProduk {
         return 0;
     }
 
-    public void addProduk(NodeProduk produk){
-        this.produkList.add(produk);
-    }
 
     public static void updateProduk(int opsi, String data, NodeProduk updateProduk){
         switch (opsi){
