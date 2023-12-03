@@ -18,7 +18,6 @@ public class ModelKeranjang {
         if (listKeranjang == null) {
             listKeranjang = new ArrayList<>();
         }
-        System.out.println(listKeranjang.isEmpty());
         barangGlobal = listBarang;
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {

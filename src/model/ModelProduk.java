@@ -9,7 +9,7 @@ import java.util.List;
 public class ModelProduk {
     public static List<NodeProduk> produkList;
 
-    public ModelProduk(List<NodeProduk> produkList) {
+    public ModelProduk() {
         this.produkList = ModelJSONProduk.readFromFile();
         if (produkList == null){
             this.produkList = new ArrayList<>();
@@ -51,10 +51,12 @@ public class ModelProduk {
         }
     }
 
-    public static boolean cekBarang(String nama){
-        for (NodeProduk barang: produkList){
-            if (barang.getNamaBarang().equals(nama)){
-                return false;
+    public static boolean cekBarang(String nama) {
+        if (produkList != null) {
+            for (NodeProduk barang : produkList) {
+                if (barang.getNamaBarang().equals(nama)) {
+                    return false;
+                }
             }
         }
         return true;

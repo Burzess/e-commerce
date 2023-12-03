@@ -5,6 +5,7 @@ import node.NodeClass.NodeProduk;
 import node.NodeClass.NodeUser;
 
 public class ProdukController {
+    ModelProduk modelProduk = new ModelProduk();
     private int id = 0;
     public void addProduk(String nB, int hg, String ktg, int stok, NodeUser user){
         if(ModelProduk.cekBarang(nB)){

@@ -1,9 +1,7 @@
 package view;
 
-import node.NodeClass.NodeUser;
 import controller.UserController;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class UserView {
