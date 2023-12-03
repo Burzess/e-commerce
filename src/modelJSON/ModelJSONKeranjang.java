@@ -34,6 +34,20 @@ public class ModelJSONKeranjang {
         return cek;
     }
 
+    public static void createFileJSON() {
+        try {
+            File file = new File(fname);
+
+            if (file.createNewFile()) {
+                System.out.println("File JSON berhasil dibuat: " + fname);
+            } else {
+                System.out.println("File JSON sudah ada: " + fname);
+            }
+        } catch (IOException e) {
+            System.out.println("Error saat membuat file JSON: " + e.getMessage());
+        }
+    }
+
     public JSONArray convertToArrayJSON(List<NodeKeranjang> listKeranjang){
         if (listKeranjang == null){
             return null;
@@ -124,6 +138,7 @@ public class ModelJSONKeranjang {
 
     public List<NodeKeranjang> readFromFile(){
         if (!cekFile()){
+            createFileJSON();
             return null;
         }
 
