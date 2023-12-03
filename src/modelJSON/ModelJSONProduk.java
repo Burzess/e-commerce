@@ -30,6 +30,20 @@ public class ModelJSONProduk {
         return cek;
     }
 
+    public static void createFileJSON() {
+        try {
+            File file = new File(fname);
+
+            if (file.createNewFile()) {
+                System.out.println("File JSON berhasil dibuat: " + fname);
+            } else {
+                System.out.println("File JSON sudah ada: " + fname);
+            }
+        } catch (IOException e) {
+            System.out.println("Error saat membuat file JSON: " + e.getMessage());
+        }
+    }
+
     public static JSONArray convertToArrayJSON(List<NodeProduk> listBarang){
         if (listBarang == null){
             return null;
@@ -82,6 +96,7 @@ public class ModelJSONProduk {
 
     public static List<NodeProduk> readFromFile(){
         if (!cekFile()){
+            createFileJSON();
             return null;
         }
 

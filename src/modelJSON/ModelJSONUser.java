@@ -33,7 +33,7 @@ public class ModelJSONUser {
         return cek;
     }
 
-    public void createFileJSON() {
+    public static void createFileJSON() {
         try {
             File file = new File(fname);
 
@@ -97,6 +97,7 @@ public class ModelJSONUser {
 
     public static List<NodeUser> readFromFile(){
         if (!cekFile()){
+            createFileJSON();
             return null;
         }
 
