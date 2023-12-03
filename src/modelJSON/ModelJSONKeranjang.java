@@ -6,6 +6,7 @@ import node.NodeClass.NodeKeranjang;
 import node.NodeClass.NodeProduk;
 import node.NodeClass.NodeUser;
 import node.NodeJSON.NodeJSONKeranjang;
+import node.NodeJSON.NodeJSONProduk;
 import node.NodeJSON.NodeJSONUser;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -17,10 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ModelJSONKeranjang {
-    String fname = "src/database/keranjang.json";
+    static final String fname = "src/database/keranjang.json";
     private NodeJSONKeranjang nodeJSONKeranjang = new NodeJSONKeranjang();
 
-    public boolean cekFile(){
+    public static boolean cekFile(){
         boolean cek = false;
         try {
             java.io.File file = new java.io.File(fname);
@@ -72,14 +73,52 @@ public class ModelJSONKeranjang {
                 JSONObject keranjang = (JSONObject) objKeranjang;
                 NodeJSONKeranjang nodeJSONKeranjang = new NodeJSONKeranjang();
                 int id_Keranjang = Integer.parseInt(keranjang.get(nodeJSONKeranjang.getId()).toString());
-                NodeJSONUser userJson = (NodeJSONUser) keranjang.get(nodeJSONKeranjang.getUser());
-                int id_User = Integer.parseInt(userJson.getId_user());
-                NodeUser user = (NodeUser) keranjang.get(nodeJSONKeranjang.getUser());
-                ArrayList<NodeProduk> listProduk = (ArrayList<NodeProduk>) keranjang.get(nodeJSONKeranjang.getListBarang());
+
+                JSONObject userObject = (JSONObject) keranjang.get(nodeJSONKeranjang.getUser());
+                NodeUser nodeUser = convertObjUser(userObject);
+
+                JSONArray arrayProduk = (JSONArray) keranjang.get(nodeJSONKeranjang.getListBarang());
+                ArrayList<NodeProduk> listProduk = convertJSONArrayProduk(arrayProduk);
                 int total = Integer.parseInt(keranjang.get(nodeJSONKeranjang.getTotalHarga()).toString());
-                listKeranjang.add(new NodeKeranjang(id_Keranjang,user,listProduk,total));
+                listKeranjang.add(new NodeKeranjang(id_Keranjang,nodeUser,listProduk,total));
             }
             return listKeranjang;
+        }
+    }
+
+    public NodeUser convertObjUser(JSONObject userObject){
+        NodeJSONUser userJson = new NodeJSONUser();
+        int id_user = Integer.parseInt(userObject.get(userJson.getId_user()).toString());
+        String nama = (userObject != null && userObject.get(userJson.getNama()) != null)
+                ? String.valueOf(userObject.get(userJson.getNama()))
+                : "";
+
+        String user_name = (userObject != null && userObject.get(userJson.getUserName()) != null)
+                ? String.valueOf(userObject.get(userJson.getUserName()))
+                : "";
+
+        String password = (userObject != null && userObject.get(userJson.getPassword()) != null)
+                ? String.valueOf(userObject.get(userJson.getPassword()))
+                : "";
+        return new NodeUser(id_user, nama, user_name, password);
+    }
+
+    public ArrayList<NodeProduk> convertJSONArrayProduk(JSONArray arrayProduk){
+        if(arrayProduk==null){
+            return null;
+        } else {
+            ArrayList<NodeProduk> listBarang = new ArrayList<>();
+            for (Object objProduk : arrayProduk) {
+                JSONObject barang = (JSONObject) objProduk;
+                NodeJSONProduk nodeJSONBarang = new NodeJSONProduk();
+                int id_Barang = Integer.parseInt(barang.get(nodeJSONBarang.getId_barang()).toString());
+                String nama = barang.get(nodeJSONBarang.getNamaBarang()).toString();
+                int harga = Integer.parseInt(barang.get(nodeJSONBarang.getHarga()).toString());
+                String kategori = barang.get(nodeJSONBarang.getKategori()).toString();
+                int stok = Integer.parseInt(barang.get(nodeJSONBarang.getStok()).toString());
+                listBarang.add(new NodeProduk(id_Barang, nama,harga, kategori, stok));
+            }
+            return listBarang;
         }
     }
 
@@ -104,23 +143,4 @@ public class ModelJSONKeranjang {
         return listKeranjang;
     }
 
-    public void appendToFileJSON(List<NodeKeranjang> listKeranjang) {
-        List<NodeKeranjang> keranjangList = readFromFile();
-
-        if (keranjangList == null) {
-            keranjangList = new ArrayList<>();
-        }
-        System.out.println(keranjangList.size());
-
-        int i = 0;
-        for (NodeKeranjang keranjang : keranjangList) {
-            if (keranjang.getId() == listKeranjang.get(i).getId()) {
-                System.out.println("id telah tersedia");
-                return;
-            }
-        }
-
-        keranjangList.addAll(listKeranjang);
-        writeFileJSON(keranjangList);
-    }
 }

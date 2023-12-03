@@ -1,6 +1,6 @@
 package node.NodeJSON;
 
-public class NodeJSONProduk {
+public class    NodeJSONProduk {
     private String  id_barang;
     private String namaBarang;
     private String  harga;
