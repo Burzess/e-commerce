@@ -6,12 +6,17 @@ public class NodeKeranjang {
     private int Id;
     private NodeUser user;
     ArrayList<NodeProduk> listBarang;
-    int totalHarga;
+    private int totalHarga;
     public NodeKeranjang(NodeUser u) {
         user = u;
         Id = u.getId_user();
         listBarang = new ArrayList<>();
     }
+
+    public void setTotalHarga(int totalHarga) {
+        this.totalHarga = totalHarga;
+    }
+
     public void addBarang(NodeProduk p) {
         NodeProduk temp = new NodeProduk(p);
         listBarang.add(temp);
@@ -23,6 +28,18 @@ public class NodeKeranjang {
 
     public int getId() {
         return Id;
+    }
+
+    public NodeUser getUser() {
+        return user;
+    }
+
+    public ArrayList<NodeProduk> getListBarang() {
+        return listBarang;
+    }
+
+    public int getTotalHarga() {
+        return totalHarga;
     }
 
     public void viewbarang() {
