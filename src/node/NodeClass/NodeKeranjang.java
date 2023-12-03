@@ -1,7 +1,5 @@
 package node.NodeClass;
 
-import model.Fake;
-
 import java.util.ArrayList;
 
 public class NodeKeranjang {
@@ -9,11 +7,20 @@ public class NodeKeranjang {
     private NodeUser user;
     ArrayList<NodeProduk> listBarang;
     int totalHarga;
+
     public NodeKeranjang(NodeUser u) {
         user = u;
         Id = u.getId_user();
         listBarang = new ArrayList<>();
     }
+
+    public NodeKeranjang(int id, NodeUser u, ArrayList<NodeProduk> listProduk, int total) {
+        Id = id;
+        user = u;
+        listBarang = listProduk;
+        totalHarga = total;
+    }
+
     public void addBarang(NodeProduk p) {
         NodeProduk temp = new NodeProduk(p);
         listBarang.add(temp);
@@ -32,5 +39,17 @@ public class NodeKeranjang {
             System.out.println(g.getId_barang());
             System.out.println(g.getNamaBarang());
         }
+    }
+
+    public NodeUser getUser() {
+        return user;
+    }
+
+    public int getTotalHarga() {
+        return totalHarga;
+    }
+
+    public ArrayList<NodeProduk> getListBarang() {
+        return listBarang;
     }
 }
