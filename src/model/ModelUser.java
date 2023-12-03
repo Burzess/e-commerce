@@ -11,7 +11,6 @@ public class ModelUser {
 
     public ModelUser() {
         this.userList = ModelJSONUser.readFromFile();
-        System.out.println(userList.isEmpty());
         if (userList == null){
             this.userList = new ArrayList<>();
         }
@@ -48,5 +47,14 @@ public class ModelUser {
 
     public void deleteUser(int userId) {
         this.userList.removeIf(user -> user.getId_user() == userId);
+    }
+
+    public int getIdUser(int idUser){
+        for (NodeUser user : userList) {
+            if (user.getId_user() == idUser){
+                return idUser;
+            }
+        }
+        return -1;
     }
 }

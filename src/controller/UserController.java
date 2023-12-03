@@ -2,10 +2,8 @@ package controller;
 
 import model.ModelUser;
 import node.NodeClass.NodeUser;
-import view.UserView;
 
 import java.util.List;
-import java.util.Scanner;
 
 public class UserController {
     private ModelUser modelUser;
@@ -30,7 +28,7 @@ public class UserController {
 
         if (userList != null) {
             for (NodeUser user : userList) {
-                if (user.getUserName().equals(username)) {
+                if (user.getUsername().equals(username)) {
                     return false;
                 }
             }
@@ -39,28 +37,37 @@ public class UserController {
         return true;
     }
 
-    public void updateUser(int userId, String newName, String newUsername, String newPassword) {
+    public boolean updateUser(int userId, String newName, String newUsername, String newPassword) {
 
         NodeUser existingUser = findUserById(userId);
 
         if (existingUser != null) {
-            NodeUser updatedUser = new NodeUser(userId, newName, newUsername, newPassword);
+            NodeUser updatedUser = new NodeUser(userId, existingUser.getNama(), existingUser.getUsername(), existingUser.getPassword());
+            if (!newName.isEmpty()){
+                updatedUser.setNama(newName);
+            } else if(!newUsername.isEmpty()){
+                updatedUser.setUsername(newUsername);
+            } else if (!newPassword.isEmpty()) {
+                updatedUser.setPassword(newPassword);
+            }
+
             modelUser.updateUser(updatedUser);
-        } else {
-            System.out.println("User not found!");
+            return true;
         }
+
+        return false;
     }
 
-    public void deleteUser(int userId) {
+    public boolean deleteUser(int userId) {
 
         NodeUser existingUser = findUserById(userId);
 
         if (existingUser != null) {
             modelUser.deleteUser(userId);
-            System.out.println("User deleted successfully!");
-        } else {
-            System.out.println("User not found!");
+            return true;
         }
+
+        return false;
     }
 
     public NodeUser findUserById(int userId) {
@@ -75,5 +82,17 @@ public class UserController {
         }
 
         return null;
+    }
+
+    public int authenticateUser(String username, String password){
+        int idx = -1;
+        for (int i = 0; i < modelUser.getUserList().size(); i++) {
+            if (modelUser.getUserList().get(i).getUsername().equals(username)
+                    && modelUser.getUserList().get(i).getPassword().equals(password)){
+                idx = i;
+            }
+        }
+
+        return idx;
     }
 }

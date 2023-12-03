@@ -34,23 +34,44 @@ public class UserView {
         int userId = scanner.nextInt();
         scanner.nextLine();
 
-        System.out.println("Enter updated user details:");
-        System.out.print("Name: ");
-        String name = scanner.nextLine();
-        System.out.print("usename: ");
-        String username = scanner.nextLine();
-        System.out.print("password: ");
-        String password = scanner.nextLine();
+        System.out.println("""
+                1. Update Nama
+                2. Update username
+                3. Update password
+                Masukan Pilihan:\s""");
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+        String name = "", username = "", password = "";
 
-        userController.updateUser(userId,name, username, password);
-        System.out.println("User updated successfully!");
+        switch (choice) {
+            case 1 -> {
+                System.out.print("Name: ");
+                name = scanner.nextLine();
+            }
+            case 2 -> {
+                System.out.print("usename: ");
+                username = scanner.nextLine();
+            }
+            case 3 -> {
+                System.out.print("password: ");
+                password = scanner.nextLine();
+            }
+        }
+
+        if (userController.updateUser(userId,name, username, password)){
+            System.out.println("User updated successfully!");
+        } else {
+            System.out.println("User not found!");
+        }
     }
 
     public void deleteUser() {
         System.out.print("Enter the ID of the user to delete: ");
         int userId = scanner.nextInt();
-        userController.deleteUser(userId);
-
-        System.out.println("User deleted successfully!");
+        if (userController.deleteUser(userId)){
+            System.out.println("User Delete successfully");
+        } else {
+            System.out.println("User not found");
+        }
     }
 }
