@@ -26,7 +26,7 @@ public class ModelKeranjang {
         int stokBarang = Integer.parseInt(strBarang[1]);
         int found = ModelProduk.searchProduk(idProduk,barangGlobal);
         if (found == 0) return false;
-        NodeProduk temp = new NodeProduk(ModelProduk.searchProduk(found));
+        NodeProduk temp = ModelProduk.produkList.get(found);
         temp.setStok(stokBarang);
         keranjang.addBarang(temp);
         return true;

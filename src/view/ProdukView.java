@@ -1,6 +1,7 @@
 package view;
 
 import controller.ProdukController;
+import node.NodeClass.NodeUser;
 
 import java.util.Scanner;
 
@@ -8,7 +9,7 @@ public class ProdukView {
     private ProdukController produkController;
     private Scanner input;
 
-    public void addProdukView(){
+    public void addProdukView(NodeUser user){
         System.out.println("---Add Produk---");
         System.out.print("Masukkan Nama Produk: ");
         String nama = input.nextLine();
@@ -20,7 +21,7 @@ public class ProdukView {
         System.out.print("Masukkan Jumlah Stok: ");
         int stok = input.nextInt();
         input.nextLine();
-        produkController.addProduk(nama, hg, ktg, stok);
+        produkController.addProduk(nama, hg, ktg, stok, user);
     }
 
     public int viewwProduk(){
