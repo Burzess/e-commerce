@@ -43,6 +43,7 @@ public class ModelKeranjang {
         int stokBarang = Integer.parseInt(strBarang[1]);
 //        System.out.println("id "+idProduk+" stok "+stokBarang);
         int found = ModelProduk.searchProduk(idProduk,barangGlobal);
+//        System.out.println("status " +found);
         if (found < 0) return false;
         NodeProduk temp = barangGlobal.get(found-1);
         NodeProduk copy = new NodeProduk(temp);
@@ -75,23 +76,6 @@ public class ModelKeranjang {
         return found;
     }
 
-    public boolean viewKeranjangbyId(int Id) {
-        int found = searchIdKeranjang(Id);
-        if (found == 0) return false;
-        NodeKeranjang target = listKeranjang.get(Id);
-        target.viewbarang();
-        return true;
-    }
-
-    public void viewAllKeranjang() {
-        listKeranjang.forEach(nodeKeranjang -> {
-            System.out.println(nodeKeranjang.getId());
-            System.out.println(nodeKeranjang.getUser());
-            System.out.println(nodeKeranjang.getListBarang());
-            System.out.println();
-        });
-    }
-
     public static boolean isStringDigitsOnly(String s) {
         boolean status = Pattern.matches("^[0-9]+$",s);
         if (status) return true;
@@ -114,5 +98,9 @@ public class ModelKeranjang {
 
     public ArrayList<NodeProduk> getBarangGlobal() {
         return barangGlobal;
+    }
+
+    public ArrayList<NodeKeranjang> getListKeranjang() {
+        return listKeranjang;
     }
 }

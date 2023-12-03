@@ -3,6 +3,7 @@ package controller;
 import model.ModelKeranjang;
 import model.ModelProduk;
 import model.ModelUser;
+import node.NodeClass.NodeKeranjang;
 import node.NodeClass.NodeProduk;
 import node.NodeClass.NodeUser;
 
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 public class KeranjangController {
     private ModelKeranjang modelKeranjang;
     private ArrayList<NodeUser> userList;
+
     public KeranjangController(ArrayList<NodeProduk> produkGlobal, ArrayList<NodeUser> listUser) {
         modelKeranjang = new ModelKeranjang(produkGlobal);
         userList = listUser;
@@ -18,12 +20,21 @@ public class KeranjangController {
 
     public static void main(String[] args) {
         ModelUser u = new ModelUser();
-//        u.addUser(new NodeUser(1,"Alif","sleepy","ikan"));
-        System.out.println(u.getUserList().get(0).getNama());
+//        u.addUser(new NodeUser(2,"Revel","salahdia","gacoan"));
+//        System.out.println(u.getUserList().get(0).getNama());
         ArrayList<NodeProduk> a = new ArrayList<>();
-        a.add(new NodeProduk(1,"wiskas",10000,"makanan",10));
-        a.add(new NodeProduk(2,"sarden",18000,"makanan",8));
-        a.add(new NodeProduk(3,"king",20000,"makanan",3));
+        NodeUser revel = u.getUserList().get(1);
+        a.add(new NodeProduk(1,"wiskas",10000,"makanan",10,revel));
+        a.add(new NodeProduk(2,"sarden",18000,"makanan",8,revel));
+        a.add(new NodeProduk(3,"king",20000,"makanan",3,revel));
+        ModelKeranjang k = new ModelKeranjang(a);
+//        System.out.println("status add barang "+(k.addBarang(1,"1-10")));
+//        k.delBarang(1,1);
+        KeranjangController ker = new KeranjangController(a,(ArrayList<NodeUser>) u.getUserList());
+        ker.addKeranjang(1);
+        ker.addProduk(1,"1-10,2-7,3-5");
+        ker.addKeranjang(2);
+        ker.addProduk(2,"2-4,1-4");
     }
 
     public void addKeranjang(int Id) {
