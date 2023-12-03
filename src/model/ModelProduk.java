@@ -41,7 +41,7 @@ public class ModelProduk {
                 return id;
             }
         }
-        return 0;
+        return -1;
     }
 
     public void addProduk(NodeProduk produk){

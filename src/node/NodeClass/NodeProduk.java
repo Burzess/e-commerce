@@ -51,7 +51,7 @@ public class NodeProduk {
     }
 
     public void setStok(int stok) {
-        this.stok += stok;
+        this.stok = stok;
     }
 
     public String viewDataProduk(){

@@ -2,6 +2,7 @@ package controller;
 
 import model.ModelKeranjang;
 import model.ModelProduk;
+import model.ModelUser;
 import node.NodeClass.NodeProduk;
 import node.NodeClass.NodeUser;
 
@@ -13,6 +14,16 @@ public class KeranjangController {
     public KeranjangController(ArrayList<NodeProduk> produkGlobal, ArrayList<NodeUser> listUser) {
         modelKeranjang = new ModelKeranjang(produkGlobal);
         userList = listUser;
+    }
+
+    public static void main(String[] args) {
+        ModelUser u = new ModelUser();
+//        u.addUser(new NodeUser(1,"Alif","sleepy","ikan"));
+        System.out.println(u.getUserList().get(0).getNama());
+        ArrayList<NodeProduk> a = new ArrayList<>();
+        a.add(new NodeProduk(1,"wiskas",10000,"makanan",10));
+        a.add(new NodeProduk(2,"sarden",18000,"makanan",8));
+        a.add(new NodeProduk(3,"king",20000,"makanan",3));
     }
 
     public void addKeranjang(int Id) {

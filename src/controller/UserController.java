@@ -3,6 +3,7 @@ package controller;
 import model.ModelUser;
 import node.NodeClass.NodeUser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserController {
@@ -73,6 +74,18 @@ public class UserController {
     public NodeUser findUserById(int userId) {
         List<NodeUser> userList = modelUser.getUserList();
 
+        if (userList != null) {
+            for (NodeUser user : userList) {
+                if (user.getId_user() == userId) {
+                    return user;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public static NodeUser findUserById(int userId, ArrayList<NodeUser> userList) {
         if (userList != null) {
             for (NodeUser user : userList) {
                 if (user.getId_user() == userId) {
