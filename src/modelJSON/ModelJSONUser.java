@@ -13,8 +13,6 @@ import org.json.simple.parser.ParseException;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class ModelJSONUser {
@@ -58,7 +56,7 @@ public class ModelJSONUser {
                 JSONObject objUser = new JSONObject();
                 objUser.put(nodeJSONUser.getId_user(), user.getId_user());
                 objUser.put(nodeJSONUser.getNama(), user.getNama());
-                objUser.put(nodeJSONUser.getUserName(), user.getUserName());
+                objUser.put(nodeJSONUser.getUserName(), user.getUsername());
                 objUser.put(nodeJSONUser.getPassword(), user.getPassword());
                 arrayUser.add(objUser);
             }
