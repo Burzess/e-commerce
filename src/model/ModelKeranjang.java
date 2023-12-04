@@ -61,7 +61,7 @@ public class ModelKeranjang {
 //        System.out.println("status " +found);
         if (targetProduk == null) return false;
         boolean statusProduk = ModelProduk.cekBarang(targetProduk.getId_barang(),keranjang.listBarang);
-        System.out.println("status produk "+statusProduk);
+//        System.out.println("status produk "+statusProduk);
         if (!statusProduk) return false;
         NodeProduk copy = new NodeProduk(targetProduk);
         copy.setStok(stokBarang);
@@ -77,10 +77,11 @@ public class ModelKeranjang {
         if (target == null) return false;
         for (NodeKeranjang k: listKeranjang) {
             if (k.getId() == target.getId()) {
-                listKeranjang.remove(target.getId());
+                listKeranjang.removeIf(nodeKeranjang -> nodeKeranjang.getId()== target.getId());
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     public boolean delBarang(int idKeranjang, int idBarang) {
@@ -89,7 +90,9 @@ public class ModelKeranjang {
         NodeProduk foundProduk = ModelProduk.searchProduk(idBarang,foundKeranjang.listBarang);
         if (foundProduk == null) return false;
         System.out.println("list barang "+foundKeranjang.listBarang);
-        boolean statusDel = foundKeranjang.listBarang.removeIf(nodeProduk -> foundProduk.getId_barang() == idBarang);
+        boolean statusDel = foundKeranjang.listBarang.removeIf(nodeProduk -> nodeProduk.getId_barang() == idBarang);
+        if (!statusDel) return false;
+        foundKeranjang.totalHarga = foundKeranjang.getTotal();
         return true;
     }
 
