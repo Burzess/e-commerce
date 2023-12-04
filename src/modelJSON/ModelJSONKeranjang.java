@@ -15,7 +15,6 @@ import org.json.simple.parser.ParseException;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ModelJSONKeranjang {
     static final String fname = "src/database/keranjang.json";
@@ -102,7 +101,10 @@ public class ModelJSONKeranjang {
 
     public static NodeUser convertObjUser(JSONObject userObject){
         NodeJSONUser userJson = new NodeJSONUser();
-        int id_user = Integer.parseInt(userObject.get(userJson.getId_user()).toString());
+//        int id_user = Integer.parseInt(userObject.get(userJson.getId_user()).toString());
+        int id_user = (userObject != null && userObject.get(userJson.getId_user()) != null) ?
+                Integer.parseInt(userObject.get(userJson.getId_user()).toString()) :
+                0;
         String nama = (userObject != null && userObject.get(userJson.getNama()) != null)
                 ? String.valueOf(userObject.get(userJson.getNama()))
                 : "";

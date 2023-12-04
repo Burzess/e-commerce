@@ -6,8 +6,8 @@ import node.NodeClass.NodeUser;
 import java.util.Scanner;
 
 public class ProdukView {
-    private ProdukController produkController;
-    private Scanner input;
+    private ProdukController produkController = new ProdukController();
+    private Scanner input = new Scanner(System.in);
 
     public void addProdukView(NodeUser user){
         System.out.println("---Add Produk---");
@@ -48,8 +48,7 @@ public class ProdukView {
                       3 -> Kategori
                       4 -> Stok
                     contoh = 1/Keranjang Bayi
-                    Masukkan Command: 
-                    """);
+                    Masukkan Command:\s""");
             String comm = input.nextLine();
             produkController.updateProduk(a, comm);
             System.out.println("Berhasil update");
