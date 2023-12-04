@@ -1,8 +1,10 @@
 package view;
 
 import controller.ProdukController;
+import node.NodeClass.NodeProduk;
 import node.NodeClass.NodeUser;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class ProdukView {
@@ -52,6 +54,23 @@ public class ProdukView {
             String comm = input.nextLine();
             produkController.updateProduk(a, comm);
             System.out.println("Berhasil update");
+        }
+    }
+
+    public void searchPrduk(){
+        System.out.println("""
+                ===========PENCARIAN PRODUK===========
+                masukan produk yang ingin di cari:\s""");
+        String namaProduk = input.nextLine();
+        List<NodeProduk> hasilProduk = produkController.searchProduk(namaProduk);
+        System.out.println("hasil pencarian: ");
+        if (hasilProduk != null){
+            for (NodeProduk produk : hasilProduk) {
+                System.out.println("----------------------");
+                System.out.println(produk.getNamaBarang());
+            }
+        } else {
+            System.out.println("Produk tidak tersedia");
         }
     }
 }

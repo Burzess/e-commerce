@@ -34,8 +34,8 @@ public class UserView {
 
         System.out.println("""
                 1. Update Nama
-                2. Update username
-                3. Update password
+                2. Update Username
+                3. Update Password
                 Masukan Pilihan:\s""");
         int choice = scanner.nextInt();
         scanner.nextLine();
@@ -71,5 +71,13 @@ public class UserView {
         } else {
             System.out.println("User not found");
         }
+    }
+
+    public int login(){
+        System.out.print("masukan username: ");
+        String username = scanner.nextLine();
+        System.out.print("masukan password: ");
+        String password = scanner.nextLine();
+        return userController.authenticateUser(username, password);
     }
 }
