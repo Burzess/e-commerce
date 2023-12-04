@@ -4,9 +4,8 @@ out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 
-.e-commerce.iml
 .idea
-
+e-commerce.iml
 
 ### Eclipse ###
 .apt_generated
