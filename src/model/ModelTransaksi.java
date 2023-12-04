@@ -22,5 +22,7 @@ public class ModelTransaksi {
         }));
     }
 
-
+    public void addTransaksi(NodeTransaksi transaksi){
+        transaksiList.add(transaksi);
+    }
 }

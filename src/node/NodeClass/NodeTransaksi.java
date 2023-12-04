@@ -8,7 +8,7 @@ public class NodeTransaksi {
     public int id_transaksi;
     public NodeUser user;
     public List<NodeProduk> produkList;
-    public LocalDate tanggal;
+    public String tanggal;
     public int totalHarga;
 
     public NodeTransaksi(int id_transaksi, NodeUser user, List<NodeProduk> produkList, int total) {
@@ -16,6 +16,8 @@ public class NodeTransaksi {
         this.user = user;
         this.produkList = produkList;
         this.totalHarga = total;
-        this.tanggal = LocalDate.now();
+
+        LocalDate tgl = LocalDate.now();
+        this.tanggal = tgl.toString();
     }
 }
