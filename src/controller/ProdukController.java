@@ -4,6 +4,8 @@ import model.ModelProduk;
 import node.NodeClass.NodeProduk;
 import node.NodeClass.NodeUser;
 
+import java.util.List;
+
 public class ProdukController {
     ModelProduk modelProduk = new ModelProduk();
     private int id = 0;
@@ -29,6 +31,15 @@ public class ProdukController {
         if (produk != null){
             return produk.viewDataProduk();
         }
+        return null;
+    }
+
+    public List<NodeProduk> searchProduk(String namaProduk){
+        List<NodeProduk> hasilProduk = modelProduk.seachProduk(namaProduk);
+        if (hasilProduk != null){
+            return hasilProduk;
+        }
+
         return null;
     }
 }
