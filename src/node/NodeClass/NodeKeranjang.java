@@ -37,7 +37,7 @@ public class NodeKeranjang {
     public int getTotal() {
         int total = 0;
         for (NodeProduk p: listBarang) {
-            total+=p.getHarga();
+            total+=(p.getHarga() * p.getStok());
         }
         return total;
     }
