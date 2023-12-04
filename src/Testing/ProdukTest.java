@@ -1,6 +1,5 @@
 package Testing;
 
-import controller.ProdukController;
 import node.NodeClass.NodeUser;
 import view.ProdukView;
 
@@ -14,7 +13,8 @@ public class ProdukTest {
     public static void main(String[] args) {
         NodeUser login = new NodeUser(99, "jimbe", "jimbeGanteng", "123");
         ProdukTest produkTest = new ProdukTest();
-        produkView.addProdukView(login);
+//        produkView.addProdukView(login);
         produkView.viewwProduk();
+        produkView.searchPrduk();
     }
 }

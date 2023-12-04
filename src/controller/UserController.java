@@ -98,14 +98,18 @@ public class UserController {
     }
 
     public int authenticateUser(String username, String password){
-        int idx = -1;
         for (int i = 0; i < modelUser.getUserList().size(); i++) {
-            if (modelUser.getUserList().get(i).getUsername().equals(username)
-                    && modelUser.getUserList().get(i).getPassword().equals(password)){
-                idx = i;
+            if (modelUser.getUserList().get(i).getUsername().equals(username)) {
+                if (modelUser.getUserList().get(i).getPassword().equals(password)) {
+                    return i;
+                } else  {
+                    System.out.println("username atau password salah");
+                    return -1;
+                }
             }
         }
 
-        return idx;
+        System.out.println("username tidak tersedia");
+        return -1;
     }
 }

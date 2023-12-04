@@ -1,7 +1,6 @@
 package model;
 
 import modelJSON.ModelJSONProduk;
-import node.NodeClass.NodeKeranjang;
 import node.NodeClass.NodeProduk;
 
 import java.util.ArrayList;
@@ -41,6 +40,32 @@ public class ModelProduk {
             }
         }
         return null;
+    }
+
+
+    public List<NodeProduk> seachProduk(String namaProduk){
+        List<NodeProduk> hasilPencarian = new ArrayList<>();
+
+        String[] target = namaProduk.toLowerCase().split("\\s+");
+        if (produkList != null){
+            for (NodeProduk produk : produkList) {
+                boolean match = true;
+                String listNamaProduk = produk.getNamaBarang().toLowerCase();
+
+                for (String kata : target) {
+                    if (!listNamaProduk.contains(kata)){
+                        match = false;
+                        break;
+                    }
+                }
+
+                if (match){
+                    hasilPencarian.add(produk);
+                }
+            }
+        }
+
+        return hasilPencarian;
     }
 
 
