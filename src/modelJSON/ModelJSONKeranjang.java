@@ -92,6 +92,7 @@ public class ModelJSONKeranjang {
 
                 JSONArray arrayProduk = (JSONArray) keranjang.get(nodeJSONKeranjang.getListBarang());
                 ArrayList<NodeProduk> listProduk = convertJSONArrayProduk(arrayProduk, nodeUser);
+
                 int total = Integer.parseInt(keranjang.get(nodeJSONKeranjang.getTotalHarga()).toString());
                 listKeranjang.add(new NodeKeranjang(id_Keranjang,nodeUser,listProduk,total));
             }

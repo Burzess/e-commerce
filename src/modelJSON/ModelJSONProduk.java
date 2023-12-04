@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ModelJSONProduk {
-    public static String fname = "src/database/produk.json";
+    private static String fname = "src/database/produk.json";
     private static NodeJSONProduk nodeJSONBarang = new NodeJSONProduk();
 
     public static boolean cekFile(){
@@ -25,8 +25,8 @@ public class ModelJSONProduk {
             if (file.exists()){
                 cek = true;
             }
-        } catch (Exception asu){
-            System.out.println(asu.getMessage());
+        } catch (Exception a){
+            System.out.println(a.getMessage());
         }
         return cek;
     }
@@ -51,14 +51,14 @@ public class ModelJSONProduk {
         } else {
             JSONArray arrayBarang = new JSONArray();
             for (NodeProduk barang:listBarang) {
-                JSONObject objUser = new JSONObject();
-                objUser.put(nodeJSONBarang.getId_barang(), barang.getId_barang());
-                objUser.put(nodeJSONBarang.getNamaBarang(), barang.getNamaBarang());
-                objUser.put(nodeJSONBarang.getHarga(), barang.getHarga());
-                objUser.put(nodeJSONBarang.getKategori(), barang.getKategori());
-                objUser.put(nodeJSONBarang.getStok(), barang.getStok());
-                objUser.put(nodeJSONBarang.getUser(), barang.getUser());
-                arrayBarang.add(objUser);
+                JSONObject objProduk = new JSONObject();
+                objProduk.put(nodeJSONBarang.getId_barang(), barang.getId_barang());
+                objProduk.put(nodeJSONBarang.getNamaBarang(), barang.getNamaBarang());
+                objProduk.put(nodeJSONBarang.getHarga(), barang.getHarga());
+                objProduk.put(nodeJSONBarang.getKategori(), barang.getKategori());
+                objProduk.put(nodeJSONBarang.getStok(), barang.getStok());
+                objProduk.put(nodeJSONBarang.getUser(), barang.getUser());
+                arrayBarang.add(objProduk);
             }
             return arrayBarang;
         }
@@ -122,79 +122,6 @@ public class ModelJSONProduk {
             System.out.println("error: " + e.getMessage());
         }
         return listBarang;
-    }
-
-    public void appendToFileJSON(List<NodeProduk> listBarang) {
-        List<NodeProduk> barangList = readFromFile();
-
-        if (barangList == null) {
-            barangList = new ArrayList<>();
-        }
-        System.out.println(barangList.size());
-
-        int i = 0;
-        for (NodeProduk barang : barangList) {
-            if (barang.getId_barang() == listBarang.get(i).getId_barang()) {
-                System.out.println("id telah tersedia");
-                return;
-            }
-        }
-
-        barangList.addAll(listBarang);
-        writeFileJSON(barangList);
-    }
-
-    public boolean deleteByIdJSONUser(int barangId) {
-        List<NodeProduk> barangList = readFromFile();
-
-        if(barangList != null){
-            if (barangList.removeIf(barang -> barang.getId_barang() == barangId)){
-                writeFileJSON(barangList);
-                System.out.println("delete success");
-                return true;
-            } else {
-                System.out.println("id tidak ditemukan");
-                return false;
-            }
-        }
-
-        System.out.println("data kosong");
-        return false;
-    }
-    public boolean updateJSONNamaBarang(int barangId, String nama){
-        List<NodeProduk> barangList = readFromFile();
-
-        if (barangList != null){
-            for (NodeProduk barang : barangList) {
-                if (barang.getId_barang() == barangId){
-                    barang.setNamaBarang(nama);
-                    writeFileJSON(barangList);
-                    System.out.println("Data berhasil di perbarui");
-                    return true;
-                }
-            }
-        }
-
-        System.out.println("Data kosong");
-        return false;
-    }
-
-    public boolean updateJSONStokBarang(int barangId, int stok){
-        List<NodeProduk> barangList = readFromFile();
-
-        if (barangList != null){
-            for (NodeProduk barang : barangList) {
-                if (barang.getId_barang() == barangId){
-                    barang.setStok(stok);
-                    writeFileJSON(barangList);
-                    System.out.println("Data berhasil di perbarui");
-                    return true;
-                }
-            }
-        }
-
-        System.out.println("Data kosong");
-        return false;
     }
 
 }
