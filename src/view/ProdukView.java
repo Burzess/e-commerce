@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ProdukView {
-    private ProdukController produkController = new ProdukController();
+    ProdukController produkController = new ProdukController();
     private Scanner input = new Scanner(System.in);
 
     public void addProdukView(NodeUser user){
