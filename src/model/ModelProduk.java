@@ -41,32 +41,6 @@ public class ModelProduk {
         return -1;
     }
 
-    public List<NodeProduk> seachProduk(String namaProduk){
-        List<NodeProduk> hasilPencarian = new ArrayList<>();
-
-        String[] target = namaProduk.toLowerCase().split("\\s+");
-        if (produkList != null){
-            for (NodeProduk produk : produkList) {
-                boolean match = true;
-                String listNamaProduk = produk.getNamaBarang().toLowerCase();
-
-                for (String kata : target) {
-                    if (!listNamaProduk.contains(kata)){
-                        match = false;
-                        break;
-                    }
-                }
-
-                if (match){
-                    hasilPencarian.add(produk);
-                }
-            }
-        }
-
-        return hasilPencarian;
-    }
-
-
     public static void updateProduk(int opsi, String data, NodeProduk updateProduk){
         switch (opsi){
             case 1-> updateProduk.setNamaBarang(data);
@@ -85,5 +59,10 @@ public class ModelProduk {
             }
         }
         return true;
+    }
+
+    public int getLastCode(){
+        int idx = produkList.size() -1;
+        return produkList.get(idx).getId_barang();
     }
 }

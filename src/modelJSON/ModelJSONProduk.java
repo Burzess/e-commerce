@@ -57,6 +57,7 @@ public class ModelJSONProduk {
                 objUser.put(nodeJSONBarang.getHarga(), barang.getHarga());
                 objUser.put(nodeJSONBarang.getKategori(), barang.getKategori());
                 objUser.put(nodeJSONBarang.getStok(), barang.getStok());
+                objUser.put(nodeJSONBarang.getUser(), barang.getUser());
                 arrayBarang.add(objUser);
             }
             return arrayBarang;

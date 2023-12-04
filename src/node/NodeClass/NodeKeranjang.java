@@ -6,7 +6,7 @@ public class NodeKeranjang {
     private int Id;
     private NodeUser user;
     ArrayList<NodeProduk> listBarang;
-    int totalHarga;
+    int totalHarga = 0;
 
     public NodeKeranjang(NodeUser u) {
         user = u;
@@ -51,5 +51,13 @@ public class NodeKeranjang {
 
     public ArrayList<NodeProduk> getListBarang() {
         return listBarang;
+    }
+
+    public void setTotalHarga() {
+        int total = 0;
+        for (NodeProduk p: listBarang) {
+            total+=p.getHarga();
+        }
+        totalHarga = total;
     }
 }
