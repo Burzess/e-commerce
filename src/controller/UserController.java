@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserController {
-    private ModelUser modelUser;
+    ModelUser modelUser;
 
     public UserController() {
         this.modelUser = new ModelUser();

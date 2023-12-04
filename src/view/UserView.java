@@ -5,7 +5,7 @@ import controller.UserController;
 import java.util.Scanner;
 
 public class UserView {
-    private UserController userController;
+    UserController userController;
     private Scanner scanner;
 
     public UserView() {
