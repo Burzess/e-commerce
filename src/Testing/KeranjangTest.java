@@ -18,10 +18,11 @@ public class KeranjangTest {
         lBarang.add(new NodeProduk(2,"Kentang",8000,"Makanan",10,rehan));
         lBarang.add(new NodeProduk(3,"Borgar",12000,"Makanan",10,rehan));
         KeranjangController tester = new KeranjangController(lBarang,lUser);
-        tester.addKeranjang(1);
-        tester.delKeranjang(0);
+        tester.addKeranjang(2);
+//        tester.delKeranjang(0);
 //        tester.addKeranjang(2);
-//        tester.addProduk(1,"1-10,2-1");
+        tester.addProduk(2,"3-1");
+        tester.viewAll();
 //        tester.delProduk(1,2);
     }
 

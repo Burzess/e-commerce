@@ -64,4 +64,28 @@ public class KeranjangController {
         boolean status = modelKeranjang.delBarang(idKeranjang,idProduk);
 //        System.out.println("delete contro status "+status);
     }
+
+    public void viewAll() {
+        ArrayList<NodeKeranjang> listKeranjang = modelKeranjang.getListKeranjang();
+        if (listKeranjang.isEmpty()) {
+            System.out.println("Keranjang belanja kosong.");
+        } else {
+            System.out.println("Isi keranjang belanja:");
+
+            for (NodeKeranjang keranjang : listKeranjang) {
+                System.out.println("ID Keranjang: " + keranjang.getId());
+                System.out.println("Barang dalam keranjang:");
+
+                ArrayList<NodeProduk> barangList = keranjang.listBarang;
+                for (NodeProduk barang : barangList) {
+                    System.out.println("- Nama Barang: " + barang.getNamaBarang());
+                    System.out.println("  Harga: " + barang.getHarga());
+                    System.out.println("  Stok: " + barang.getStok());
+                }
+                System.out.println("Total Harga: " + keranjang.totalHarga);
+
+                System.out.println();
+            }
+        }
+    }
 }
