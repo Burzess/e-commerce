@@ -4,17 +4,20 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Transaksi {
+public class NodeTransaksi {
     public int id_transaksi;
     public NodeUser user;
     public List<NodeProduk> produkList;
-    public LocalDate tanggal;
+    public String tanggal;
     public int totalHarga;
 
-    public Transaksi(int id_transaksi, NodeUser user, int total) {
+    public NodeTransaksi(int id_transaksi, NodeUser user, List<NodeProduk> produkList, int total) {
         this.id_transaksi = id_transaksi;
         this.user = user;
-        this.produkList = new ArrayList<>();
+        this.produkList = produkList;
         this.totalHarga = total;
+
+        LocalDate tgl = LocalDate.now();
+        this.tanggal = tgl.toString();
     }
 }
