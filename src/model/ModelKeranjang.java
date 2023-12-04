@@ -48,13 +48,16 @@ public class ModelKeranjang {
         NodeProduk copy = new NodeProduk(temp);
         copy.setStok(stokBarang);
         keranjang.addBarang(copy);
+        keranjang.setTotalHarga();
         return true;
     }
 
     public boolean delKeranjang(int idKeranjang) {
+//        System.out.println("yang di hapus "+idKeranjang);
         int target = searchIdKeranjang(idKeranjang);
+//        System.out.println("target di hapus "+target);
         if (target == 0) return false;
-        listKeranjang.remove(idKeranjang);
+        listKeranjang.remove(idKeranjang-1);
         return true;
     }
 
