@@ -13,7 +13,7 @@ public class NodeJSONTransaksi {
     public String tanggal;
     public String totalHarga;
 
-    public NodeJSONTransaksi("") {
+    public NodeJSONTransaksi() {
         this.id_transaksi = "id_transaksi";
         this.user = "user";
         this.produkList = "produkList";

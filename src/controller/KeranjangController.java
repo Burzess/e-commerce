@@ -18,37 +18,6 @@ public class KeranjangController {
         userList = listUser;
     }
 
-    public static void main(String[] args) {
-        ModelUser u = new ModelUser();
-//        u.addUser(new NodeUser(2,"Revel","salahdia","gacoan"));
-//        System.out.println(u.getUserList().get(0).getNama());
-        ArrayList<NodeProduk> a = new ArrayList<>();
-        NodeUser revel = u.getUserList().get(1);
-        a.add(new NodeProduk(1,"wiskas",10000,"makanan",10,revel));
-        a.add(new NodeProduk(2,"sarden",18000,"makanan",8,revel));
-        a.add(new NodeProduk(3,"king",20000,"makanan",3,revel));
-        ModelKeranjang k = new ModelKeranjang(a);
-//        System.out.println("status add barang "+(k.addBarang(1,"1-10")));
-//        k.delBarang(1,1);
-        KeranjangController ker = new KeranjangController(a,(ArrayList<NodeUser>) u.getUserList());
-        ker.addKeranjang(1);
-        ker.addProduk(1,"1-10,2-7,3-5");
-        ker.addKeranjang(2);
-        ker.addProduk(2,"2-1,1-1");
-//        ker.modelKeranjang.delKeranjang(1);
-//        for (NodeKeranjang t: ker.modelKeranjang.getListKeranjang()) {
-//            System.out.println("id ker "+t.getId());
-//        }
-//        System.out.println("#");
-//        System.out.println("status del "+ker.modelKeranjang.delKeranjang(1));
-//        ker.delKeranjang(1);
-//        for (NodeKeranjang t: ker.modelKeranjang.getListKeranjang()) {
-//            System.out.println("id ker "+t.getId());
-//        }
-        System.out.println(ker.modelKeranjang.getListKeranjang().get(0).getTotal());
-        System.out.println(ker.modelKeranjang.getListKeranjang().get(1).getTotal());
-    }
-
     public void addKeranjang(int Id) {
         NodeUser target = UserController.findUserById(Id,userList);
         if (target == null) {
@@ -93,12 +62,6 @@ public class KeranjangController {
             return;
         }
         boolean status = modelKeranjang.delBarang(idKeranjang,idProduk);
-    }
-
-    public void viewKeranjang() {
-
-    }
-    public ModelKeranjang getModelKeranjang() {
-        return modelKeranjang;
+//        System.out.println("delete contro status "+status);
     }
 }
