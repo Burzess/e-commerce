@@ -1,0 +1,41 @@
+[
+  {
+    "harga": 900,
+    "id_barang": 0,
+    "kategori": "orang",
+    "namaBarang": "alif",
+    "stok": 1,
+    "userObject": {
+      "id_user": 0,
+      "nama": "",
+      "username": "",
+      "password": ""
+    }
+  },
+  {
+    "harga": 1000,
+    "id_barang": 1,
+    "kategori": "orang",
+    "namaBarang": "pandu",
+    "stok": 1,
+    "userObject": {
+      "id_user": 99,
+      "nama": "jimbe",
+      "username": "",
+      "password": "123"
+    }
+  },
+  {
+    "harga": 2000,
+    "id_barang": 2,
+    "kategori": "orang",
+    "namaBarang": "dwiki",
+    "stok": 3,
+    "userObject": {
+      "id_user": 99,
+      "nama": "jimbe",
+      "username": "jimbeGanteng",
+      "password": "123"
+    }
+  }
+]
