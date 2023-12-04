@@ -1,6 +1,7 @@
 package model;
 
 import modelJSON.ModelJSONProduk;
+import node.NodeClass.NodeKeranjang;
 import node.NodeClass.NodeProduk;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class ModelProduk {
         produkList.add(produk);
     }
     public static NodeProduk searchProduk(int id){
+        if (produkList == null) return null;
         for (NodeProduk produk: produkList){
             if (produk.getId_barang() == id){
                 return produk;
@@ -32,13 +34,13 @@ public class ModelProduk {
         return null;
     }
 
-    public static int searchProduk(int id, ArrayList<NodeProduk> produkList){
+    public static NodeProduk searchProduk(int id, ArrayList<NodeProduk> produkList){
         for (NodeProduk produk: produkList){
             if (produk.getId_barang() == id){
-                return id;
+                return produk;
             }
         }
-        return -1;
+        return null;
     }
 
 
@@ -57,6 +59,15 @@ public class ModelProduk {
                 if (barang.getNamaBarang().equals(nama)) {
                     return false;
                 }
+            }
+        }
+        return true;
+    }
+    public static boolean cekBarang(int id, ArrayList<NodeProduk> list) {
+        if (list == null) return false;
+        for (NodeProduk k: list) {
+            if (k.getId_barang() == id) {
+                return false;
             }
         }
         return true;

@@ -45,8 +45,8 @@ public class KeranjangController {
 //        for (NodeKeranjang t: ker.modelKeranjang.getListKeranjang()) {
 //            System.out.println("id ker "+t.getId());
 //        }
-        System.out.println(ker.modelKeranjang.getListKeranjang().get(0).getTotalHarga());
-        System.out.println(ker.modelKeranjang.getListKeranjang().get(1).getTotalHarga());
+        System.out.println(ker.modelKeranjang.getListKeranjang().get(0).getTotal());
+        System.out.println(ker.modelKeranjang.getListKeranjang().get(1).getTotal());
     }
 
     public void addKeranjang(int Id) {
@@ -59,21 +59,21 @@ public class KeranjangController {
     }
 
     public void addProduk(int idKeranjang, String Stuff) {
-        int target = modelKeranjang.searchIdKeranjang(idKeranjang);
-        if (target == 0) {
+        NodeKeranjang target = modelKeranjang.searchIdKeranjang(idKeranjang);
+        if (target == null) {
             System.out.println("Maaf Id Kerajang tidak ditemukan");
             return;
         }
         String[] filter = Stuff.split(",");
         for (String p: filter) {
-            boolean status = modelKeranjang.addBarang(target,p);
+            boolean status = modelKeranjang.addBarang(target.getId(),p);
             if (!status) System.out.println("Id barang not found");
         }
     }
 
     public void delKeranjang(int idKeranjang) {
-        int found = modelKeranjang.searchIdKeranjang(idKeranjang);
-        if (found == 0) {
+        NodeKeranjang found = modelKeranjang.searchIdKeranjang(idKeranjang);
+        if (found == null) {
             System.out.println("Maaf produk id not found");
             return;
         }
@@ -81,14 +81,14 @@ public class KeranjangController {
     }
 
     public void delProduk(int idKeranjang, int idProduk) {
-        int targetKeranjang = modelKeranjang.searchIdKeranjang(idKeranjang);
-        if (targetKeranjang == 0) {
+        NodeKeranjang targetKeranjang = modelKeranjang.searchIdKeranjang(idKeranjang);
+        if (targetKeranjang == null) {
             System.out.println("Maaf Id keranjang not found");
             return;
         }
         ArrayList<NodeProduk> tempListBarang = modelKeranjang.getBarangGlobal();
-        int targetProduk = ModelProduk.searchProduk(idProduk,tempListBarang);
-        if (targetProduk == 0){
+        NodeProduk targetProduk = ModelProduk.searchProduk(idProduk,tempListBarang);
+        if (targetProduk == null){
             System.out.println("Maaf Id produk not found");
             return;
         }

@@ -10,8 +10,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ModelKeranjang {
-    ArrayList<NodeProduk> barangGlobal;
-    ArrayList<NodeKeranjang> listKeranjang;
+    private ArrayList<NodeProduk> barangGlobal;
+    private ArrayList<NodeKeranjang> listKeranjang;
 
     public ModelKeranjang(ArrayList<NodeProduk> listBarang) {
         listKeranjang = ModelJSONKeranjang.readFromFile();
@@ -26,56 +26,80 @@ public class ModelKeranjang {
         }));
     }
 
-    public void addKeranjang(NodeUser u) {
+    public boolean addKeranjang(NodeUser u) {
+        boolean status = checkKeranjang(u,listKeranjang);
+        if (!status) return false;
         listKeranjang.add(new NodeKeranjang(u));
+        return true;
+    }
+
+    private static boolean checkKeranjang(NodeUser u, ArrayList<NodeKeranjang> list) {
+        if (list == null) return false;
+        for (NodeKeranjang k: list) {
+            if (k.getUser().getId_user() == u.getId_user()) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public boolean addBarang(int idKeranjang, String id_Stok) {
-        NodeKeranjang keranjang = listKeranjang.get(idKeranjang-1);
+        NodeKeranjang keranjang = searchIdKeranjang(idKeranjang);
+        // filter id_Stok
         String[] strBarang = id_Stok.split("-");
         for (String f: strBarang) {
             boolean status = isStringDigitsOnly(f);
             if (status) continue;
             f = filterStringNumberOnly(f);
         }
+        // convert String to Integer
         int idProduk = Integer.parseInt(strBarang[0]);
         int stokBarang = Integer.parseInt(strBarang[1]);
 //        System.out.println("id "+idProduk+" stok "+stokBarang);
-        int found = ModelProduk.searchProduk(idProduk,barangGlobal);
+        //
+        NodeProduk targetProduk = ModelProduk.searchProduk(idProduk,barangGlobal);
 //        System.out.println("status " +found);
-        if (found < 0) return false;
-        NodeProduk temp = barangGlobal.get(found-1);
-        NodeProduk copy = new NodeProduk(temp);
+        if (targetProduk == null) return false;
+        boolean statusProduk = ModelProduk.cekBarang(targetProduk.getId_barang(),keranjang.listBarang);
+        System.out.println("status produk "+statusProduk);
+        if (!statusProduk) return false;
+        NodeProduk copy = new NodeProduk(targetProduk);
         copy.setStok(stokBarang);
         keranjang.addBarang(copy);
-        keranjang.setTotalHarga();
+        keranjang.totalHarga = keranjang.getTotal();
         return true;
     }
 
     public boolean delKeranjang(int idKeranjang) {
 //        System.out.println("yang di hapus "+idKeranjang);
-        int target = searchIdKeranjang(idKeranjang);
+        NodeKeranjang target = searchIdKeranjang(idKeranjang);
 //        System.out.println("target di hapus "+target);
-        if (target == 0) return false;
-        listKeranjang.remove(idKeranjang-1);
-        return true;
-    }
-
-    public boolean delBarang(int idKeranjang, int Id) {
-        int found = searchIdKeranjang(Id);
-        if (found == 0) return false;
-        listKeranjang.get(idKeranjang).deleteBarang(Id);
-        return true;
-    }
-
-    public int searchIdKeranjang(int id) {
-        int found = 0;
+        if (target == null) return false;
         for (NodeKeranjang k: listKeranjang) {
-            if (k.getId() == id) {
-                found = k.getId();
+            if (k.getId() == target.getId()) {
+                listKeranjang.remove(target.getId());
             }
         }
-        return found;
+        return true;
+    }
+
+    public boolean delBarang(int idKeranjang, int idBarang) {
+        NodeKeranjang foundKeranjang = searchIdKeranjang(idKeranjang);
+        if (foundKeranjang == null) return false;
+        NodeProduk foundProduk = ModelProduk.searchProduk(idBarang,foundKeranjang.listBarang);
+        if (foundProduk == null) return false;
+        System.out.println("list barang "+foundKeranjang.listBarang);
+        boolean statusDel = foundKeranjang.listBarang.removeIf(nodeProduk -> foundProduk.getId_barang() == idBarang);
+        return true;
+    }
+
+    public NodeKeranjang searchIdKeranjang(int id) {
+        for (NodeKeranjang k: listKeranjang) {
+            if (k.getId() == id) {
+                return k;
+            }
+        }
+        return null;
     }
 
     public static boolean isStringDigitsOnly(String s) {
