@@ -3,7 +3,7 @@
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
-e-commerce.iml
+.e-commerce.iml
 .idea
 
 ### Eclipse ###

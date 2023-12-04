@@ -61,4 +61,9 @@ public class ModelProduk {
         }
         return true;
     }
+
+    public int getLastCode(){
+        int idx = produkList.size() -1;
+        return produkList.get(idx).getId_barang();
+    }
 }

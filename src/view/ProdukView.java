@@ -25,7 +25,7 @@ public class ProdukView {
     }
 
     public int viewwProduk(){
-        System.out.println("Masukkan id produk: ");
+        System.out.print("Masukkan id produk: ");
         int id = input.nextInt();
         input.nextLine();
         String data = produkController.viewProduk(id);
