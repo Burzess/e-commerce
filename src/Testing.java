@@ -31,8 +31,8 @@ public class Testing {
             System.out.println("user: ");
             System.out.println(keranjang.getUser().getNama());
             System.out.println("list Produk:");
-            if (keranjang.getListBarang() != null){
-                for (NodeProduk barang : keranjang.getListBarang()) {
+            if (keranjang.listBarang != null){
+                for (NodeProduk barang : keranjang.listBarang) {
                     System.out.println(barang.getNamaBarang());
                     System.out.println(barang.getHarga());
                     System.out.println(barang.getKategori());

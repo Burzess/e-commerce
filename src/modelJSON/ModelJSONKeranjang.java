@@ -56,8 +56,8 @@ public class ModelJSONKeranjang {
                 JSONObject objUser = new JSONObject();
                 objUser.put(nodeJSONKeranjang.getId(), keranjang.getId());
                 objUser.put(nodeJSONKeranjang.getUser(), keranjang.getUser());
-                objUser.put(nodeJSONKeranjang.getListBarang(), keranjang.getListBarang());
-                objUser.put(nodeJSONKeranjang.getTotalHarga(), keranjang.getTotalHarga());
+                objUser.put(nodeJSONKeranjang.getListBarang(), keranjang.listBarang);
+                objUser.put(nodeJSONKeranjang.getTotalHarga(), keranjang.totalHarga);
                 arrayKeranjang.add(objUser);
             }
             return arrayKeranjang;

@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class NodeKeranjang {
     private int Id;
     private NodeUser user;
-    ArrayList<NodeProduk> listBarang;
-    int totalHarga = 0;
+    public ArrayList<NodeProduk> listBarang;
+    public int totalHarga = 0;
 
     public NodeKeranjang(NodeUser u) {
         user = u;
@@ -34,30 +34,22 @@ public class NodeKeranjang {
         return Id;
     }
 
-    public void viewbarang() {
-        for (NodeProduk g: listBarang) {
-            System.out.println(g.getId_barang());
-            System.out.println(g.getNamaBarang());
+    public int getTotal() {
+        int total = 0;
+        for (NodeProduk p: listBarang) {
+            total+=p.getHarga();
         }
+        return total;
     }
 
     public NodeUser getUser() {
         return user;
     }
 
-    public int getTotalHarga() {
-        return totalHarga;
-    }
-
-    public ArrayList<NodeProduk> getListBarang() {
-        return listBarang;
-    }
-
-    public void setTotalHarga() {
-        int total = 0;
-        for (NodeProduk p: listBarang) {
-            total+=p.getHarga();
+    public void viewbarang() {
+        for (NodeProduk g: listBarang) {
+            System.out.println(g.getId_barang());
+            System.out.println(g.getNamaBarang());
         }
-        totalHarga = total;
     }
 }
