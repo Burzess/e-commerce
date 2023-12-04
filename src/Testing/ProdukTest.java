@@ -5,7 +5,6 @@ import node.NodeClass.NodeUser;
 import view.ProdukView;
 
 public class ProdukTest {
-//    ProdukController produkController = new ProdukController();
     private static ProdukView produkView;
 
     public ProdukTest() {

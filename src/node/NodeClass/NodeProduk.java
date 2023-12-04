@@ -8,6 +8,8 @@ public class NodeProduk {
     private String kategori;
     private int stok;
 
+    public NodeProduk() {
+    }
 
     public NodeProduk(int id_barang, String namaBarang, int harga, String kategori, int stok, NodeUser user) {
         this.id_barang = id_barang;
