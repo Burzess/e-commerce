@@ -12,8 +12,8 @@ public class KeranjangView {
     KeranjangController keranjang;
     Scanner input;
 
-    public KeranjangView(ArrayList<NodeProduk> lProduk, ArrayList<NodeUser> lUser) {
-        keranjang = new KeranjangController(lProduk, lUser);
+    public KeranjangView(ProdukView vProduk, UserView vUser) {
+        keranjang = new KeranjangController(vProduk.produkController, vUser.userController);
         input = new Scanner(System.in);
     }
 

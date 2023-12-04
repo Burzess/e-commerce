@@ -10,16 +10,23 @@ import node.NodeClass.NodeUser;
 import java.util.ArrayList;
 
 public class KeranjangController {
-    private ModelKeranjang modelKeranjang;
-    private ArrayList<NodeUser> userList;
+    ModelKeranjang modelKeranjang;
+    ModelProduk modelProduk;
+    ModelUser modelUser;
+//    ArrayList<NodeUser> userList;
 
-    public KeranjangController(ArrayList<NodeProduk> produkGlobal, ArrayList<NodeUser> listUser) {
-        modelKeranjang = new ModelKeranjang(produkGlobal);
-        userList = listUser;
+//    public KeranjangController(ArrayList<NodeProduk> produkGlobal, ArrayList<NodeUser> listUser) {
+//        modelKeranjang = new ModelKeranjang(produkGlobal);
+//        userList = listUser;
+//    }
+    public KeranjangController(ProdukController cProduk, UserController cUser) {
+        modelKeranjang = new ModelKeranjang((ArrayList<NodeProduk>) ModelProduk.produkList);
+        modelProduk = cProduk.modelProduk;
+        modelUser = cUser.modelUser;
     }
 
     public void addKeranjang(int Id) {
-        NodeUser target = UserController.findUserById(Id,userList);
+        NodeUser target = modelUser.getIdUser(Id);
         if (target == null) {
             System.out.println("Maaf Id User tidak ditemukan");
             return;
