@@ -6,14 +6,20 @@ import java.util.Scanner;
 
 public class UserView {
     UserController userController;
+    KeranjangView kerController;
     private Scanner scanner;
 
     public UserView() {
         this.userController = new UserController();
         this.scanner = new Scanner(System.in);
     }
+    public UserView(KeranjangView k) {
+        this.userController = new UserController();
+        this.scanner = new Scanner(System.in);
+        kerController = k;
+    }
 
-    public void addUser() {
+    public void addUser(KeranjangView k) {
         System.out.println("Masukan detail user:");
         System.out.print("Name: ");
         String name = scanner.nextLine();
@@ -22,7 +28,7 @@ public class UserView {
         System.out.print("password: ");
         String password = scanner.nextLine();
 
-        userController.addUser(name, username, password);
+        userController.addUser(name, username, password,k.keranjang);
 
         System.out.println("User added successfully!");
     }
