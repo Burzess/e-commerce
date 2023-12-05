@@ -1,5 +1,6 @@
 package controller;
 
+import model.ModelKeranjang;
 import model.ModelUser;
 import node.NodeClass.NodeUser;
 
@@ -8,9 +9,22 @@ import java.util.List;
 
 public class UserController {
     ModelUser modelUser;
+    ModelKeranjang modelKeranjang;
 
     public UserController() {
         this.modelUser = new ModelUser();
+    }
+
+    public void addUser(String name, String username, String password, KeranjangController k) {
+        if (cekUsername(username)) {
+            int userId = modelUser.getLasIdUser();
+            userId++;
+            NodeUser newUser = new NodeUser(userId, name, username, password);
+            modelUser.addUser(newUser);
+            k.modelKeranjang.addKeranjang(newUser);
+        } else {
+            System.out.println("Username sudah ada, gunakan username lain.");
+        }
     }
 
     public void addUser(String name, String username, String password, KeranjangController k) {
