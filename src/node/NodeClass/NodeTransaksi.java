@@ -20,4 +20,14 @@ public class NodeTransaksi {
         LocalDate tgl = LocalDate.now();
         this.tanggal = tgl.toString();
     }
+
+    public void view(){
+        System.out.println("Tanggal Transaksi: "+tanggal);
+        System.out.println("Produk yang dibeli: ");
+        for (NodeProduk produk: produkList){
+            produk.viewDataProduk();
+            System.out.println("\n");
+        }
+        System.out.println("Total : "+totalHarga);
+    }
 }
