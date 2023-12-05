@@ -58,6 +58,8 @@ public class ModelJSONUser {
                 objUser.put(nodeJSONUser.getNama(), user.getNama());
                 objUser.put(nodeJSONUser.getUserName(), user.getUsername());
                 objUser.put(nodeJSONUser.getPassword(), user.getPassword());
+                objUser.put(nodeJSONUser.getSaldo(), user.getSaldo());
+                objUser.put(nodeJSONUser.getStatus(), user.isStatus());
                 arrayUser.add(objUser);
             }
             return arrayUser;
@@ -89,7 +91,9 @@ public class ModelJSONUser {
                 String nama = user.get(nodeJSONUser.getNama()).toString();
                 String user_name = user.get(nodeJSONUser.getUserName()).toString();
                 String password = user.get(nodeJSONUser.getPassword()).toString();
-                listUser.add(new NodeUser(id_user, nama,user_name, password));
+                int saldo = Integer.parseInt(user.get(nodeJSONUser.getSaldo()).toString());
+                boolean status = Boolean.parseBoolean(user.get(nodeJSONUser.getStatus()).toString());
+                listUser.add(new NodeUser(id_user, nama,user_name, password, saldo, status));
             }
             return listUser;
         }

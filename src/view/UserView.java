@@ -18,16 +18,13 @@ public class UserView {
     public UserView(KeranjangView k) {
         this.userController = new UserController();
         this.scanner = new Scanner(System.in);
-        kerController = k;
     }
-
 
     public void setKeranjangView(KeranjangView keranjangView) {
         this.keranjangView = keranjangView;
     }
 
-    public void addUser(KeranjangView k) {
-
+    public void addUser() {
         System.out.println("Masukan detail user:");
         System.out.print("Name: ");
         String name = scanner.nextLine();
@@ -36,7 +33,7 @@ public class UserView {
         System.out.print("password: ");
         String password = scanner.nextLine();
 
-        userController.addUser(name, username, password,k.keranjang);
+        userController.addUser(name, username, password,keranjangView.keranjang);
 
         System.out.println("User added successfully!");
     }
@@ -50,10 +47,14 @@ public class UserView {
                 1. Update Nama
                 2. Update Username
                 3. Update Password
+                4. Update Status
+                5. Tambah Saldo
                 Masukan Pilihan:\s""");
         int choice = scanner.nextInt();
         scanner.nextLine();
         String name = "", username = "", password = "";
+        boolean status = false;
+        int saldo = 0;
 
         switch (choice) {
             case 1 -> {
@@ -68,9 +69,25 @@ public class UserView {
                 System.out.print("password: ");
                 password = scanner.nextLine();
             }
+            case 4 -> {
+                System.out.println("""
+                        ARE YOUT HUMAN?
+                        YES or NO:\s""");
+                String input = scanner.nextLine();
+                if (input.equals("yes") || input.equals("YES")){
+                    status = true;
+                }
+            }
+            case 5 -> {
+                System.out.println("""
+                        Masukan Jumlah Saldo yang ingin di tambahkan!
+                        Saldo:\s""");
+                saldo = scanner.nextInt();
+                scanner.nextLine();
+            }
         }
 
-        if (userController.updateUser(userId,name, username, password)){
+        if (userController.updateUser(userId,name, username, password, status, saldo)){
             System.out.println("User updated successfully!");
         } else {
             System.out.println("User not found!");

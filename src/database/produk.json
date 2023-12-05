@@ -9,7 +9,9 @@
       "id_user": 0,
       "nama": "",
       "username": "",
-      "password": ""
+      "password": "",
+      "saldo": 0,
+      "status": false
     }
   },
   {
@@ -22,7 +24,9 @@
       "id_user": 99,
       "nama": "jimbe",
       "username": "",
-      "password": "123"
+      "password": "123",
+      "saldo": 0,
+      "status": false
     }
   },
   {
@@ -35,7 +39,9 @@
       "id_user": 99,
       "nama": "jimbe",
       "username": "",
-      "password": "123"
+      "password": "123",
+      "saldo": 0,
+      "status": false
     }
   },
   {
@@ -48,7 +54,9 @@
       "id_user": 99,
       "nama": "jimbe",
       "username": "",
-      "password": "123"
+      "password": "123",
+      "saldo": 0,
+      "status": false
     }
   }
 ]

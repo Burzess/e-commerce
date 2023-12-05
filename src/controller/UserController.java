@@ -1,6 +1,5 @@
 package controller;
 
-import model.ModelKeranjang;
 import model.ModelUser;
 import node.NodeClass.NodeUser;
 
@@ -9,22 +8,10 @@ import java.util.List;
 
 public class UserController {
     ModelUser modelUser;
-    ModelKeranjang modelKeranjang;
+
 
     public UserController() {
         this.modelUser = new ModelUser();
-    }
-
-    public void addUser(String name, String username, String password, KeranjangController k) {
-        if (cekUsername(username)) {
-            int userId = modelUser.getLasIdUser();
-            userId++;
-            NodeUser newUser = new NodeUser(userId, name, username, password);
-            modelUser.addUser(newUser);
-            k.modelKeranjang.addKeranjang(newUser);
-        } else {
-            System.out.println("Username sudah ada, gunakan username lain.");
-        }
     }
 
     public void addUser(String name, String username, String password, KeranjangController k) {
@@ -53,7 +40,7 @@ public class UserController {
         return true;
     }
 
-    public boolean updateUser(int userId, String newName, String newUsername, String newPassword) {
+    public boolean updateUser(int userId, String newName, String newUsername, String newPassword, boolean status, int saldo) {
 
         NodeUser existingUser = findUserById(userId);
 
@@ -65,6 +52,10 @@ public class UserController {
                 updatedUser.setUsername(newUsername);
             } else if (!newPassword.isEmpty()) {
                 updatedUser.setPassword(newPassword);
+            } else if (status){
+                updatedUser.setStatus(true);
+            } else if (saldo != 0) {
+                updatedUser.setSaldo(saldo);
             }
 
             modelUser.updateUser(updatedUser);

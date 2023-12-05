@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "password": "1234",
+    "nama": "Njidu",
+    "id_user": 1,
+    "saldo": 50000,
+    "userName": "sikembar",
+    "status": false
+  }
+]
