@@ -6,7 +6,9 @@ import java.util.Scanner;
 
 public class UserView {
     UserController userController;
-    KeranjangView kerController;
+
+    KeranjangView keranjangView;
+
     private Scanner scanner;
 
     public UserView() {
@@ -19,7 +21,13 @@ public class UserView {
         kerController = k;
     }
 
+
+    public void setKeranjangView(KeranjangView keranjangView) {
+        this.keranjangView = keranjangView;
+    }
+
     public void addUser(KeranjangView k) {
+
         System.out.println("Masukan detail user:");
         System.out.print("Name: ");
         String name = scanner.nextLine();

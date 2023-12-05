@@ -49,12 +49,12 @@ public class ModelUser {
         this.userList.removeIf(user -> user.getId_user() == userId);
     }
 
-    public int getIdUser(int idUser){
+    public NodeUser getIdUser(int idUser){
         for (NodeUser user : userList) {
             if (user.getId_user() == idUser){
-                return idUser;
+                return user;
             }
         }
-        return -1;
+        return null;
     }
 }

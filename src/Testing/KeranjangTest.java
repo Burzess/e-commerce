@@ -1,6 +1,8 @@
 package Testing;
 
 import controller.KeranjangController;
+import controller.ProdukController;
+import controller.UserController;
 import model.ModelKeranjang;
 import node.NodeClass.NodeProduk;
 import node.NodeClass.NodeUser;
@@ -17,12 +19,15 @@ public class KeranjangTest {
         lBarang.add(new NodeProduk(1,"Wiskas",10000,"Makanan",10,rehan));
         lBarang.add(new NodeProduk(2,"Kentang",8000,"Makanan",10,rehan));
         lBarang.add(new NodeProduk(3,"Borgar",12000,"Makanan",10,rehan));
-        KeranjangController tester = new KeranjangController(lBarang,lUser);
-        tester.addKeranjang(2);
+        testModel(lBarang);
+        ProdukController p = new ProdukController();
+        UserController u = new UserController();
+        KeranjangController tester = new KeranjangController(p, u);
+        tester.addProduk(1,"3-1, 1-10");
+//        tester.addKeranjang(2);
 //        tester.delKeranjang(0);
 //        tester.addKeranjang(2);
-        tester.addProduk(2,"3-1");
-        tester.viewAll();
+//        tester.viewAll();
 //        tester.delProduk(1,2);
     }
 
@@ -36,6 +41,6 @@ public class KeranjangTest {
 //        System.out.println("size listkeranjang "+mKer.listKeranjang.size());
         System.out.println("size listBarang di id 1 "+mKer.searchIdKeranjang(1).listBarang.size());
 //        System.out.println("status add barang "+mKer.addBarang(1,"1-10"));
-        System.out.println("status del barang "+mKer.delBarang(10,1));
+//        System.out.println("status del barang "+mKer.delBarang(10,1));
     }
 }
