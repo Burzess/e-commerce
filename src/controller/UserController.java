@@ -1,6 +1,5 @@
 package controller;
 
-import model.ModelKeranjang;
 import model.ModelUser;
 import node.NodeClass.NodeUser;
 
@@ -9,7 +8,7 @@ import java.util.List;
 
 public class UserController {
     ModelUser modelUser;
-    ModelKeranjang modelKeranjang;
+
 
     public UserController() {
         this.modelUser = new ModelUser();

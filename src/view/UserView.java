@@ -6,11 +6,9 @@ import java.util.Scanner;
 
 public class UserView {
     UserController userController;
-<<<<<<< HEAD
+
     KeranjangView keranjangView;
-=======
-    KeranjangView kerController;
->>>>>>> 8ae20f6aba1de26496653fa3e9dc70a06ac961b5
+
     private Scanner scanner;
 
     public UserView() {
@@ -20,18 +18,13 @@ public class UserView {
     public UserView(KeranjangView k) {
         this.userController = new UserController();
         this.scanner = new Scanner(System.in);
-        kerController = k;
     }
 
-<<<<<<< HEAD
     public void setKeranjangView(KeranjangView keranjangView) {
         this.keranjangView = keranjangView;
     }
 
     public void addUser() {
-=======
-    public void addUser(KeranjangView k) {
->>>>>>> 8ae20f6aba1de26496653fa3e9dc70a06ac961b5
         System.out.println("Masukan detail user:");
         System.out.print("Name: ");
         String name = scanner.nextLine();
@@ -40,12 +33,7 @@ public class UserView {
         System.out.print("password: ");
         String password = scanner.nextLine();
 
-<<<<<<< HEAD
-
-        userController.addUser(name, username, password, keranjangView.keranjang);
-=======
-        userController.addUser(name, username, password,k.keranjang);
->>>>>>> 8ae20f6aba1de26496653fa3e9dc70a06ac961b5
+        userController.addUser(name, username, password,keranjangView.keranjang);
 
         System.out.println("User added successfully!");
     }
