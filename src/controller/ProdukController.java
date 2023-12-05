@@ -8,13 +8,11 @@ import java.util.List;
 
 public class ProdukController {
     ModelProduk modelProduk = new ModelProduk();
-    private int id = 0;
     public void addProduk(String nB, int hg, String ktg, int stok, NodeUser user){
         if(ModelProduk.cekBarang(nB)){
-            id = modelProduk.getLastCode() + 1;
+            int id = modelProduk.getLastCode() + 1;
             NodeProduk produk = new NodeProduk(id, nB, hg, ktg, stok, user);
             ModelProduk.addProdukModel(produk);
-//            id++;
             System.out.println("Produk Berhasil ditambah!!");
         } else {
             System.out.println("Nama barang sudah ada, gunakan nama lain :D");
