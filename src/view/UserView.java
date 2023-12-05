@@ -47,10 +47,14 @@ public class UserView {
                 1. Update Nama
                 2. Update Username
                 3. Update Password
+                4. Update Status
+                5. Tambah Saldo
                 Masukan Pilihan:\s""");
         int choice = scanner.nextInt();
         scanner.nextLine();
         String name = "", username = "", password = "";
+        boolean status = false;
+        int saldo = 0;
 
         switch (choice) {
             case 1 -> {
@@ -65,9 +69,25 @@ public class UserView {
                 System.out.print("password: ");
                 password = scanner.nextLine();
             }
+            case 4 -> {
+                System.out.println("""
+                        ARE YOUT HUMAN?
+                        YES or NO:\s""");
+                String input = scanner.nextLine();
+                if (input.equals("yes") || input.equals("YES")){
+                    status = true;
+                }
+            }
+            case 5 -> {
+                System.out.println("""
+                        Masukan Jumlah Saldo yang ingin di tambahkan!
+                        Saldo:\s""");
+                saldo = scanner.nextInt();
+                scanner.nextLine();
+            }
         }
 
-        if (userController.updateUser(userId,name, username, password)){
+        if (userController.updateUser(userId,name, username, password, status, saldo)){
             System.out.println("User updated successfully!");
         } else {
             System.out.println("User not found!");
