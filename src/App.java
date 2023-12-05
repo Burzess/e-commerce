@@ -1,3 +1,5 @@
+import view.KeranjangView;
+import view.ProdukView;
 import view.UserView;
 
 import java.util.Scanner;
@@ -7,9 +9,13 @@ public class App {
 
     public static void main(String[] args) {
         UserView userView = new UserView();
-        App.run(userView);
+        ProdukView produkView = new ProdukView();
+        KeranjangView keranjangView = new KeranjangView(produkView,userView);
+        userView.setKeranjangView(keranjangView);
+        App.run(userView, keranjangView, produkView);
     }
-    public static void run(UserView userView){
+
+    public static void run(UserView userView, KeranjangView keranjangView, ProdukView produkView){
         System.out.println("======WELCOME TO THE MASKUL SHOOP======");
         System.out.print("""
                 1. Login
@@ -38,7 +44,8 @@ public class App {
             }
 
             case 2 -> {
-
+                System.out.println("======DAFTAR AKUN======");
+                userView.addUser();
             }
 
             case 3 -> {

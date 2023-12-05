@@ -40,7 +40,7 @@ public class KeranjangController {
             System.out.println("Maaf Id Kerajang tidak ditemukan");
             return;
         }
-        String[] filter = Stuff.split(",");
+        String[] filter = Stuff.split(",\\s+");
         for (String p: filter) {
             boolean status = modelKeranjang.addBarang(target.getId(),p);
             if (!status) System.out.println("Id barang not found");
