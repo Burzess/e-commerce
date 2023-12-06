@@ -12,6 +12,6 @@ public class UserTest {
         KeranjangView keranjangView = new KeranjangView(produkView, userView);
         userView.setKeranjangView(keranjangView);
 //        userView.addUser();
-        userView.updateUser();
+        userView.profil(1);
     }
 }
