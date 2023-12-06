@@ -73,7 +73,7 @@ public class ModelProduk {
         switch (opsi){
             case 1-> updateProduk.setNamaBarang(data);
             case 2-> updateProduk.setHarga(Integer.parseInt(data));
-            case 3->updateProduk.setKategori(data);
+            case 3-> updateProduk.setKategori(data);
             case 4-> updateProduk.setStok(Integer.parseInt(data));
         }
     }
