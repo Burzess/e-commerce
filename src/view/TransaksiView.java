@@ -8,7 +8,7 @@ import node.NodeClass.NodeUser;
 import java.util.ArrayList;
 
 public class TransaksiView {
-    TransaksiController transaksiController = new TransaksiController();
+    public static TransaksiController transaksiController = new TransaksiController();
     public void viewAllUserTransaksi(NodeUser user){
         ArrayList<NodeTransaksi> userTransaksi = transaksiController.viewUserTransaksi(user);
         for (NodeTransaksi transaksi: userTransaksi){
@@ -16,7 +16,7 @@ public class TransaksiView {
         }
     }
 
-    public void addTransaksiView(NodeUser user, ArrayList<NodeProduk> produks){
+    public static void addTransaksiView(NodeUser user, ArrayList<NodeProduk> produks){
         transaksiController.addTransaksi(user, produks);
     }
 }

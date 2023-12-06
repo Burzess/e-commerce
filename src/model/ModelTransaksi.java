@@ -38,6 +38,9 @@ public class ModelTransaksi {
     }
 
     public int getLastCode(){
+        if (transaksiList.size()==0){
+            return -1;
+        }
         int idx = transaksiList.size() -1;
         return transaksiList.get(idx).id_transaksi;
     }
