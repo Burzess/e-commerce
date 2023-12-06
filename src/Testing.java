@@ -64,10 +64,10 @@ public class Testing {
                     userView.addUser();
                     break;
                 case 2:
-                    userView.updateUser();
+                    userView.profil(1);
                     break;
                 case 3:
-                    userView.deleteUser();
+                    userView.deleteUser(1);
                     break;
                 case 0:
                     exit = true;

@@ -24,11 +24,6 @@ public class KeranjangTest {
         UserController u = new UserController();
         KeranjangController tester = new KeranjangController(p, u);
         tester.addProduk(1,"3-1, 1-10");
-//        tester.addKeranjang(2);
-//        tester.delKeranjang(0);
-//        tester.addKeranjang(2);
-//        tester.viewAll();
-//        tester.delProduk(1,2);
     }
 
     public static void testModel(ArrayList<NodeProduk> lBarang) {

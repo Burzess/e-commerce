@@ -7,9 +7,11 @@
     "stok": 1,
     "userObject": {
       "id_user": 0,
-      "nama": "",
+      "nama": "halim",
       "username": "",
-      "password": ""
+      "password": "123",
+      "saldo": 0,
+      "status": false
     }
   },
   {
@@ -19,10 +21,12 @@
     "namaBarang": "pandu maskul",
     "stok": 1,
     "userObject": {
-      "id_user": 99,
-      "nama": "jimbe",
+      "id_user": 0,
+      "nama": "halim",
       "username": "",
-      "password": "123"
+      "password": "123",
+      "saldo": 0,
+      "status": false
     }
   },
   {
@@ -32,10 +36,12 @@
     "namaBarang": "dwiki maskul",
     "stok": 3,
     "userObject": {
-      "id_user": 99,
-      "nama": "jimbe",
+      "id_user": 0,
+      "nama": "halim",
       "username": "",
-      "password": "123"
+      "password": "123",
+      "saldo": 0,
+      "status": false
     }
   },
   {
@@ -45,10 +51,12 @@
     "namaBarang": "Farhan",
     "stok": 5,
     "userObject": {
-      "id_user": 99,
-      "nama": "jimbe",
+      "id_user": 0,
+      "nama": "halim",
       "username": "",
-      "password": "123"
+      "password": "123",
+      "saldo": 0,
+      "status": false
     }
   }
 ]

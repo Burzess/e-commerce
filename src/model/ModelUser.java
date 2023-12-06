@@ -26,7 +26,7 @@ public class ModelUser {
     }
 
     public int getLasIdUser(){
-        int id = 0;
+        int id = -1;
         for (NodeUser user : userList) {
             id = user.getId_user();
         }

@@ -1,6 +1,7 @@
 package view;
 
 import controller.UserController;
+import node.NodeClass.NodeUser;
 
 import java.util.Scanner;
 
@@ -38,49 +39,93 @@ public class UserView {
         System.out.println("User added successfully!");
     }
 
-    public void updateUser() {
-        System.out.print("Enter the ID of the user to update: ");
-        int userId = scanner.nextInt();
-        scanner.nextLine();
+    public void profil(int idUser) {
 
-        System.out.println("""
-                1. Update Nama
-                2. Update Username
-                3. Update Password
-                Masukan Pilihan:\s""");
-        int choice = scanner.nextInt();
-        scanner.nextLine();
-        String name = "", username = "", password = "";
+        int choice;
+        do {
+            NodeUser detailDataUser = userController.findUserById(idUser);
+            System.out.println("\n\n=============PROFIL=============");
+            System.out.println(detailDataUser.getNama());
+            System.out.println(detailDataUser.getUsername());
+            System.out.println(detailDataUser.getPassword());
+            System.out.println(detailDataUser.getSaldo());
+            System.out.println("================================\n");
 
-        switch (choice) {
-            case 1 -> {
-                System.out.print("Name: ");
-                name = scanner.nextLine();
-            }
-            case 2 -> {
-                System.out.print("usename: ");
-                username = scanner.nextLine();
-            }
-            case 3 -> {
-                System.out.print("password: ");
-                password = scanner.nextLine();
-            }
-        }
+            System.out.print("""
+                    1. Update Nama
+                    2. Update Username
+                    3. Update Password
+                    4. Update Status
+                    5. Tambah Saldo
+                    6. Hapus Akun
+                    0. Back to Home
+                    Masukan Pilihan:\s""");
+            choice = scanner.nextInt();
+            scanner.nextLine();
+            String name = "", username = "", password = "";
+            boolean status = false;
+            int saldo = 0;
 
-        if (userController.updateUser(userId,name, username, password)){
-            System.out.println("User updated successfully!");
-        } else {
-            System.out.println("User not found!");
-        }
+            switch (choice) {
+                case 1 -> {
+                    System.out.print("Name: ");
+                    name = scanner.nextLine();
+                }
+                case 2 -> {
+                    System.out.print("usename: ");
+                    username = scanner.nextLine();
+                }
+                case 3 -> {
+                    System.out.print("password: ");
+                    password = scanner.nextLine();
+                }
+                case 4 -> {
+                    System.out.println("""
+                            ARE YOUT HUMAN?
+                            YES or NO:\s""");
+                    String input = scanner.nextLine();
+                    if (input.equals("yes") || input.equals("YES")) {
+                        status = true;
+                    }
+                }
+                case 5 -> {
+                    System.out.print("""
+                            Masukan Jumlah Saldo yang ingin di tambahkan!
+                            Saldo:\s""");
+                    saldo = scanner.nextInt();
+                    scanner.nextLine();
+                }
+                case 6 -> {
+                    userController.deleteUser(idUser);
+                    choice = 0;
+                }
+            }
+
+            if (userController.updateUser(idUser, name, username, password, status, saldo)) {
+                if (!name.isEmpty()) {
+                    System.out.println("Nama Berhasil di Perbarui");
+                } else if (!username.isEmpty()) {
+                    System.out.println("username Berhasil di Perbarui");
+                } else if (!password.isEmpty()) {
+                    System.out.println("password berhasil di Perbarui");
+                } else if (status) {
+                    System.out.println("""
+                            Status status akun anda berhasil di perbarui!
+                            anda bisa melakukan pembelian dan penjualan barang""");
+                } else if (saldo != 0) {
+                    System.out.println("Saldo berhasil ditambahkan");
+                }
+            }
+        } while (choice != 0);
     }
 
-    public void deleteUser() {
-        System.out.print("Enter the ID of the user to delete: ");
-        int userId = scanner.nextInt();
-        if (userController.deleteUser(userId)){
-            System.out.println("User Delete successfully");
-        } else {
-            System.out.println("User not found");
+    public void deleteUser(int idUser) {
+        System.out.print("Apakah anda yakin ingin menghapus akun anda?(yes/no): ");
+        String confirm = scanner.nextLine();
+        if (confirm.equals("yes") || confirm.equals("YES")) {
+            if (userController.deleteUser(idUser)) {
+                System.out.println("User Delete successfully");
+            }
         }
     }
 

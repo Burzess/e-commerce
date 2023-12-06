@@ -13,12 +13,7 @@ public class KeranjangController {
     ModelKeranjang modelKeranjang;
     ModelProduk modelProduk;
     ModelUser modelUser;
-//    ArrayList<NodeUser> userList;
 
-//    public KeranjangController(ArrayList<NodeProduk> produkGlobal, ArrayList<NodeUser> listUser) {
-//        modelKeranjang = new ModelKeranjang(produkGlobal);
-//        userList = listUser;
-//    }
     public KeranjangController(ProdukController cProduk, UserController cUser) {
         modelKeranjang = new ModelKeranjang((ArrayList<NodeProduk>) ModelProduk.produkList);
         modelProduk = cProduk.modelProduk;

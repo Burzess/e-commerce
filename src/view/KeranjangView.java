@@ -1,11 +1,7 @@
 package view;
 
 import controller.KeranjangController;
-import controller.UserController;
-import node.NodeClass.NodeProduk;
-import node.NodeClass.NodeUser;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class KeranjangView {
@@ -25,16 +21,13 @@ public class KeranjangView {
         keranjang.addKeranjang(idKer);
     }
 
-    public void addBarang() {
+    public void addBarang(int idUser) {
         System.out.println("---Keranjang---");
-        System.out.println("Masukan Id User: ");
-        String tempStr = input.nextLine();
-        int idKer = Integer.parseInt(tempStr);
         System.out.println("---Add Produk---");
         System.out.println("Masukan Produk id: ");
         System.out.println("contoh: idProduk-stokProduk 3-5");
-        tempStr = input.nextLine();
-        keranjang.addProduk(idKer,tempStr);
+        String tempStr = input.nextLine();
+        keranjang.addProduk(idUser, tempStr);
     }
 
     public void delKeranjang() {
