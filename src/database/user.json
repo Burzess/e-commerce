@@ -1,10 +1,10 @@
 [
   {
-    "password": "1234",
-    "nama": "Njidu",
-    "id_user": 1,
-    "saldo": 50000,
-    "userName": "sikembar",
+    "password": "123",
+    "nama": "halim",
+    "id_user": 0,
+    "saldo": 0,
+    "userName": "limmmm",
     "status": false
   }
 ]
