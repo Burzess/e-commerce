@@ -23,6 +23,7 @@ public class TransaksiTest {
         produks.add(new NodeProduk(22, "melon", 300, "buah", 9, login));
         produks.add(new NodeProduk(23, "gedang", 300, "buah", 9, login));
         NodeTransaksi transaksi = new NodeTransaksi(1,login,produks,400);
-        test.modelTransaksi.addTransaksi(transaksi);
+//        test.modelTransaksi.addTransaksi(transaksi);
+        TransaksiView.addTransaksiView(login, produks);
     }
 }
