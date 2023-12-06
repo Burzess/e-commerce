@@ -64,6 +64,7 @@ public class ModelKeranjang {
 //        System.out.println("status produk "+statusProduk);
         if (!statusProduk) return false;
         NodeProduk copy = new NodeProduk(targetProduk);
+        if (stokBarang > targetProduk.getStok()) return false;
         copy.setStok(stokBarang);
         keranjang.addBarang(copy);
         keranjang.totalHarga = keranjang.getTotal();
