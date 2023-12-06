@@ -66,8 +66,11 @@ public class ProdukView {
         System.out.println("hasil pencarian: ");
         if (hasilProduk != null){
             for (NodeProduk produk : hasilProduk) {
-                System.out.println("----------------------");
-                System.out.println(produk.getNamaBarang());
+                System.out.println("----------------------------");
+                System.out.println("Nama Barang: " + produk.getNamaBarang());
+                System.out.println("Harga: " + produk.getHarga());
+                System.out.println("Kategori: " + produk.getKategori());
+                System.out.println("Stok: " + produk.getStok());
             }
         } else {
             System.out.println("Produk tidak tersedia");
