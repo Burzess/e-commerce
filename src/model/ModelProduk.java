@@ -68,6 +68,23 @@ public class ModelProduk {
         return hasilPencarian;
     }
 
+    public void deleteProdukUser(int idUser) {
+        if (!produkList.isEmpty()) {
+            List<NodeProduk> tempProduk = new ArrayList<>();
+            for (NodeProduk produk : produkList) {
+                if (produk.getUser().getId_user() == idUser) {
+                    tempProduk.add(produk);
+                }
+            }
+
+            produkList.removeAll(tempProduk);
+
+        } else {
+            System.out.println("Produk list kosong.");
+        }
+    }
+
+
 
     public static void updateProduk(int opsi, String data, NodeProduk updateProduk){
         switch (opsi){
@@ -99,7 +116,13 @@ public class ModelProduk {
     }
 
     public int getLastCode(){
-        int idx = produkList.size() -1;
-        return produkList.get(idx).getId_barang();
+        int idx;
+        if(produkList.isEmpty()) {
+            return 0;
+        } else {
+            idx = produkList.size() - 1;
+            System.out.println(idx);
+            return produkList.get(idx).getId_barang();
+        }
     }
 }
