@@ -40,23 +40,33 @@ public class UserController {
         return true;
     }
 
-    public boolean updateUser(int userId, String newName, String newUsername, String newPassword, boolean status, int saldo) {
-
+    public boolean updateUser(int userId, String newName, String newUsername, String newPassword, boolean newStatus, String newSaldo) {
         NodeUser existingUser = findUserById(userId);
 
         if (existingUser != null) {
-            NodeUser updatedUser = new NodeUser(userId, existingUser.getNama(), existingUser.getUsername(), existingUser.getPassword());
-            if (!newName.isEmpty()){
+            NodeUser updatedUser = new NodeUser(userId, existingUser.getNama(), existingUser.getUsername(), existingUser.getPassword(), existingUser.getSaldo(), existingUser.isStatus());
+
+            if (!newName.isEmpty()) {
                 updatedUser.setNama(newName);
-            } else if(!newUsername.isEmpty()){
+            } else if (!newUsername.isEmpty()) {
                 updatedUser.setUsername(newUsername);
             } else if (!newPassword.isEmpty()) {
                 updatedUser.setPassword(newPassword);
-            } else if (status){
-                updatedUser.setStatus(status);
-            } else if (saldo != 0) {
-                updatedUser.setSaldo(saldo);
+            } else if (!newSaldo.isEmpty()) {
+                System.out.println(newSaldo);
+                int saldo = Integer.parseInt(newSaldo);
+                updatedUser.setSaldo(existingUser.getSaldo() + saldo);
             }
+
+            if (newStatus){
+                updatedUser.setStatus(newStatus);
+            }
+
+            System.out.println("Update User");
+            System.out.println(updatedUser.isStatus());
+            System.out.println(updatedUser.getPassword());
+            System.out.println(updatedUser.getNama());
+            System.out.println(updatedUser.getSaldo());
 
             modelUser.updateUser(updatedUser);
             return true;
@@ -64,6 +74,7 @@ public class UserController {
 
         return false;
     }
+
 
     public boolean updateUser(int userId, String newName, String newUsername, String newPassword, int saldo) {
 
