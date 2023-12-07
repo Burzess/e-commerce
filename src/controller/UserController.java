@@ -62,12 +62,6 @@ public class UserController {
                 updatedUser.setStatus(newStatus);
             }
 
-            System.out.println("Update User");
-            System.out.println(updatedUser.isStatus());
-            System.out.println(updatedUser.getPassword());
-            System.out.println(updatedUser.getNama());
-            System.out.println(updatedUser.getSaldo());
-
             modelUser.updateUser(updatedUser);
             return true;
         }
