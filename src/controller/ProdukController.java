@@ -24,6 +24,10 @@ public class ProdukController {
         ModelProduk.updateProduk(Integer.parseInt(stuff[0]), stuff[1], nodeProduk);
     }
 
+    public void deletProduk(int idUser){
+        modelProduk.deleteProdukUser(idUser);
+    }
+
     public String viewProduk(int id){
         NodeProduk produk = ModelProduk.searchProduk(id);
         if (produk != null){

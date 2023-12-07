@@ -6,17 +6,18 @@ import java.util.Scanner;
 
 public class App {
     static Scanner input = new Scanner(System.in);
-    static boolean loged = false;
+    static int loggedInUserId = -1;
 
     public static void main(String[] args) {
         UserView userView = new UserView();
         ProdukView produkView = new ProdukView();
-        KeranjangView keranjangView = new KeranjangView(produkView,userView);
+        KeranjangView keranjangView = new KeranjangView(produkView, userView);
         userView.setKeranjangView(keranjangView);
+
         App.run(userView, keranjangView, produkView);
     }
 
-    public static void firstMenu(){
+    public static void displayFirstMenu() {
         System.out.print("""
                 1. Login
                 2. Daftar Akun
@@ -24,59 +25,62 @@ public class App {
                 Masukan Pilihan:\s""");
     }
 
-    public static void mainMenu(){
+    public static void displayMainMenu() {
         System.out.println("""
-                            ============HOME============
+                            ==================HOME=================
                             1. Cari Barang
                             2. Tambahkan ke Keranjang
                             3. Profil
                             4. Checkout
-                            0. Exit
+                            0. Logout
                             Masukan pilihan:\s""");
     }
-
 
     public static void run(UserView userView, KeranjangView keranjangView, ProdukView produkView) {
         int choice;
         do {
             System.out.println("======WELCOME TO THE MASKUL SHOOP======");
-            firstMenu();
-            choice = input.nextInt();
-            input.nextLine();
-            switch (choice) {
-                case 1 -> {
-                    int choice1 = 0;
-                    int id_user;
-                    do {
-                        id_user = userView.login();
-                        if (id_user != -1) {
-                            mainMenu();
-                            choice1 = input.nextInt();
-                            input.nextLine();
-                            switch (choice1) {
-                                case 1 -> {
-                                    produkView.searchPrduk();
-                                }
-                                case 2 -> {
-                                    keranjangView.addBarang(id_user);
-                                }
-                                case 3 -> {
-                                    userView.profil(id_user);
-                                }
-                            }
-                        }
 
-                    }while (choice1 != 0);
-                }
-
-                case 2 -> {
-                    System.out.println("======DAFTAR AKUN======");
-                    userView.addUser();
-                }
-                default -> {
-                    System.out.println("Pilihan tidak valid");
+            if (loggedInUserId == -1) {
+                displayFirstMenu();
+                choice = input.nextInt();
+                input.nextLine();
+                handleUserChoice(choice, userView, keranjangView, produkView);
+            } else {
+                displayMainMenu();
+                choice = input.nextInt();
+                input.nextLine();
+                if (choice == 0) {
+                    loggedInUserId = -1;
+                    System.out.println("Logout berhasil");
+                } else {
+                    handleMainMenuChoice(choice, produkView, keranjangView, userView, loggedInUserId);
                 }
             }
+
         } while (choice != 0);
+    }
+
+    private static void handleUserChoice(int choice, UserView userView, KeranjangView keranjangView, ProdukView produkView) {
+        switch (choice) {
+            case 1:
+                loggedInUserId = userView.login();
+                break;
+            case 2:
+                System.out.println("======DAFTAR AKUN======");
+                userView.addUser();
+                break;
+            default:
+                System.out.println("Pilihan tidak valid");
+        }
+    }
+
+    private static void handleMainMenuChoice(int choice, ProdukView produkView, KeranjangView keranjangView, UserView userView, int userId) {
+        switch (choice) {
+            case 1 -> produkView.searchPrduk();
+            case 2 -> keranjangView.addBarang(userId);
+            case 3 -> userView.profil(userId);
+            default -> System.out.println("Pilihan tidak valid");
+        }
     }
 }

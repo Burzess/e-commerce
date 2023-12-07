@@ -53,10 +53,34 @@ public class UserController {
             } else if (!newPassword.isEmpty()) {
                 updatedUser.setPassword(newPassword);
             } else if (status){
-                updatedUser.setStatus(true);
+                updatedUser.setStatus(status);
             } else if (saldo != 0) {
                 updatedUser.setSaldo(saldo);
             }
+
+            modelUser.updateUser(updatedUser);
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean updateUser(int userId, String newName, String newUsername, String newPassword, int saldo) {
+
+        NodeUser existingUser = findUserById(userId);
+
+        if (existingUser != null) {
+            NodeUser updatedUser = new NodeUser(userId, existingUser.getNama(), existingUser.getUsername(), existingUser.getPassword());
+            if (!newName.isEmpty()){
+                updatedUser.setNama(newName);
+            } else if(!newUsername.isEmpty()){
+                updatedUser.setUsername(newUsername);
+            } else if (!newPassword.isEmpty()) {
+                updatedUser.setPassword(newPassword);
+            } else if (saldo != 0) {
+                updatedUser.setSaldo(saldo);
+            }
+            System.out.println(existingUser.isStatus());
 
             modelUser.updateUser(updatedUser);
             return true;
