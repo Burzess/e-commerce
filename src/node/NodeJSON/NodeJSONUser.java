@@ -10,7 +10,7 @@ public class NodeJSONUser {
     public NodeJSONUser(){
         id_user = "id_user";
         nama = "nama";
-        userName = "userName";
+        userName = "username";
         password = "password";
         saldo = "saldo";
         status = "status";
