@@ -10,6 +10,7 @@ public class MainView {
     static Scanner input = new Scanner(System.in);
     static UserController userController = new UserController();
     static KeranjangController keranjangController = new KeranjangController();
+    static ProdukView produkView = new ProdukView();
 
     public static NodeUser login(){
         System.out.print("Masukkan Username: ");
@@ -37,4 +38,9 @@ public class MainView {
     public static void viewKeranjang(NodeUser user){
         keranjangController.vieww(user);
     }
+
+    public static void sellBarang(NodeUser user){
+        produkView.addProdukView(user);
+    }
 }
+

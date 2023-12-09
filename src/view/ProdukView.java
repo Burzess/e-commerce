@@ -71,6 +71,7 @@ public class ProdukView {
                 System.out.println("Harga: " + produk.getHarga());
                 System.out.println("Kategori: " + produk.getKategori());
                 System.out.println("Stok: " + produk.getStok());
+                System.out.println("Penjual: "+produk.getUser().getNama());
             }
         } else {
             System.out.println("Produk tidak tersedia");

@@ -46,6 +46,9 @@ public class Main {
                                 case 4 ->{
                                     MainView.viewKeranjang(loggedUser);
                                 }
+                                case 5 ->{
+                                    MainView.sellBarang(loggedUser);
+                                }
                                 case 0 ->{
                                     System.out.println("Logout Berhasil");
                                     break;
