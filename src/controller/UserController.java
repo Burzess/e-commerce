@@ -1,6 +1,8 @@
 package controller;
 
+import model.ModelProduk;
 import model.ModelUser;
+import node.NodeClass.NodeProduk;
 import node.NodeClass.NodeUser;
 
 import java.util.ArrayList;
@@ -65,28 +67,10 @@ public class UserController {
         return false;
     }
 
-    public boolean updateUser(int userId, String newName, String newUsername, String newPassword, int saldo) {
+    public void updateUser(NodeUser user, String update){
 
-        NodeUser existingUser = findUserById(userId);
-
-        if (existingUser != null) {
-            NodeUser updatedUser = new NodeUser(userId, existingUser.getNama(), existingUser.getUsername(), existingUser.getPassword());
-            if (!newName.isEmpty()){
-                updatedUser.setNama(newName);
-            } else if(!newUsername.isEmpty()){
-                updatedUser.setUsername(newUsername);
-            } else if (!newPassword.isEmpty()) {
-                updatedUser.setPassword(newPassword);
-            } else if (saldo != 0) {
-                updatedUser.setSaldo(saldo);
-            }
-            System.out.println(existingUser.isStatus());
-
-            modelUser.updateUser(updatedUser);
-            return true;
-        }
-
-        return false;
+        String[] stuff = update.split("-");
+        modelUser.apdetUser(user, Integer.parseInt(stuff[0]), stuff[1]);
     }
 
     public boolean deleteUser(int userId) {

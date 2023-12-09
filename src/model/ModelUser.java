@@ -45,6 +45,16 @@ public class ModelUser {
         }
     }
 
+    public void apdetUser(NodeUser user, int opsi , String data){
+        switch (opsi){
+            case 1->user.setNama(data);
+            case 2->user.setUsername(data);
+            case 3->user.setPassword(data);
+            case 4->user.setSaldo(Integer.parseInt(data));
+        }
+        System.out.println("Berhasil update!");
+    }
+
     public void deleteUser(int userId) {
         this.userList.removeIf(user -> user.getId_user() == userId);
     }
@@ -57,5 +67,6 @@ public class ModelUser {
         }
         return null;
     }
+
 
 }

@@ -34,24 +34,24 @@ public class MenuView {
     }
 
     public static void displayProfile(){
-        System.out.print("""
+        System.out.println("""
                             1. Update Nama
                             2. Update Username
                             3. Update Password
                             4. Tambah Saldo
                             5. Update Status
                             0. Back to Home
-                            Masukkan Pilihan:\s""");
+                            """);
     }
 
     public static void displayProfilePremium(){
-        System.out.print("""
+        System.out.println("""
                             1. Update Nama
                             2. Update Username
                             3. Update Password
                             4. Tambah Saldo
                             0. Back to Home
-                            Masukkan Pilihan:\s""");
+                            """);
     }
 
     public static void ulang(){

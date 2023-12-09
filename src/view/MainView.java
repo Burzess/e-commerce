@@ -28,6 +28,7 @@ public class MainView {
                             contoh: 1-Fulan; 4-10000
                             Masukkan Command:\s""");
         String command = input.nextLine();
+        userController.updateUser(user, command);
 
     }
 }
