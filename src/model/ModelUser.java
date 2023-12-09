@@ -46,11 +46,12 @@ public class ModelUser {
     }
 
     public void apdetUser(NodeUser user, int opsi , String data){
+        NodeUser apdet = userList.get(user.getId_user());
         switch (opsi){
-            case 1->user.setNama(data);
-            case 2->user.setUsername(data);
-            case 3->user.setPassword(data);
-            case 4->user.setSaldo(Integer.parseInt(data));
+            case 1->apdet.setNama(data);
+            case 2->apdet.setUsername(data);
+            case 3->apdet.setPassword(data);
+            case 4->apdet.setSaldo(Integer.parseInt(data));
         }
         System.out.println("Berhasil update!");
     }
