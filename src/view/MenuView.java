@@ -14,7 +14,7 @@ public class MenuView {
         System.out.print("""
                             <[-HOME-]>
                              1. Cari Barang
-                             2. Tambahkan ke Keranjang
+                             2. View All Barang
                              3. Profil
                              4. Checkout
                              0. Logout
@@ -25,7 +25,7 @@ public class MenuView {
         System.out.print("""
                             <[-HOME-]>
                              1. Cari Barang
-                             2. Tambahkan ke Keranjang
+                             2. View All Barang
                              3. Profil
                              4. Checkout
                              5. Jual Barang

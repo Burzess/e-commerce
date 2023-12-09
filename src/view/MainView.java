@@ -3,6 +3,7 @@ package view;
 import controller.KeranjangController;
 import controller.ProdukController;
 import controller.UserController;
+import model.ModelProduk;
 import node.NodeClass.NodeProduk;
 import node.NodeClass.NodeUser;
 
@@ -21,8 +22,7 @@ public class MainView {
         String nama = input.nextLine();
         System.out.print("Masukkan Password: ");
         String pass = input.nextLine();
-        NodeUser logged = userController.loginFunc(nama, pass);
-        return logged;
+        return userController.loginFunc(nama, pass);
     }
 
     public static void updateUser(NodeUser user){
@@ -50,7 +50,7 @@ public class MainView {
                 System.out.println(produk.viewDataProduk());
             }
             System.out.print("""
-                               opsi:  
+                               opsi: \s
                                1. Edit Barang
                                2. Kembali ke beranda
                                Masukkan pilihan: \s""");
@@ -58,6 +58,26 @@ public class MainView {
             input.nextLine();
             if (op==1){
                 produkView.updateProduk();
+            }
+        }
+    }
+
+    public static void viewAllBarang(){
+        for (NodeProduk produk: ModelProduk.produkList){
+            System.out.println(produk.viewDataProduk());
+        }
+    }
+
+    public static void searchProduk(NodeUser user){
+        boolean cek = produkView.searchPrduk();
+        if (cek){
+            System.out.println("Masukkan kode barang dan jumlah bila ingin menambah ke keranjang");
+            System.out.println("contoh: 3-1, 1-10");
+            System.out.print("atau input n untuk kembali: ");
+            String op = input.nextLine();
+            if (!op.equals("n")){
+                keranjangController.addProduk(user.getId_user(), op);
+                System.out.println("Berhasil menambah wishlist!");
             }
         }
     }
