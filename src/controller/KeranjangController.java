@@ -30,6 +30,7 @@ public class KeranjangController {
     }
 
     public void addProduk(int idKeranjang, String Stuff) {
+        refreshKeranjang();
         NodeKeranjang target = modelKeranjang.searchIdKeranjang(idKeranjang);
         if (target == null) {
             System.out.println("Maaf Id Kerajang tidak ditemukan");
@@ -52,6 +53,7 @@ public class KeranjangController {
     }
 
     public void delProduk(int idKeranjang, int idProduk) {
+        refreshKeranjang();
         NodeKeranjang targetKeranjang = modelKeranjang.searchIdKeranjang(idKeranjang);
         if (targetKeranjang == null) {
             System.out.println("Maaf Id keranjang not found");
@@ -67,7 +69,13 @@ public class KeranjangController {
 //        System.out.println("delete contro status "+status);
     }
 
+    public void refreshKeranjang() {
+        modelKeranjang.refreshUser((ArrayList<NodeUser>) modelUser.getUserList());
+        modelKeranjang.refreshProduk();
+    }
+
     public void viewAll() {
+        refreshKeranjang();
         ArrayList<NodeKeranjang> listKeranjang = modelKeranjang.getListKeranjang();
         if (listKeranjang.isEmpty()) {
             System.out.println("Keranjang belanja kosong.");
