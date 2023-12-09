@@ -1,5 +1,6 @@
 package view;
 
+import controller.KeranjangController;
 import controller.UserController;
 import node.NodeClass.NodeUser;
 
@@ -8,6 +9,7 @@ import java.util.Scanner;
 public class MainView {
     static Scanner input = new Scanner(System.in);
     static UserController userController = new UserController();
+    static KeranjangController keranjangController = new KeranjangController();
 
     public static NodeUser login(){
         System.out.print("Masukkan Username: ");
@@ -30,5 +32,9 @@ public class MainView {
         String command = input.nextLine();
         userController.updateUser(user, command);
 
+    }
+
+    public static void viewKeranjang(NodeUser user){
+        keranjangController.vieww(user);
     }
 }

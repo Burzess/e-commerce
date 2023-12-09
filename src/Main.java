@@ -43,6 +43,9 @@ public class Main {
                                     }
                                     MainView.updateUser(loggedUser);
                                 }
+                                case 4 ->{
+                                    MainView.viewKeranjang(loggedUser);
+                                }
                                 case 0 ->{
                                     System.out.println("Logout Berhasil");
                                     break;
@@ -50,6 +53,8 @@ public class Main {
                             }
                         }while (ops != 0);
                     }
+                } case 2 ->{
+
                 }
             }
 

@@ -10,7 +10,7 @@ import node.NodeClass.NodeUser;
 import java.util.ArrayList;
 
 public class KeranjangController {
-    ModelKeranjang modelKeranjang;
+    static ModelKeranjang modelKeranjang = new ModelKeranjang((ArrayList<NodeProduk>) ModelProduk.produkList);
     ModelProduk modelProduk;
     ModelUser modelUser;
 
@@ -18,6 +18,10 @@ public class KeranjangController {
         modelKeranjang = new ModelKeranjang((ArrayList<NodeProduk>) ModelProduk.produkList);
         modelProduk = cProduk.modelProduk;
         modelUser = cUser.modelUser;
+    }
+
+    public KeranjangController(){
+
     }
 
     public void addKeranjang(int Id) {
@@ -90,4 +94,14 @@ public class KeranjangController {
             }
         }
     }
+
+    public void vieww(NodeUser user){
+        NodeKeranjang keranjang = modelKeranjang.searchIdKeranjang(user.getId_user());
+        if (keranjang.listBarang.isEmpty()){
+            System.out.println("Belum ada barang di keranjang");
+        } else {
+            keranjang.viewbarang();
+        }
+    }
+
 }
