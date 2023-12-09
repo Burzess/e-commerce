@@ -29,6 +29,7 @@ public class MenuView {
                              3. Profil
                              4. Checkout
                              5. Jual Barang
+                             6. Barang Dagangan Anda
                              0. Logout
                             Masukan pilihan:\s""");
     }

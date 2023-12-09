@@ -45,4 +45,14 @@ public class ProdukController {
 
         return null;
     }
+
+    public List<NodeProduk> getDaganganUser(NodeUser user){
+        List<NodeProduk> barang = modelProduk.getBarangUser(user);
+        if (barang.size() == 0){
+            System.out.println("Tidak ada barang");
+            return null;
+        }
+
+        return  barang;
+    }
 }
