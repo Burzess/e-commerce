@@ -68,9 +68,12 @@ public class UserController {
     }
 
     public void updateUser(NodeUser user, String update){
-
-        String[] stuff = update.split("-");
-        modelUser.apdetUser(user, Integer.parseInt(stuff[0]), stuff[1]);
+        try {
+            String[] stuff = update.split("-");
+            modelUser.apdetUser(user, Integer.parseInt(stuff[0]), stuff[1]);
+        } catch (ArrayIndexOutOfBoundsException e){
+            System.out.println("Command Salah :D ");
+        }
     }
 
     public boolean deleteUser(int userId) {
