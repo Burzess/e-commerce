@@ -26,6 +26,19 @@ public class ModelKeranjang {
         }));
     }
 
+    public ModelKeranjang(ArrayList<NodeProduk> listBarang, ArrayList<NodeUser> listUser) {
+        listKeranjang = ModelJSONKeranjang.readFromFile();
+        if (listKeranjang == null) {
+            listKeranjang = new ArrayList<>();
+        }
+        barangGlobal = listBarang;
+
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            System.out.println("\nShutting down. Saving data to JSON file...");
+            ModelJSONKeranjang.writeFileJSON(listKeranjang);
+        }));
+    }
+
     public boolean addKeranjang(NodeUser u) {
         boolean status = checkKeranjang(u,listKeranjang);
         if (!status) return false;
@@ -95,6 +108,18 @@ public class ModelKeranjang {
         if (!statusDel) return false;
         foundKeranjang.totalHarga = foundKeranjang.getTotal();
         return true;
+    }
+
+    public void refreshProduk() {
+        for (NodeKeranjang k: listKeranjang) {
+            k.validasiProduk(barangGlobal);
+        }
+    }
+
+    public void refreshUser(ArrayList<NodeUser> listU) {
+        for (NodeKeranjang k: listKeranjang) {
+            k.validasiUser(listU);
+        }
     }
 
     public NodeKeranjang searchIdKeranjang(int id) {

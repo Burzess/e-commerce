@@ -94,7 +94,7 @@ public class ModelJSONProduk {
                 int stok = Integer.parseInt(barang.get(nodeJSONBarang.getStok()).toString());
 
                 JSONObject userObj = (JSONObject) barang.get(nodeJSONBarang.getUser());
-                NodeUser userr = (NodeUser) ModelJSONKeranjang.convertObjUser(userObj);
+                NodeUser userr = ModelJSONKeranjang.convertObjUser(userObj);
 
                 listBarang.add(new NodeProduk(id_Barang, nama,harga, kategori, stok, userr));
             }
