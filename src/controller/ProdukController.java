@@ -8,6 +8,7 @@ import java.util.List;
 
 public class ProdukController {
     ModelProduk modelProduk = new ModelProduk();
+
     public void addProduk(String nB, int hg, String ktg, int stok, NodeUser user){
         if(ModelProduk.cekBarang(nB)){
             int id = modelProduk.getLastCode() + 1;

@@ -1,1 +1,32 @@
-[]
+[
+  {
+    "harga": 1000,
+    "id_barang": 0,
+    "kategori": "kewan",
+    "namaBarang": "babi",
+    "stok": 1,
+    "userObject": {
+      "id_user": 99,
+      "nama": "jimbe",
+      "username": "",
+      "password": "123",
+      "saldo": 0,
+      "status": false
+    }
+  },
+  {
+    "harga": 10,
+    "id_barang": 1,
+    "kategori": "kenter",
+    "namaBarang": "baba",
+    "stok": 1,
+    "userObject": {
+      "id_user": 99,
+      "nama": "jimbe",
+      "username": "",
+      "password": "123",
+      "saldo": 0,
+      "status": false
+    }
+  }
+]

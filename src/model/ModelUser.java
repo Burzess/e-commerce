@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ModelUser {
-    private List<NodeUser> userList;
+    public static List<NodeUser> userList;
 
     public ModelUser() {
         this.userList = ModelJSONUser.readFromFile();
@@ -57,4 +57,5 @@ public class ModelUser {
         }
         return null;
     }
+
 }

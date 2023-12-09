@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class NodeKeranjang {
     private int Id;
     private NodeUser user;
-    public ArrayList<NodeProduk> listBarang;
+    public ArrayList<NodeProduk> listBarang = null;
     public int totalHarga = 0;
 
     public NodeKeranjang(NodeUser u) {

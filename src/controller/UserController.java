@@ -142,4 +142,20 @@ public class UserController {
         System.out.println("username tidak tersedia");
         return -1;
     }
+
+    public  NodeUser loginFunc(String username, String password){
+        for (NodeUser user: modelUser.getUserList()){
+            if (user.getUsername().equals(username)){
+                if (user.getPassword().equals(password)){
+                    return user;
+                } else{
+                    System.out.println("username atau password salah");
+                    return null;
+                }
+            }
+        }
+
+        System.out.println("username tidak terdaftar");
+        return null;
+    }
 }

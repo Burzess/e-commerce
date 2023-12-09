@@ -58,7 +58,7 @@ public class ProdukView {
     }
 
     public void searchPrduk(){
-        System.out.println("""
+        System.out.print("""
                 ===========PENCARIAN PRODUK===========
                 masukan produk yang ingin di cari:\s""");
         String namaProduk = input.nextLine();

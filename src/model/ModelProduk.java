@@ -118,7 +118,7 @@ public class ModelProduk {
     public int getLastCode(){
         int idx;
         if(produkList.isEmpty()) {
-            return 0;
+            return -1;
         } else {
             idx = produkList.size() - 1;
             System.out.println(idx);
