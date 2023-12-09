@@ -2,6 +2,7 @@ package model;
 
 import modelJSON.ModelJSONProduk;
 import node.NodeClass.NodeProduk;
+import node.NodeClass.NodeUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -118,11 +119,22 @@ public class ModelProduk {
     public int getLastCode(){
         int idx;
         if(produkList.isEmpty()) {
-            return 0;
+            return -1;
         } else {
             idx = produkList.size() - 1;
             System.out.println(idx);
             return produkList.get(idx).getId_barang();
         }
+    }
+
+    public List<NodeProduk> getBarangUser(NodeUser user){
+        List<NodeProduk> barang = new ArrayList<>();
+        for (NodeProduk produk: produkList){
+            if (produk.getUser().getNama().equals(user.getNama())){
+                barang.add(produk);
+            }
+        }
+
+        return barang;
     }
 }

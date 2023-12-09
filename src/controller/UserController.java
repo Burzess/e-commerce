@@ -1,6 +1,8 @@
 package controller;
 
+import model.ModelProduk;
 import model.ModelUser;
+import node.NodeClass.NodeProduk;
 import node.NodeClass.NodeUser;
 
 import java.util.ArrayList;
@@ -70,28 +72,13 @@ public class UserController {
     }
 
 
-    public boolean updateUser(int userId, String newName, String newUsername, String newPassword, int saldo) {
-
-        NodeUser existingUser = findUserById(userId);
-
-        if (existingUser != null) {
-            NodeUser updatedUser = new NodeUser(userId, existingUser.getNama(), existingUser.getUsername(), existingUser.getPassword());
-            if (!newName.isEmpty()){
-                updatedUser.setNama(newName);
-            } else if(!newUsername.isEmpty()){
-                updatedUser.setUsername(newUsername);
-            } else if (!newPassword.isEmpty()) {
-                updatedUser.setPassword(newPassword);
-            } else if (saldo != 0) {
-                updatedUser.setSaldo(saldo);
-            }
-            System.out.println(existingUser.isStatus());
-
-            modelUser.updateUser(updatedUser);
-            return true;
+    public void updateUser(NodeUser user, String update){
+        try {
+            String[] stuff = update.split("-");
+            modelUser.apdetUser(user, Integer.parseInt(stuff[0]), stuff[1]);
+        } catch (ArrayIndexOutOfBoundsException e){
+            System.out.println("Command Salah :D ");
         }
-
-        return false;
     }
 
     public boolean deleteUser(int userId) {
@@ -146,5 +133,21 @@ public class UserController {
 
         System.out.println("username tidak tersedia");
         return -1;
+    }
+
+    public  NodeUser loginFunc(String username, String password){
+        for (NodeUser user: modelUser.getUserList()){
+            if (user.getUsername().equals(username)){
+                if (user.getPassword().equals(password)){
+                    return user;
+                } else{
+                    System.out.println("username atau password salah");
+                    return null;
+                }
+            }
+        }
+
+        System.out.println("username tidak terdaftar");
+        return null;
     }
 }

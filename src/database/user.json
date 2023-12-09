@@ -1,1 +1,18 @@
-[]
+[
+  {
+    "password": "123",
+    "nama": "haha",
+    "id_user": 0,
+    "saldo": 2000,
+    "userName": "jason",
+    "status": true
+  },
+  {
+    "password": "123",
+    "nama": "pandu",
+    "id_user": 1,
+    "saldo": 0,
+    "userName": "asu",
+    "status": true
+  }
+]

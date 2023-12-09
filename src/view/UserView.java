@@ -2,6 +2,7 @@ package view;
 
 import controller.ProdukController;
 import controller.UserController;
+import model.ModelUser;
 import node.NodeClass.NodeUser;
 
 import java.util.Scanner;
@@ -111,7 +112,10 @@ public class UserView {
             case 2 -> username = getUserInput("Username");
             case 3 -> password = getUserInput("Password");
             case 4 -> status = confirmHuman();
-            case 5 -> saldo = getSaldoInput();
+            case 5 -> {
+                saldo = getSaldoInput();
+                ModelUser.userList.get(idUser).setSaldo(saldo);
+            }
             case 6 -> {
                 produkView.addProdukView(nodeUser);
                 return;
@@ -124,9 +128,9 @@ public class UserView {
 
         }
 
-        if (userController.updateUser(idUser, name, username, password, status, saldo)) {
-            displaySuccessMessage(name, username, password, status, saldo);
-        }
+//        if (userController.updateUser(idUser, name, username, password, status, saldo)) {
+//            displaySuccessMessage(name, username, password, status, saldo);
+//        }
     }
 
     private void handleProfileChoice(int idUser, int choice) {
@@ -166,7 +170,9 @@ public class UserView {
         System.out.print("""
                 Masukkan Jumlah Saldo yang ingin ditambahkan!
                 Saldo:\s""");
-        return scanner.nextInt();
+        int sal = scanner.nextInt();
+        scanner.nextLine();
+        return sal;
     }
 
     private void displaySuccessMessage(String name, String username, String password, boolean status, int saldo) {

@@ -1,1 +1,17 @@
-[]
+[
+  {
+    "harga": 2000,
+    "id_barang": 0,
+    "kategori": "elektronik",
+    "namaBarang": "HP",
+    "stok": 3,
+    "userObject": {
+      "id_user": 1,
+      "nama": "pandu",
+      "username": "",
+      "password": "123",
+      "saldo": 0,
+      "status": false
+    }
+  }
+]

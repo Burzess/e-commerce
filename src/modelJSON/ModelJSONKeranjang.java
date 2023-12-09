@@ -88,7 +88,7 @@ public class ModelJSONKeranjang {
                 int id_Keranjang = Integer.parseInt(keranjang.get(nodeJSONKeranjang.getId()).toString());
 
                 JSONObject userObject = (JSONObject) keranjang.get(nodeJSONKeranjang.getUser());
-                NodeUser nodeUser = convertObjUser(userObject);
+                NodeUser nodeUser = (NodeUser) convertObjUser(userObject);
 
                 JSONArray arrayProduk = (JSONArray) keranjang.get(nodeJSONKeranjang.getListBarang());
                 ArrayList<NodeProduk> listProduk = convertJSONArrayProduk(arrayProduk, nodeUser);
