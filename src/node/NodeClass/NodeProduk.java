@@ -61,7 +61,7 @@ public class NodeProduk {
     }
 
     public String viewDataProduk(){
-        String data = "Nama: "+namaBarang+"\nHarga: "+harga+"\nKategori: "+kategori+"\nStok: "+stok+"\n"+"seller: "+user.getNama();
+        String data = "ID: "+id_barang+"\nNama: "+namaBarang+"\nHarga: "+harga+"\nKategori: "+kategori+"\nStok: "+stok+"\n"+"seller: "+user.getNama();
         return data;
     }
 }

@@ -53,7 +53,6 @@ public class ProdukView {
                     Masukkan Command:\s""");
             String comm = input.nextLine();
             produkController.updateProduk(a, comm);
-            System.out.println("Berhasil update");
         }
     }
 

@@ -24,7 +24,8 @@ public class Main {
                     if (loggedUser!=null){
                         int ops;
                         do {
-                            System.out.println("Halo "+loggedUser.getNama());
+                            System.out.println("\nHalo "+loggedUser.getNama());
+                            System.out.println("Saldo anda: "+loggedUser.getSaldo());
                             if (!loggedUser.isStatus()){
                                 MenuView.displayMainMenu();
                             } else {

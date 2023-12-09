@@ -47,8 +47,17 @@ public class MainView {
         List<NodeProduk> barang = produkController.getDaganganUser(user);
         if (barang!=null){
             for (NodeProduk produk: barang){
-                String data = produk.viewDataProduk();
-                System.out.println(data);
+                System.out.println(produk.viewDataProduk());
+            }
+            System.out.print("""
+                               opsi:  
+                               1. Edit Barang
+                               2. Kembali ke beranda
+                               Masukkan pilihan: \s""");
+            int op = input.nextInt();
+            input.nextLine();
+            if (op==1){
+                produkView.updateProduk();
             }
         }
     }

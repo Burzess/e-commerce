@@ -21,8 +21,13 @@ public class ProdukController {
     }
     public void updateProduk(int id, String update){
         NodeProduk nodeProduk = ModelProduk.searchProduk(id);
-        String[] stuff = update.split("/");
-        ModelProduk.updateProduk(Integer.parseInt(stuff[0]), stuff[1], nodeProduk);
+        try {
+            String[] stuff = update.split("/");
+            ModelProduk.updateProduk(Integer.parseInt(stuff[0]), stuff[1], nodeProduk);
+            System.out.println("Berhasil update");
+        } catch (ArrayIndexOutOfBoundsException e){
+            System.out.println("Command Salah :D ");
+        }
     }
 
     public void deletProduk(int idUser){
