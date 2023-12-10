@@ -1,12 +1,11 @@
 package controller;
 
-import model.ModelProduk;
 import model.ModelUser;
-import node.NodeClass.NodeProduk;
 import node.NodeClass.NodeUser;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class UserController {
     ModelUser modelUser;
@@ -67,13 +66,18 @@ public class UserController {
         return false;
     }
 
-    public void updateUser(NodeUser user, String update){
+    public boolean updateUser(NodeUser user, String update){
+        if (Objects.equals(update, "5")){
+            user.setStatus(true);
+            return true;
+        }
         try {
             String[] stuff = update.split("-");
             modelUser.apdetUser(user, Integer.parseInt(stuff[0]), stuff[1]);
         } catch (ArrayIndexOutOfBoundsException e){
             System.out.println("Command Salah :D ");
         }
+        return true;
     }
 
     public boolean deleteUser(int userId) {

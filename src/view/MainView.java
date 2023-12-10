@@ -16,6 +16,9 @@ public class MainView {
     static KeranjangController keranjangController = new KeranjangController();
     static ProdukView produkView = new ProdukView();
     static ProdukController produkController = new ProdukController();
+    static UserView userView = new UserView();
+    static KeranjangView keranjangView = new KeranjangView(produkView,userView);
+    static UserView userView2 = new UserView(keranjangView);
 
     public static NodeUser login(){
         System.out.print("Masukkan Username: ");
@@ -62,10 +65,19 @@ public class MainView {
         }
     }
 
-    public static void viewAllBarang(){
+    public static void viewAllBarang(NodeUser user){
         for (NodeProduk produk: ModelProduk.produkList){
             System.out.println(produk.viewDataProduk());
         }
+        System.out.println("Masukkan kode barang dan jumlah bila ingin menambah ke keranjang");
+        System.out.println("contoh: 3-1, 1-10");
+        System.out.print("atau input n untuk kembali: ");
+        String op = input.nextLine();
+        if (!op.equals("n")){
+            keranjangController.addProduk(user.getId_user(), op);
+            System.out.println("Berhasil menambah wishlist!");
+        }
+
     }
 
     public static void searchProduk(NodeUser user){
@@ -80,6 +92,10 @@ public class MainView {
                 System.out.println("Berhasil menambah wishlist!");
             }
         }
+    }
+
+    public static void addUser(){
+        userView2.addUser();
     }
 }
 

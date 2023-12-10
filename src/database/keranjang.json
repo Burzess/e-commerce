@@ -1,25 +1,28 @@
 [
   {
     "idKeranjang": 0,
-    "listBarang": [],
-    "totalHarga": 0,
+    "listBarang": [
+      {
+        "id_barang": 0,
+        "user": {
+          "id_user": 0,
+          "nama": "joko",
+          "username": "wi",
+          "password": "123",
+          "saldo": 0,
+          "status": true
+        },
+        "namaBarang": "sepeda",
+        "harga": 9000,
+        "kategori": "olahraga",
+        "stok": 1
+      }
+    ],
+    "totalHarga": 9000,
     "userObject": {
       "id_user": 0,
-      "nama": "ah",
-      "username": "",
-      "password": "123",
-      "saldo": 0,
-      "status": false
-    }
-  },
-  {
-    "idKeranjang": 1,
-    "listBarang": [],
-    "totalHarga": 0,
-    "userObject": {
-      "id_user": 1,
-      "nama": "pandu",
-      "username": "",
+      "nama": "joko",
+      "username": "wi",
       "password": "123",
       "saldo": 0,
       "status": false

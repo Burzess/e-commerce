@@ -1,14 +1,11 @@
 import node.NodeClass.NodeUser;
 import view.MainView;
 import view.MenuView;
-import view.UserView;
 
 import java.util.Scanner;
 
 public class Main {
     static Scanner input = new Scanner(System.in);
-    static UserView userView = new UserView();
-
     public static void main(String[] args) {
         int opsi;
 
@@ -34,7 +31,7 @@ public class Main {
                             input.nextLine();
                             switch (ops){
                                 case 1 -> MainView.searchProduk(loggedUser);
-                                case 2 -> MainView.viewAllBarang();
+                                case 2 -> MainView.viewAllBarang(loggedUser);
                                 case 3 ->{
                                     if (!loggedUser.isStatus()){
                                         MenuView.displayProfile();
@@ -51,7 +48,7 @@ public class Main {
                             }
                         }while (ops != 0);
                     }
-                } case 2 -> userView.addUser();
+                } case 2 -> MainView.addUser();
             }
 
         }while (opsi!=0);
