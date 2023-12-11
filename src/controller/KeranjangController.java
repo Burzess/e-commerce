@@ -34,7 +34,6 @@ public class KeranjangController {
     }
 
     public void addProduk(int idKeranjang, String Stuff) {
-        refreshKeranjang();
         NodeKeranjang target = modelKeranjang.searchIdKeranjang(idKeranjang);
         if (target == null) {
             System.out.println("Maaf Id Kerajang tidak ditemukan");
@@ -56,8 +55,7 @@ public class KeranjangController {
         modelKeranjang.delKeranjang(idKeranjang);
     }
 
-    public void delProduk(int idKeranjang, int idProduk) {
-        refreshKeranjang();
+    public static void delProduk(int idKeranjang, int idProduk) {
         NodeKeranjang targetKeranjang = modelKeranjang.searchIdKeranjang(idKeranjang);
         if (targetKeranjang == null) {
             System.out.println("Maaf Id keranjang not found");
@@ -73,13 +71,7 @@ public class KeranjangController {
 //        System.out.println("delete contro status "+status);
     }
 
-    public void refreshKeranjang() {
-        modelKeranjang.refreshUser((ArrayList<NodeUser>) modelUser.getUserList());
-        modelKeranjang.refreshProduk();
-    }
-
     public void viewAll() {
-        refreshKeranjang();
         ArrayList<NodeKeranjang> listKeranjang = modelKeranjang.getListKeranjang();
         if (listKeranjang.isEmpty()) {
             System.out.println("Keranjang belanja kosong.");
@@ -103,13 +95,16 @@ public class KeranjangController {
         }
     }
 
-    public void vieww(NodeUser user){
+    public boolean vieww(NodeUser user){
         NodeKeranjang keranjang = modelKeranjang.searchIdKeranjang(user.getId_user());
         if (keranjang.listBarang.isEmpty()){
             System.out.println("Belum ada barang di keranjang");
-        } else {
-            keranjang.viewbarang();
+            return false;
         }
+        keranjang.viewbarang();
+        return true;
     }
+
+
 
 }

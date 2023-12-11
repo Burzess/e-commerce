@@ -1,16 +1,16 @@
 [
   {
-    "harga": 2000,
+    "harga": 9000,
     "id_barang": 0,
-    "kategori": "elektronik",
-    "namaBarang": "HP",
-    "stok": 3,
+    "kategori": "olahraga",
+    "namaBarang": "sepeda",
+    "stok": -1,
     "userObject": {
-      "id_user": 1,
-      "nama": "pandu",
-      "username": "",
+      "id_user": 0,
+      "nama": "joko",
+      "username": "wi",
       "password": "123",
-      "saldo": 0,
+      "saldo": 9000,
       "status": false
     }
   }

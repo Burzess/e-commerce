@@ -5,21 +5,8 @@
     "totalHarga": 0,
     "userObject": {
       "id_user": 0,
-      "nama": "ah",
-      "username": "",
-      "password": "123",
-      "saldo": 0,
-      "status": false
-    }
-  },
-  {
-    "idKeranjang": 1,
-    "listBarang": [],
-    "totalHarga": 0,
-    "userObject": {
-      "id_user": 1,
-      "nama": "pandu",
-      "username": "",
+      "nama": "joko",
+      "username": "wi",
       "password": "123",
       "saldo": 0,
       "status": false

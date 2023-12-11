@@ -88,8 +88,10 @@ public class NodeKeranjang {
 
     public void viewbarang() {
         for (NodeProduk g: listBarang) {
-            System.out.println(g.getId_barang());
-            System.out.println(g.getNamaBarang());
+//            System.out.println(g.getId_barang());
+            System.out.println("Nama  : "+g.getNamaBarang());
+            System.out.println("Tumlah: "+g.getStok());
+            System.out.println("Total : "+g.getStok()*g.getHarga());
         }
     }
 }

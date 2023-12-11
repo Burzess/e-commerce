@@ -1,12 +1,11 @@
 package controller;
 
-import model.ModelProduk;
 import model.ModelUser;
-import node.NodeClass.NodeProduk;
 import node.NodeClass.NodeUser;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class UserController {
     ModelUser modelUser;
@@ -42,26 +41,22 @@ public class UserController {
         return true;
     }
 
-    public boolean updateUser(int userId, String newName, String newUsername, String newPassword, boolean newStatus, String newSaldo) {
+    public boolean updateUser(int userId, String newName, String newUsername, String newPassword, boolean status, int saldo) {
+
         NodeUser existingUser = findUserById(userId);
 
         if (existingUser != null) {
-            NodeUser updatedUser = new NodeUser(userId, existingUser.getNama(), existingUser.getUsername(), existingUser.getPassword(), existingUser.getSaldo(), existingUser.isStatus());
-
-            if (!newName.isEmpty()) {
+            NodeUser updatedUser = new NodeUser(userId, existingUser.getNama(), existingUser.getUsername(), existingUser.getPassword());
+            if (!newName.isEmpty()){
                 updatedUser.setNama(newName);
-            } else if (!newUsername.isEmpty()) {
+            } else if(!newUsername.isEmpty()){
                 updatedUser.setUsername(newUsername);
             } else if (!newPassword.isEmpty()) {
                 updatedUser.setPassword(newPassword);
-            } else if (!newSaldo.isEmpty()) {
-                System.out.println(newSaldo);
-                int saldo = Integer.parseInt(newSaldo);
-                updatedUser.setSaldo(existingUser.getSaldo() + saldo);
-            }
-
-            if (newStatus){
-                updatedUser.setStatus(newStatus);
+            } else if (status){
+                updatedUser.setStatus(status);
+            } else if (saldo != 0) {
+                updatedUser.setSaldo(saldo);
             }
 
             modelUser.updateUser(updatedUser);
@@ -71,14 +66,18 @@ public class UserController {
         return false;
     }
 
-
-    public void updateUser(NodeUser user, String update){
+    public boolean updateUser(NodeUser user, String update){
+        if (Objects.equals(update, "5")){
+            user.setStatus(true);
+            return true;
+        }
         try {
             String[] stuff = update.split("-");
             modelUser.apdetUser(user, Integer.parseInt(stuff[0]), stuff[1]);
         } catch (ArrayIndexOutOfBoundsException e){
             System.out.println("Command Salah :D ");
         }
+        return true;
     }
 
     public boolean deleteUser(int userId) {
