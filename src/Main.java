@@ -41,8 +41,9 @@ public class Main {
                                     MainView.updateUser(loggedUser);
                                 }
                                 case 4 -> MainView.viewKeranjang(loggedUser);
-                                case 5 -> MainView.sellBarang(loggedUser);
-                                case 6 -> MainView.getBarangDagangan(loggedUser);
+//                                case 5 -> MainView.sellBarang(loggedUser);
+                                case 6 -> MainView.sellBarang(loggedUser);
+                                case 7 -> MainView.getBarangDagangan(loggedUser);
                                 case 0 -> System.out.println("Logout Berhasil");
                                 default -> throw new IllegalStateException("Unexpected value: " + ops);
                             }

@@ -17,6 +17,7 @@ public class MenuView {
                              2. View All Barang
                              3. Profil
                              4. Checkout
+                             5. Riwayat Transaksi Anda
                              0. Logout
                             Masukan pilihan:\s""");
     }
@@ -28,8 +29,9 @@ public class MenuView {
                              2. View All Barang
                              3. Profil
                              4. Checkout
-                             5. Jual Barang
-                             6. Barang Dagangan Anda
+                             5. Riwayat Transaksi Anda
+                             6. Jual Barang
+                             7. Barang Dagangan Anda
                              0. Logout
                             Masukan pilihan:\s""");
     }
@@ -55,7 +57,4 @@ public class MenuView {
                             """);
     }
 
-    public static void ulang(){
-        System.out.println("Kembali ke menu");
-    }
 }
