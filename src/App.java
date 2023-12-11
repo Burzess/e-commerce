@@ -1,4 +1,6 @@
+import node.NodeClass.NodeUser;
 import view.KeranjangView;
+import view.MenuView;
 import view.ProdukView;
 import view.UserView;
 
@@ -17,24 +19,6 @@ public class App {
         App.run(userView, keranjangView, produkView);
     }
 
-    public static void displayFirstMenu() {
-        System.out.print("""
-                1. Login
-                2. Daftar Akun
-                0. Close
-                Masukan Pilihan:\s""");
-    }
-
-    public static void displayMainMenu() {
-        System.out.println("""
-                            ==================HOME=================
-                            1. Cari Barang
-                            2. Tambahkan ke Keranjang
-                            3. Profil
-                            4. Checkout
-                            0. Logout
-                            Masukan pilihan:\s""");
-    }
 
     public static void run(UserView userView, KeranjangView keranjangView, ProdukView produkView) {
         int choice;
@@ -42,12 +26,12 @@ public class App {
             System.out.println("======WELCOME TO THE MASKUL SHOOP======");
 
             if (loggedInUserId == -1) {
-                displayFirstMenu();
+                MenuView.displayFirstMenu();
                 choice = input.nextInt();
                 input.nextLine();
                 handleUserChoice(choice, userView, keranjangView, produkView);
             } else {
-                displayMainMenu();
+                MenuView.displayMainMenu();
                 choice = input.nextInt();
                 input.nextLine();
                 if (choice == 0) {
