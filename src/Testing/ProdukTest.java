@@ -15,6 +15,9 @@ public class ProdukTest {
         ProdukTest produkTest = new ProdukTest();
 //        produkView.addProdukView(login);
         produkView.viewwProduk();
-        produkView.searchPrduk();
+//        produkView.searchPrduk();
+        produkView.updateProduk();
+        produkView.viewwProduk();
+
     }
 }

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class NodeKeranjang {
     private int Id;
     private NodeUser user;
-    public ArrayList<NodeProduk> listBarang;
+    public ArrayList<NodeProduk> listBarang = null;
     public int totalHarga = 0;
 
     public NodeKeranjang(NodeUser u) {
@@ -88,8 +88,10 @@ public class NodeKeranjang {
 
     public void viewbarang() {
         for (NodeProduk g: listBarang) {
-            System.out.println(g.getId_barang());
-            System.out.println(g.getNamaBarang());
+//            System.out.println(g.getId_barang());
+            System.out.println("Nama  : "+g.getNamaBarang());
+            System.out.println("Tumlah: "+g.getStok());
+            System.out.println("Total : "+g.getStok()*g.getHarga());
         }
     }
 }

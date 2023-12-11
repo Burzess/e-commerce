@@ -46,7 +46,7 @@ public class NodeUser {
     }
 
     public void setSaldo(int saldo) {
-        this.saldo = saldo;
+        this.saldo += saldo;
     }
 
     public boolean isStatus() {

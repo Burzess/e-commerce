@@ -1,0 +1,32 @@
+[
+  {
+    "produkList": [
+      {
+        "id_barang": 0,
+        "user": {
+          "id_user": 0,
+          "nama": "joko",
+          "username": "wi",
+          "password": "123",
+          "saldo": 0,
+          "status": false
+        },
+        "namaBarang": "sepeda",
+        "harga": 9000,
+        "kategori": "olahraga",
+        "stok": 1
+      }
+    ],
+    "totalHarga": 9000,
+    "id_transaksi": 0,
+    "tanggal": "2023-12-11",
+    "user": {
+      "id_user": 0,
+      "nama": "joko",
+      "username": "wi",
+      "password": "123",
+      "saldo": 1000,
+      "status": true
+    }
+  }
+]

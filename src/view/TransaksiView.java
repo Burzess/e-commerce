@@ -16,7 +16,7 @@ public class TransaksiView {
         }
     }
 
-    public static void addTransaksiView(NodeUser user, ArrayList<NodeProduk> produks){
-        transaksiController.addTransaksi(user, produks);
-    }
+//    public static void addTransaksiView(NodeUser user, ArrayList<NodeProduk> produks){
+//        transaksiController.addTransaksi(user, produks);
+//    }
 }
