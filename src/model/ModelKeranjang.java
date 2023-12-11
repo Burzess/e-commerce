@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 
 public class ModelKeranjang {
     private ArrayList<NodeProduk> barangGlobal;
-    private ArrayList<NodeKeranjang> listKeranjang;
+    private static ArrayList<NodeKeranjang> listKeranjang;
 
     public ModelKeranjang(ArrayList<NodeProduk> listBarang) {
         listKeranjang = ModelJSONKeranjang.readFromFile();
@@ -97,7 +97,7 @@ public class ModelKeranjang {
         return true;
     }
 
-    public NodeKeranjang searchIdKeranjang(int id) {
+    public static NodeKeranjang searchIdKeranjang(int id) {
         for (NodeKeranjang k: listKeranjang) {
             if (k.getId() == id) {
                 return k;

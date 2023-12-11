@@ -2,6 +2,7 @@ package view;
 
 import controller.KeranjangController;
 import controller.ProdukController;
+import controller.TransaksiController;
 import controller.UserController;
 import model.ModelProduk;
 import node.NodeClass.NodeProduk;
@@ -19,6 +20,7 @@ public class MainView {
     static UserView userView = new UserView();
     static KeranjangView keranjangView = new KeranjangView(produkView,userView);
     static UserView userView2 = new UserView(keranjangView);
+    static TransaksiController transaksiController = new TransaksiController();
 
     public static NodeUser login(){
         System.out.print("Masukkan Username: ");
@@ -39,7 +41,13 @@ public class MainView {
     }
 
     public static void viewKeranjang(NodeUser user){
-        keranjangController.vieww(user);
+        boolean cek = keranjangController.vieww(user);
+        if (cek){
+            System.out.println("Gunakan koma bila perlu (2,8,7): ");
+            System.out.print("Pilih id barang yang akan di checkout: ");
+            String barang = input.nextLine();
+            transaksiController.addTransaksi(user, barang);
+        }
     }
 
     public static void sellBarang(NodeUser user){
