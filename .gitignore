@@ -1,6 +1,7 @@
 
 ### IntelliJ IDEA ###
 .idea/
+*.json
 *.iml
 out/
 !**/src/main/**/out/

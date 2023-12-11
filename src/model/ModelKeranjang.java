@@ -133,4 +133,14 @@ public class ModelKeranjang {
     public ArrayList<NodeKeranjang> getListKeranjang() {
         return listKeranjang;
     }
+
+    public static NodeProduk searchBarangInKeranjang(NodeKeranjang keranjang, int idBarang){
+        for (NodeProduk produk: keranjang.listBarang){
+            if (produk.getId_barang()==idBarang){
+                return produk;
+            }
+        }
+        System.out.println("\nBarang tidak ada :(");
+        return null;
+    }
 }
