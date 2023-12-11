@@ -102,22 +102,15 @@ public class ModelJSONKeranjang {
 
     public static NodeUser convertObjUser(JSONObject userObject){
         NodeJSONUser userJson = new NodeJSONUser();
-//        int id_user = Integer.parseInt(userObject.get(userJson.getId_user()).toString());
-        int id_user = (userObject != null && userObject.get(userJson.getId_user()) != null) ?
-                Integer.parseInt(userObject.get(userJson.getId_user()).toString()) :
-                0;
-        String nama = (userObject != null && userObject.get(userJson.getNama()) != null)
-                ? String.valueOf(userObject.get(userJson.getNama()))
-                : "";
 
-        String user_name = (userObject != null && userObject.get(userJson.getUserName()) != null)
-                ? String.valueOf(userObject.get(userJson.getUserName()))
-                : "";
+        int id_user = Integer.parseInt(userObject.get(userJson.getId_user()).toString());
+        String nama = userObject.get(userJson.getNama()).toString();
+        String user_name = userObject.get(userJson.getUserName()).toString();
+        String password = userObject.get(userJson.getPassword()).toString();
+        int saldo = Integer.parseInt(userObject.get(userJson.getSaldo()).toString());
+        boolean status = Boolean.parseBoolean(userObject.get(userJson.getStatus()).toString());
 
-        String password = (userObject != null && userObject.get(userJson.getPassword()) != null)
-                ? String.valueOf(userObject.get(userJson.getPassword()))
-                : "";
-        return new NodeUser(id_user, nama, user_name, password);
+        return new NodeUser(id_user, nama, user_name, password, saldo, status);
     }
 
     public static ArrayList<NodeProduk> convertJSONArrayProduk(JSONArray arrayProduk, NodeUser user){
