@@ -6,12 +6,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 import node.NodeClass.NodeProduk;
-import node.NodeClass.NodeUser;
-import node.NodeJSON.NodeJSONProduk;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -20,7 +15,6 @@ import java.util.List;
 
 public class ModelJSONProduk {
     private static String fname = "src/database/produk.json";
-    private static NodeJSONProduk nodeJSONBarang = new NodeJSONProduk();
 
     public static boolean cekFile(){
         boolean cek = false;
