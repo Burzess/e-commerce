@@ -95,21 +95,12 @@ public class ModelJSONKeranjang {
         return new NodeUser(id_user, nama, user_name, password, saldo, status);
     }
 
-    public static ArrayList<NodeProduk> convertJSONArrayProduk(JSONArray arrayProduk, NodeUser user){
+    public static ArrayList<NodeProduk> convertJSONArrayProduk(JsonArray arrayProduk){
         if(arrayProduk==null){
             return null;
         } else {
-            ArrayList<NodeProduk> listBarang = new ArrayList<>();
-            for (Object objProduk : arrayProduk) {
-                JSONObject barang = (JSONObject) objProduk;
-                NodeJSONProduk nodeJSONBarang = new NodeJSONProduk();
-                int id_Barang = Integer.parseInt(barang.get(nodeJSONBarang.getId_barang()).toString());
-                String nama = barang.get(nodeJSONBarang.getNamaBarang()).toString();
-                int harga = Integer.parseInt(barang.get(nodeJSONBarang.getHarga()).toString());
-                String kategori = barang.get(nodeJSONBarang.getKategori()).toString();
-                int stok = Integer.parseInt(barang.get(nodeJSONBarang.getStok()).toString());
-                listBarang.add(new NodeProduk(id_Barang, nama,harga, kategori, stok, user));
-            }
+            ArrayList<NodeProduk> listBarang = ModelJSONProduk.convertToArrayLIst(arrayProduk);
+
             return listBarang;
         }
     }

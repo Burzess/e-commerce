@@ -49,31 +49,12 @@ public class ModelJSONProduk {
         }
     }
 
-    public static JSONArray convertToArrayJSON(List<NodeProduk> listBarang){
-        if (listBarang == null){
-            return null;
-        } else {
-            JSONArray arrayBarang = new JSONArray();
-            for (NodeProduk barang:listBarang) {
-                JSONObject objProduk = new JSONObject();
-                objProduk.put(nodeJSONBarang.getId_barang(), barang.getId_barang());
-                objProduk.put(nodeJSONBarang.getNamaBarang(), barang.getNamaBarang());
-                objProduk.put(nodeJSONBarang.getHarga(), barang.getHarga());
-                objProduk.put(nodeJSONBarang.getKategori(), barang.getKategori());
-                objProduk.put(nodeJSONBarang.getStok(), barang.getStok());
-                objProduk.put(nodeJSONBarang.getUser(), barang.getUser());
-                arrayBarang.add(objProduk);
-            }
-            return arrayBarang;
-        }
-    }
 
     public static void writeFileJSON(List<NodeProduk> listBarang) {
-        JSONArray arrayBarang = convertToArrayJSON(listBarang);
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String jsonString = gson.toJson(listBarang);
 
         try (FileWriter file = new FileWriter(fname)) {
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            String jsonString = gson.toJson(arrayBarang);
             file.write(jsonString);
             file.flush();
         } catch (IOException e) {
