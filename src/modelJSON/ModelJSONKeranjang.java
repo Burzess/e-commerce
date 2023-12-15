@@ -2,23 +2,23 @@ package modelJSON;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
 import node.NodeClass.NodeKeranjang;
 import node.NodeClass.NodeProduk;
 import node.NodeClass.NodeUser;
-import node.NodeJSON.NodeJSONKeranjang;
 import node.NodeJSON.NodeJSONProduk;
 import node.NodeJSON.NodeJSONUser;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 import java.io.*;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class ModelJSONKeranjang {
     static final String fname = "src/database/keranjang.json";
-    private static NodeJSONKeranjang nodeJSONKeranjang = new NodeJSONKeranjang();
 
     public static boolean cekFile(){
         boolean cek = false;
@@ -47,29 +47,27 @@ public class ModelJSONKeranjang {
         }
     }
 
-    public static JSONArray convertToArrayJSON(ArrayList<NodeKeranjang> listKeranjang){
-        if (listKeranjang == null){
+    public static ArrayList<NodeKeranjang> readFromFile(){
+        if (!cekFile()){
+            createFileJSON();
             return null;
-        } else {
-            JSONArray arrayKeranjang = new JSONArray();
-            for (NodeKeranjang keranjang:listKeranjang) {
-                JSONObject objUser = new JSONObject();
-                objUser.put(nodeJSONKeranjang.getId(), keranjang.getId());
-                objUser.put(nodeJSONKeranjang.getUser(), keranjang.getUser());
-                objUser.put(nodeJSONKeranjang.getListBarang(), keranjang.listBarang);
-                objUser.put(nodeJSONKeranjang.getTotalHarga(), keranjang.totalHarga);
-                arrayKeranjang.add(objUser);
-            }
-            return arrayKeranjang;
         }
+
+        ArrayList<NodeKeranjang> listKeranjang = null;
+        try (Reader reader = new FileReader(fname)) {
+            JsonArray tempJson = JsonParser.parseReader(reader).getAsJsonArray();
+            listKeranjang = convertToArrayList(tempJson);
+        } catch (IOException e){
+            System.out.println("error: " + e.getMessage());
+        }
+        return listKeranjang;
     }
 
     public static void writeFileJSON(ArrayList<NodeKeranjang> listKeranjang) {
-        JSONArray arrayKeranjang = convertToArrayJSON(listKeranjang);
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String jsonString = gson.toJson(listKeranjang);
 
         try (FileWriter file = new FileWriter(fname)) {
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            String jsonString = gson.toJson(arrayKeranjang);
             file.write(jsonString);
             file.flush();
         } catch (IOException e) {
@@ -77,27 +75,11 @@ public class ModelJSONKeranjang {
         }
     }
 
-    public static ArrayList<NodeKeranjang> convertToArrayList(JSONArray arrayKeranjang){
-        if(arrayKeranjang==null){
-            return null;
-        } else {
-            ArrayList<NodeKeranjang> listKeranjang = new ArrayList<>();
-            for (Object objKeranjang : arrayKeranjang) {
-                JSONObject keranjang = (JSONObject) objKeranjang;
-                NodeJSONKeranjang nodeJSONKeranjang = new NodeJSONKeranjang();
-                int id_Keranjang = Integer.parseInt(keranjang.get(nodeJSONKeranjang.getId()).toString());
-
-                JSONObject userObject = (JSONObject) keranjang.get(nodeJSONKeranjang.getUser());
-                NodeUser nodeUser = (NodeUser) convertObjUser(userObject);
-
-                JSONArray arrayProduk = (JSONArray) keranjang.get(nodeJSONKeranjang.getListBarang());
-                ArrayList<NodeProduk> listProduk = convertJSONArrayProduk(arrayProduk, nodeUser);
-
-                int total = Integer.parseInt(keranjang.get(nodeJSONKeranjang.getTotalHarga()).toString());
-                listKeranjang.add(new NodeKeranjang(id_Keranjang,nodeUser,listProduk,total));
-            }
-            return listKeranjang;
-        }
+    public static ArrayList<NodeKeranjang> convertToArrayList(JsonArray arrayKeranjang){
+        if (arrayKeranjang == null) return null;
+        Type KeranjangListType = new TypeToken<ArrayList<NodeKeranjang>>() {}.getType();
+        Gson gson = new Gson();
+        return gson.fromJson(arrayKeranjang, KeranjangListType);
     }
 
     public static NodeUser convertObjUser(JSONObject userObject){
@@ -130,28 +112,6 @@ public class ModelJSONKeranjang {
             }
             return listBarang;
         }
-    }
-
-    public static ArrayList<NodeKeranjang> readFromFile(){
-        if (!cekFile()){
-            createFileJSON();
-            return null;
-        }
-
-        ArrayList<NodeKeranjang> listKeranjang = null;
-        JSONParser parser = new JSONParser();
-        try {
-            Reader reader = new FileReader(fname);
-            JSONArray arrayBarang = (JSONArray) parser.parse(reader);
-            listKeranjang = convertToArrayList(arrayBarang);
-        } catch (FileNotFoundException e) {
-            System.out.println("error: " + e.getMessage());
-        } catch (ParseException e) {
-            System.out.println("error: " + e.getMessage());
-        } catch (IOException e){
-            System.out.println("error: " + e.getMessage());
-        }
-        return listKeranjang;
     }
 
 }
