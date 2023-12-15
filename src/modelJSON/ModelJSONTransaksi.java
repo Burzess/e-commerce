@@ -2,23 +2,19 @@ package modelJSON;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import node.NodeClass.NodeProduk;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
 import node.NodeClass.NodeTransaksi;
-import node.NodeClass.NodeUser;
-import node.NodeJSON.NodeJSONProduk;
-import node.NodeJSON.NodeJSONTransaksi;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+
 
 import java.io.*;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ModelJSONTransaksi {
-    private static String fname = "src/database/transaksi.json";
-    private static NodeJSONTransaksi nodeJSONTransaksi = new NodeJSONTransaksi();
+    private static final String fname = "src/database/transaksi.json";
     public static boolean cekFile(){
         boolean cek = false;
         try {
@@ -46,31 +42,12 @@ public class ModelJSONTransaksi {
         }
     }
 
-    public static JSONArray convertToArrayJSON(List<NodeTransaksi> transaksiList){
-        if (transaksiList == null){
-            return null;
-        } else {
-            JSONArray arrayTransaksi = new JSONArray();
-            for (NodeTransaksi transaksi:transaksiList) {
-                JSONObject objTransaksi = new JSONObject();
-
-                objTransaksi.put(nodeJSONTransaksi.id_transaksi, transaksi.id_transaksi);
-                objTransaksi.put(nodeJSONTransaksi.user, transaksi.user);
-                objTransaksi.put(nodeJSONTransaksi.produkList, transaksi.produkList);
-                objTransaksi.put(nodeJSONTransaksi.tanggal, transaksi.tanggal);
-                objTransaksi.put(nodeJSONTransaksi.totalHarga, transaksi.totalHarga);
-                arrayTransaksi.add(objTransaksi);
-            }
-            return arrayTransaksi;
-        }
-    }
 
     public static void writeFileJSON(List<NodeTransaksi> transaksiList) {
-        JSONArray arrayBarang = convertToArrayJSON(transaksiList);
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String jsonString = gson.toJson(transaksiList);
 
         try (FileWriter file = new FileWriter(fname)) {
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            String jsonString = gson.toJson(arrayBarang);
             file.write(jsonString);
             file.flush();
         } catch (IOException e) {
@@ -78,31 +55,13 @@ public class ModelJSONTransaksi {
         }
     }
 
-    public static List<NodeTransaksi> convertToArrayLIst(JSONArray arrayTransaksi){
+    public static List<NodeTransaksi> convertToArrayLIst(JsonArray arrayTransaksi){
         if(arrayTransaksi==null){
             return null;
-        } else {
-            List<NodeTransaksi> transaksiList = new ArrayList<>();
-            for (Object objTransaksi : arrayTransaksi) {
-
-                JSONObject transaksi = (JSONObject) objTransaksi;
-                NodeJSONTransaksi nodeJSONTransaksi = new NodeJSONTransaksi();
-
-                int id_Transaksi = Integer.parseInt(transaksi.get(nodeJSONTransaksi.id_transaksi).toString());
-
-                JSONObject userObj = (JSONObject) transaksi.get(nodeJSONTransaksi.user);
-                NodeUser userr = ModelJSONKeranjang.convertObjUser(userObj);
-
-                JSONArray arrayProduk = (JSONArray) transaksi.get(nodeJSONTransaksi.produkList);
-                ArrayList<NodeProduk> listProduk = ModelJSONKeranjang.convertJSONArrayProduk(arrayProduk, userr);
-
-                int harga = Integer.parseInt(transaksi.get(nodeJSONTransaksi.totalHarga).toString());
-
-
-                transaksiList.add(new NodeTransaksi(id_Transaksi, userr, listProduk, harga));
-            }
-            return transaksiList;
         }
+        Type produkListType = new TypeToken<ArrayList<NodeTransaksi>>() {}.getType();
+        Gson gson =new Gson();
+        return gson.fromJson(arrayTransaksi, produkListType);
     }
 
     public static List<NodeTransaksi> readFromFile(){
@@ -112,15 +71,9 @@ public class ModelJSONTransaksi {
         }
 
         List<NodeTransaksi> transaksiList = null;
-        JSONParser parser = new JSONParser();
-        try {
-            Reader reader = new FileReader(fname);
-            JSONArray arrayTransaksi = (JSONArray) parser.parse(reader);
+        try (Reader reader = new FileReader(fname)) {
+            JsonArray arrayTransaksi = JsonParser.parseReader(reader).getAsJsonArray();
             transaksiList = convertToArrayLIst(arrayTransaksi);
-        } catch (FileNotFoundException e) {
-            System.out.println("error: " + e.getMessage());
-        } catch (ParseException e) {
-            System.out.println("error: " + e.getMessage());
         } catch (IOException e){
             System.out.println("error: " + e.getMessage());
         }
