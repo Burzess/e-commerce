@@ -2,6 +2,7 @@ package model;
 
 import modelJSON.ModelJSONKeranjang;
 import modelJSON.ModelJSONTransaksi;
+import node.NodeClass.NodeProduk;
 import node.NodeClass.NodeTransaksi;
 import node.NodeClass.NodeUser;
 
@@ -43,5 +44,13 @@ public class ModelTransaksi {
         }
         int idx = transaksiList.size() -1;
         return transaksiList.get(idx).id_transaksi;
+    }
+
+    public boolean isUangCukup(NodeUser user, int total){
+        if (user.getSaldo()>total){
+            return true;
+        }
+        System.out.println("Saldo Anda Tidak Cukup :)");
+        return false;
     }
 }

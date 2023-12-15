@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class ProdukView {
     ProdukController produkController = new ProdukController();
-    private Scanner input = new Scanner(System.in);
+    private final Scanner input = new Scanner(System.in);
 
     public void addProdukView(NodeUser user){
         System.out.println("---Add Produk---");
@@ -53,28 +53,32 @@ public class ProdukView {
                     Masukkan Command:\s""");
             String comm = input.nextLine();
             produkController.updateProduk(a, comm);
-            System.out.println("Berhasil update");
         }
     }
 
-    public void searchPrduk(){
-        System.out.println("""
+    public boolean searchPrduk(){
+        System.out.print("""
                 ===========PENCARIAN PRODUK===========
-                masukan produk yang ingin di cari:\s""");
+                masukan nama produk yang ingin di cari:\s""");
         String namaProduk = input.nextLine();
         List<NodeProduk> hasilProduk = produkController.searchProduk(namaProduk);
         System.out.println("hasil pencarian: ");
         if (hasilProduk != null){
             for (NodeProduk produk : hasilProduk) {
                 System.out.println("----------------------------");
-                System.out.println("Nama Barang: " + produk.getNamaBarang());
-                System.out.println("Harga: " + produk.getHarga());
+                System.out.println("ID      : " + produk.getId_barang());
+                System.out.println("Nama    : " + produk.getNamaBarang());
+                System.out.println("Harga   : " + produk.getHarga());
                 System.out.println("Kategori: " + produk.getKategori());
-                System.out.println("Stok: " + produk.getStok());
+                System.out.println("Stok    : " + produk.getStok());
+                System.out.println("Penjual : "+produk.getUser().getNama());
             }
+
+            return true;
         } else {
-            System.out.println("Produk tidak tersedia");
+            System.out.println("Produk yang anda cari tidak ada");
         }
+        return false;
     }
 }
 

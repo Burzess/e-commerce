@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ModelUser {
-    private List<NodeUser> userList;
+    public static List<NodeUser> userList;
 
     public ModelUser() {
         this.userList = ModelJSONUser.readFromFile();
@@ -45,6 +45,17 @@ public class ModelUser {
         }
     }
 
+    public void apdetUser(NodeUser user, int opsi , String data){
+        NodeUser apdet = userList.get(user.getId_user());
+        switch (opsi){
+            case 1->apdet.setNama(data);
+            case 2->apdet.setUsername(data);
+            case 3->apdet.setPassword(data);
+            case 4->apdet.setSaldo(Integer.parseInt(data));
+        }
+        System.out.println("Berhasil update!");
+    }
+
     public void deleteUser(int userId) {
         this.userList.removeIf(user -> user.getId_user() == userId);
     }
@@ -57,4 +68,15 @@ public class ModelUser {
         }
         return null;
     }
+
+    public static NodeUser searchUserById(int id){
+        for (NodeUser user: userList){
+            if (user.getId_user()==id){
+                return user;
+            }
+        }
+        return null;
+    }
+
+
 }
