@@ -16,20 +16,22 @@ public class TransaksiController {
     ModelTransaksi modelTransaksi = new ModelTransaksi();
 
     public boolean addTransaksi(NodeUser user, String idProduks){
-        String stuff[]=idProduks.split(",");
+        String stuff[] = idProduks.split(",");
         ArrayList<NodeProduk> produks = new ArrayList<>();
         NodeKeranjang keranjang = ModelKeranjang.searchIdKeranjang(user.getId_user());
-        int total = 0;
         int total2 = 0;
         int id = modelTransaksi.getLastCode() + 1;
 
         for (String t: stuff){
             NodeProduk toTransaksi = addKeranjangToTransaksi(keranjang, Integer.parseInt(t));
+            if (toTransaksi == null){
+                return false;
+            }
             boolean cek2 = modelTransaksi.isUangCukup(user, toTransaksi.getHarga()* toTransaksi.getStok());
             if (cek2){
                 int idSeller = toTransaksi.getUser().getId_user();
                 NodeUser seller = ModelUser.searchUserById(idSeller);
-                total += toTransaksi.getHarga()*toTransaksi.getStok();
+                int total = toTransaksi.getHarga()*toTransaksi.getStok();
                 total2 += total;
                 cashFlow(user, seller, total);
 
@@ -42,7 +44,7 @@ public class TransaksiController {
         if (produks!=null){
             NodeTransaksi nodeTransaksi = new NodeTransaksi(id, user, produks, total2);
             modelTransaksi.addTransaksi(nodeTransaksi);
-
+            System.out.println("Total: "+total2);
             System.out.println("Berhasil Membeli Barang!");
             System.out.println("Barang akan segera tiba di rumah anda ;)");
             return true;
