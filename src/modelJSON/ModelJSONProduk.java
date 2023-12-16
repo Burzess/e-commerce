@@ -1,9 +1,6 @@
 package modelJSON;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import node.NodeClass.NodeProduk;
 
@@ -74,8 +71,12 @@ public class ModelJSONProduk {
         List<NodeProduk> listBarang = null;
 
         try(Reader reader = new FileReader(fname)){
-            JsonArray arrayBarang = JsonParser.parseReader(reader).getAsJsonArray();
-            listBarang = convertToArrayLIst(arrayBarang);
+            JsonElement jsonElement = JsonParser.parseReader(reader);
+
+            if (jsonElement.isJsonArray()) {
+                JsonArray arrayBarang = jsonElement.getAsJsonArray();
+                listBarang = convertToArrayLIst(arrayBarang);
+            }
         } catch (IOException e){
             System.out.println("error: " + e.getMessage());
         }

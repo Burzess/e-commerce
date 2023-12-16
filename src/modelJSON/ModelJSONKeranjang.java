@@ -1,9 +1,6 @@
 package modelJSON;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import node.NodeClass.NodeKeranjang;
 
@@ -49,8 +46,12 @@ public class ModelJSONKeranjang {
 
         ArrayList<NodeKeranjang> listKeranjang = null;
         try (Reader reader = new FileReader(fname)) {
-            JsonArray tempJson = JsonParser.parseReader(reader).getAsJsonArray();
-            listKeranjang = convertToArrayList(tempJson);
+            JsonElement jsonElement = JsonParser.parseReader(reader);
+
+            if (jsonElement.isJsonArray()) {
+                JsonArray arrayKeranjang = jsonElement.getAsJsonArray();
+                listKeranjang = convertToArrayList(arrayKeranjang);
+            }
         } catch (IOException e){
             System.out.println("error: " + e.getMessage());
         }
