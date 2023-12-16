@@ -57,11 +57,11 @@ public class NodeProduk {
     }
 
     public void setStok(int stok) {
-        this.stok = stok;
+        this.stok += stok;
     }
 
     public String viewDataProduk(){
-        String data = "ID: "+id_barang+"\nNama: "+namaBarang+"\nHarga: "+harga+"\nKategori: "+kategori+"\nStok: "+stok+"\n"+"seller: "+user.getNama();
+        String data = "\nID: "+id_barang+"\nNama: "+namaBarang+"\nHarga: "+harga+"\nKategori: "+kategori+"\nStok: "+stok+"\n"+"seller: "+user.getNama();
         return data;
     }
 }

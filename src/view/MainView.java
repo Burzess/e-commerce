@@ -44,8 +44,12 @@ public class MainView {
         boolean cek = keranjangController.vieww(user);
         if (cek){
             System.out.println("Gunakan koma bila perlu (2,8,7): ");
-            System.out.print("Pilih id barang yang akan di checkout: ");
+            System.out.println("Pilih id barang yang akan di checkout: ");
+            System.out.print("atau input n untuk kembali: ");
             String barang = input.nextLine();
+            if (barang.equals("n")){
+                return;
+            }
             transaksiController.addTransaksi(user, barang);
         }
     }
@@ -77,7 +81,7 @@ public class MainView {
         for (NodeProduk produk: ModelProduk.produkList){
             System.out.println(produk.viewDataProduk());
         }
-        System.out.println("Masukkan kode barang dan jumlah bila ingin menambah ke keranjang");
+        System.out.println("\nMasukkan kode barang dan jumlah bila ingin menambah ke keranjang");
         System.out.println("contoh: 3-1, 1-10");
         System.out.print("atau input n untuk kembali: ");
         String op = input.nextLine();

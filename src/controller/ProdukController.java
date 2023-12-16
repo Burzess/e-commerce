@@ -62,7 +62,7 @@ public class ProdukController {
     }
 
     public static boolean cekSisaStok(NodeProduk produk, int jumlah){
-        if (produk.getStok()-jumlah != -1){
+        if (produk.getStok()-jumlah > -1){
             return true;
         }
         System.out.println("Stok barang " +produk.getNamaBarang()+" tidak cukup/telah habis!");

@@ -69,5 +69,14 @@ public class ModelUser {
         return null;
     }
 
+    public static NodeUser searchUserById(int id){
+        for (NodeUser user: userList){
+            if (user.getId_user()==id){
+                return user;
+            }
+        }
+        return null;
+    }
+
 
 }
