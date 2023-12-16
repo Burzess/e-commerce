@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ModelJSONProduk {
-    private static String fname = "src/database/produk.json";
+    private static final String fname = "src/database/produk.json";
 
     public static boolean cekFile(){
         boolean cek = false;
