@@ -6,12 +6,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 import node.NodeClass.NodeKeranjang;
-import node.NodeClass.NodeProduk;
-import node.NodeClass.NodeUser;
-import node.NodeJSON.NodeJSONProduk;
-import node.NodeJSON.NodeJSONUser;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -80,29 +74,6 @@ public class ModelJSONKeranjang {
         Type KeranjangListType = new TypeToken<ArrayList<NodeKeranjang>>() {}.getType();
         Gson gson = new Gson();
         return gson.fromJson(arrayKeranjang, KeranjangListType);
-    }
-
-    public static NodeUser convertObjUser(JSONObject userObject){
-        NodeJSONUser userJson = new NodeJSONUser();
-
-        int id_user = Integer.parseInt(userObject.get(userJson.getId_user()).toString());
-        String nama = userObject.get(userJson.getNama()).toString();
-        String user_name = userObject.get(userJson.getUserName()).toString();
-        String password = userObject.get(userJson.getPassword()).toString();
-        int saldo = Integer.parseInt(userObject.get(userJson.getSaldo()).toString());
-        boolean status = Boolean.parseBoolean(userObject.get(userJson.getStatus()).toString());
-
-        return new NodeUser(id_user, nama, user_name, password, saldo, status);
-    }
-
-    public static ArrayList<NodeProduk> convertJSONArrayProduk(JsonArray arrayProduk){
-        if(arrayProduk==null){
-            return null;
-        } else {
-            ArrayList<NodeProduk> listBarang = ModelJSONProduk.convertToArrayLIst(arrayProduk);
-
-            return listBarang;
-        }
     }
 
 }
