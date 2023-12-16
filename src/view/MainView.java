@@ -81,7 +81,7 @@ public class MainView {
         for (NodeProduk produk: ModelProduk.produkList){
             System.out.println(produk.viewDataProduk());
         }
-        System.out.println("Masukkan kode barang dan jumlah bila ingin menambah ke keranjang");
+        System.out.println("\nMasukkan kode barang dan jumlah bila ingin menambah ke keranjang");
         System.out.println("contoh: 3-1, 1-10");
         System.out.print("atau input n untuk kembali: ");
         String op = input.nextLine();
