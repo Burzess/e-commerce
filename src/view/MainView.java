@@ -44,8 +44,12 @@ public class MainView {
         boolean cek = keranjangController.vieww(user);
         if (cek){
             System.out.println("Gunakan koma bila perlu (2,8,7): ");
-            System.out.print("Pilih id barang yang akan di checkout: ");
+            System.out.println("Pilih id barang yang akan di checkout: ");
+            System.out.print("atau input n untuk kembali: ");
             String barang = input.nextLine();
+            if (barang.equals("n")){
+                return;
+            }
             transaksiController.addTransaksi(user, barang);
         }
     }

@@ -57,15 +57,15 @@ public class ModelKeranjang {
         int stokBarang = Integer.parseInt(strBarang[1]);
 //        System.out.println("id "+idProduk+" stok "+stokBarang);
         //
-        NodeProduk targetProduk = ModelProduk.searchProduk(idProduk,barangGlobal);
+        NodeProduk trgt = ModelProduk.searchProduk(idProduk,barangGlobal);
 //        System.out.println("status " +found);
-        if (targetProduk == null) return false;
-        boolean statusProduk = ModelProduk.cekBarang(targetProduk.getId_barang(),keranjang.listBarang);
+        if (trgt == null) return false;
+        boolean statusProduk = ModelProduk.cekBarang(trgt.getId_barang(),keranjang.listBarang);
 //        System.out.println("status produk "+statusProduk);
         if (!statusProduk) return false;
-        NodeProduk copy = new NodeProduk(targetProduk);
-        if (stokBarang > targetProduk.getStok()) return false;
-        copy.setStok(stokBarang);
+        NodeProduk copy = new NodeProduk(trgt.getId_barang(), trgt.getNamaBarang(), trgt.getHarga(), trgt.getKategori(), Integer.parseInt(strBarang[1]),trgt.getUser());
+        if (stokBarang > trgt.getStok()) return false;
+//        copy.setStok(stokBarang);
         keranjang.addBarang(copy);
         keranjang.totalHarga = keranjang.getTotal();
         return true;
