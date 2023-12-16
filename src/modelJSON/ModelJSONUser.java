@@ -1,17 +1,12 @@
 package modelJSON;
 
-import node.NodeJSON.NodeJSONUser;
+import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
 import node.NodeClass.NodeUser;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
+import node.NodeJSON.NodeJSONUser;
 
 import java.io.*;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,27 +42,12 @@ public class ModelJSONUser {
         }
     }
 
-    public static JSONArray convertToArrayJSON(List<NodeUser> listUser){
-        if (listUser == null){
-            return null;
-        } else {
-            JSONArray arrayUser = new JSONArray();
-            for (NodeUser user:listUser) {
-                JSONObject objUser = new JSONObject();
-                objUser.put(nodeJSONUser.getId_user(), user.getId_user());
-                objUser.put(nodeJSONUser.getNama(), user.getNama());
-                objUser.put(nodeJSONUser.getUserName(), user.getUsername());
-                objUser.put(nodeJSONUser.getPassword(), user.getPassword());
-                objUser.put(nodeJSONUser.getSaldo(), user.getSaldo());
-                objUser.put(nodeJSONUser.getStatus(), user.isStatus());
-                arrayUser.add(objUser);
-            }
-            return arrayUser;
-        }
+    public static JsonArray convertToArrayJSON(List<NodeUser> listUser){
+        return new Gson().toJsonTree(listUser).getAsJsonArray();
     }
 
     public static void writeFileJSON(List<NodeUser> listUser) {
-        JSONArray arrayUser = convertToArrayJSON(listUser);
+        JsonArray arrayUser = convertToArrayJSON(listUser);
 
         try (FileWriter file = new FileWriter(fname)) {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -79,24 +59,12 @@ public class ModelJSONUser {
         }
     }
 
-    public static List<NodeUser> convertToArrayLIst(JSONArray arrayUser){
-        if(arrayUser==null){
-            return null;
-        } else {
-            List<NodeUser> listUser = new ArrayList<>();
-            for (Object objUser : arrayUser) {
-                JSONObject user = (JSONObject) objUser;
-                NodeJSONUser nodeJSONUser = new NodeJSONUser();
-                int id_user = Integer.parseInt(user.get(nodeJSONUser.getId_user()).toString());
-                String nama = user.get(nodeJSONUser.getNama()).toString();
-                String user_name = user.get(nodeJSONUser.getUserName()).toString();
-                String password = user.get(nodeJSONUser.getPassword()).toString();
-                int saldo = Integer.parseInt(user.get(nodeJSONUser.getSaldo()).toString());
-                boolean status = Boolean.parseBoolean(user.get(nodeJSONUser.getStatus()).toString());
-                listUser.add(new NodeUser(id_user, nama,user_name, password, saldo, status));
-            }
-            return listUser;
-        }
+    public static List<NodeUser> convertToArrayLIst(JsonArray arrayUser){
+        Gson gson = new Gson();
+        Type userlisttype = new TypeToken<ArrayList<NodeUser>>() {
+        }.getType();
+        ArrayList<NodeUser> userArrayList = gson.fromJson(arrayUser, userlisttype);
+        return userArrayList;
     }
 
     public static List<NodeUser> readFromFile(){
@@ -104,21 +72,17 @@ public class ModelJSONUser {
             createFileJSON();
             return null;
         }
-
-        List<NodeUser> listUser = null;
-        JSONParser parser = new JSONParser();
-        try {
-            Reader reader = new FileReader(fname);
-            JSONArray arrayUser = (JSONArray) parser.parse(reader);
-            listUser = convertToArrayLIst(arrayUser);
-        } catch (FileNotFoundException e) {
-            System.out.println("error: " + e.getMessage());
-        } catch (ParseException e) {
-            System.out.println("error: " + e.getMessage());
-        } catch (IOException e){
-            System.out.println("error: " + e.getMessage());
+        List<NodeUser> userlist = new ArrayList<>();
+        try (Reader reader = new FileReader(fname)) {
+            JsonArray jsonUser = new JsonParser().parse(reader).getAsJsonArray();
+            userlist = convertToArrayLIst(jsonUser);
+        } catch (IOException e) {
+            System.out.println("Data Kosong. Error :");
+            e.printStackTrace();
+        } catch (JsonParseException e) {
+            System.out.println("File Kosong");
         }
-        return listUser;
+        return userlist;
     }
 
 }
