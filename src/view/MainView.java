@@ -43,7 +43,7 @@ public class MainView {
     public static void viewKeranjang(NodeUser user){
         boolean cek = keranjangController.vieww(user);
         if (cek){
-            System.out.println("Gunakan koma bila perlu (2,8,7): ");
+            System.out.println("\nGunakan koma bila perlu (2,8,7): ");
             System.out.println("Pilih id barang yang akan di checkout: ");
             System.out.print("atau input n untuk kembali: ");
             String barang = input.nextLine();
