@@ -1,0 +1,227 @@
+[
+  {
+    "id_transaksi": 0,
+    "user": {
+      "id_user": 0,
+      "nama": "joko",
+      "username": "wi",
+      "password": "123",
+      "saldo": 10000,
+      "status": true
+    },
+    "produkList": [
+      {
+        "id_barang": 1,
+        "user": {
+          "id_user": 0,
+          "nama": "joko",
+          "username": "wi",
+          "password": "123",
+          "saldo": 10000,
+          "status": true
+        },
+        "namaBarang": "kates",
+        "harga": 1000,
+        "kategori": "buah",
+        "stok": 1
+      }
+    ],
+    "tanggal": "2023-12-16",
+    "totalHarga": 1000
+  },
+  {
+    "id_transaksi": 1,
+    "user": {
+      "id_user": 0,
+      "nama": "joko",
+      "username": "wi",
+      "password": "123",
+      "saldo": 10000,
+      "status": true
+    },
+    "produkList": [
+      {
+        "id_barang": 1,
+        "user": {
+          "id_user": 0,
+          "nama": "joko",
+          "username": "wi",
+          "password": "123",
+          "saldo": 10000,
+          "status": true
+        },
+        "namaBarang": "kates",
+        "harga": 1000,
+        "kategori": "buah",
+        "stok": 2
+      }
+    ],
+    "tanggal": "2023-12-16",
+    "totalHarga": 2000
+  },
+  {
+    "id_transaksi": 2,
+    "user": {
+      "id_user": 0,
+      "nama": "joko",
+      "username": "wi",
+      "password": "123",
+      "saldo": 10000,
+      "status": true
+    },
+    "produkList": [
+      {
+        "id_barang": 0,
+        "user": {
+          "id_user": 0,
+          "nama": "joko",
+          "username": "wi",
+          "password": "123",
+          "saldo": 10000,
+          "status": true
+        },
+        "namaBarang": "botol",
+        "harga": 4000,
+        "kategori": "minum",
+        "stok": 1
+      },
+      {
+        "id_barang": 1,
+        "user": {
+          "id_user": 0,
+          "nama": "joko",
+          "username": "wi",
+          "password": "123",
+          "saldo": 10000,
+          "status": true
+        },
+        "namaBarang": "kates",
+        "harga": 1000,
+        "kategori": "buah",
+        "stok": 1
+      }
+    ],
+    "tanggal": "2023-12-16",
+    "totalHarga": 9000
+  },
+  {
+    "id_transaksi": 3,
+    "user": {
+      "id_user": 0,
+      "nama": "joko",
+      "username": "wi",
+      "password": "123",
+      "saldo": 10000,
+      "status": true
+    },
+    "produkList": [
+      {
+        "id_barang": 0,
+        "user": {
+          "id_user": 0,
+          "nama": "joko",
+          "username": "wi",
+          "password": "123",
+          "saldo": 10000,
+          "status": true
+        },
+        "namaBarang": "botol",
+        "harga": 4000,
+        "kategori": "minum",
+        "stok": 1
+      },
+      {
+        "id_barang": 1,
+        "user": {
+          "id_user": 0,
+          "nama": "joko",
+          "username": "wi",
+          "password": "123",
+          "saldo": 10000,
+          "status": true
+        },
+        "namaBarang": "kates",
+        "harga": 1000,
+        "kategori": "buah",
+        "stok": 1
+      }
+    ],
+    "tanggal": "2023-12-16",
+    "totalHarga": 9000
+  },
+  {
+    "id_transaksi": 4,
+    "user": {
+      "id_user": 0,
+      "nama": "joko",
+      "username": "wi",
+      "password": "123",
+      "saldo": 10000,
+      "status": true
+    },
+    "produkList": [
+      {
+        "id_barang": 0,
+        "user": {
+          "id_user": 0,
+          "nama": "joko",
+          "username": "wi",
+          "password": "123",
+          "saldo": 10000,
+          "status": true
+        },
+        "namaBarang": "botol",
+        "harga": 4000,
+        "kategori": "minum",
+        "stok": 1
+      },
+      {
+        "id_barang": 1,
+        "user": {
+          "id_user": 0,
+          "nama": "joko",
+          "username": "wi",
+          "password": "123",
+          "saldo": 10000,
+          "status": true
+        },
+        "namaBarang": "kates",
+        "harga": 1000,
+        "kategori": "buah",
+        "stok": 1
+      }
+    ],
+    "tanggal": "2023-12-16",
+    "totalHarga": 5000
+  },
+  {
+    "id_transaksi": 5,
+    "user": {
+      "id_user": 1,
+      "nama": "ab",
+      "username": "bin",
+      "password": "123",
+      "saldo": 8000,
+      "status": false
+    },
+    "produkList": [
+      {
+        "id_barang": 1,
+        "user": {
+          "id_user": 0,
+          "nama": "joko",
+          "username": "wi",
+          "password": "123",
+          "saldo": 10000,
+          "status": true
+        },
+        "namaBarang": "kates",
+        "harga": 1000,
+        "kategori": "buah",
+        "stok": 1
+      }
+    ],
+    "tanggal": "2023-12-17",
+    "totalHarga": 1000
+  }
+]

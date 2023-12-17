@@ -26,11 +26,14 @@ public class ModelUser {
     }
 
     public int getLasIdUser(){
-        int id = -1;
-        for (NodeUser user : userList) {
-            id = user.getId_user();
+        int idx;
+        if(userList.isEmpty()) {
+            return -1;
+        } else {
+            idx = userList.size() - 1;
+            System.out.println(idx);
+            return userList.get(idx).getId_user();
         }
-        return id;
     }
     public void addUser(NodeUser user) {
         userList.add(user);

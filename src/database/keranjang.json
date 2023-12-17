@@ -1,25 +1,33 @@
 [
   {
     "Id": 0,
-    "user": {
-      "id_user": 0,
-      "nama": "lim",
-      "username": "lim",
-      "password": "lim",
-      "saldo": 0,
-      "status": false
-    },
-    "listBarang": [],
-    "totalHarga": 0
+    "listBarang": [
+      {
+        "id_barang": 1,
+        "user": {
+          "id_user": 0,
+          "nama": "joko",
+          "username": "wi",
+          "password": "123",
+          "saldo": 10000,
+          "status": true
+        },
+        "namaBarang": "kates",
+        "harga": 1000,
+        "kategori": "buah",
+        "stok": 1
+      }
+    ],
+    "totalHarga": 1000
   },
   {
     "Id": 1,
     "user": {
       "id_user": 1,
-      "nama": "cak",
-      "username": "cik",
-      "password": "cok",
-      "saldo": 0,
+      "nama": "ab",
+      "username": "bin",
+      "password": "123",
+      "saldo": 8000,
       "status": false
     },
     "listBarang": [],

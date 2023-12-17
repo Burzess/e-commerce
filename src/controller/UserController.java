@@ -17,8 +17,7 @@ public class UserController {
 
     public void addUser(String name, String username, String password, KeranjangController k) {
         if (cekUsername(username)) {
-            int userId = modelUser.getLasIdUser();
-            userId++;
+            int userId = modelUser.getLasIdUser()+1;
             NodeUser newUser = new NodeUser(userId, name, username, password);
             modelUser.addUser(newUser);
             k.modelKeranjang.addKeranjang(newUser);

@@ -1,18 +1,18 @@
 [
   {
     "id_user": 0,
-    "nama": "lim",
-    "username": "lim",
-    "password": "lim",
-    "saldo": 0,
-    "status": false
+    "nama": "joko",
+    "username": "wi",
+    "password": "123",
+    "saldo": 11000,
+    "status": true
   },
   {
     "id_user": 1,
-    "nama": "cak",
-    "username": "cik",
-    "password": "cok",
-    "saldo": 0,
+    "nama": "ab",
+    "username": "bin",
+    "password": "123",
+    "saldo": 8000,
     "status": false
   }
 ]

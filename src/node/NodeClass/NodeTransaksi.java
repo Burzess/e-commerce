@@ -1,7 +1,6 @@
 package node.NodeClass;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 public class NodeTransaksi {
@@ -22,12 +21,11 @@ public class NodeTransaksi {
     }
 
     public void view(){
-        System.out.println("Tanggal Transaksi: "+tanggal);
+        System.out.println("\nTanggal Transaksi: "+tanggal);
         System.out.println("Produk yang dibeli: ");
         for (NodeProduk produk: produkList){
-            produk.viewDataProduk();
-            System.out.println("\n");
+            System.out.println(produk.viewDataProduk());
         }
-        System.out.println("Total : "+totalHarga);
+        System.out.println("\nTotal : "+totalHarga);
     }
 }
