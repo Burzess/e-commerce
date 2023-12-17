@@ -6,8 +6,10 @@ import controller.TransaksiController;
 import controller.UserController;
 import model.ModelProduk;
 import node.NodeClass.NodeProduk;
+import node.NodeClass.NodeTransaksi;
 import node.NodeClass.NodeUser;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -43,7 +45,7 @@ public class MainView {
     public static void viewKeranjang(NodeUser user){
         boolean cek = keranjangController.vieww(user);
         if (cek){
-            System.out.println("Gunakan koma bila perlu (2,8,7): ");
+            System.out.println("\nGunakan koma bila perlu (2,8,7): ");
             System.out.println("Pilih id barang yang akan di checkout: ");
             System.out.print("atau input n untuk kembali: ");
             String barang = input.nextLine();
@@ -108,6 +110,15 @@ public class MainView {
 
     public static void addUser(){
         userView2.addUser();
+    }
+
+    public static void viewAllUserTransaksi(NodeUser user){
+        ArrayList<NodeTransaksi> userTransaksi = transaksiController.viewUserTransaksi(user);
+        for (NodeTransaksi transaksi: userTransaksi){
+            transaksi.view();
+        }
+        System.out.print("Tekan n untuk kembali: ");
+        String back = input.nextLine();
     }
 }
 

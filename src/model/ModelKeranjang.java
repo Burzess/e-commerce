@@ -27,8 +27,8 @@ public class ModelKeranjang {
     }
 
     public boolean addKeranjang(NodeUser u) {
-        boolean status = checkKeranjang(u,listKeranjang);
-        if (!status) return false;
+//        boolean status = checkKeranjang(u,listKeranjang);
+//        if (!status) return false;
         listKeranjang.add(new NodeKeranjang(u));
         return true;
     }
@@ -90,7 +90,7 @@ public class ModelKeranjang {
         if (foundKeranjang == null) return false;
         NodeProduk foundProduk = ModelProduk.searchProduk(idBarang,foundKeranjang.listBarang);
         if (foundProduk == null) return false;
-        System.out.println("list barang "+foundKeranjang.listBarang);
+//        System.out.println("list barang "+foundKeranjang.listBarang);
         boolean statusDel = foundKeranjang.listBarang.removeIf(nodeProduk -> nodeProduk.getId_barang() == idBarang);
         if (!statusDel) return false;
         foundKeranjang.totalHarga = foundKeranjang.getTotal();

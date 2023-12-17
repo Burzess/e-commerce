@@ -11,9 +11,12 @@ import node.NodeClass.NodeUser;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class TransaksiController {
     ModelTransaksi modelTransaksi = new ModelTransaksi();
+    static Scanner input = new Scanner(System.in);
+
 
     public boolean addTransaksi(NodeUser user, String idProduks){
         String stuff[] = idProduks.split(",");
@@ -45,7 +48,10 @@ public class TransaksiController {
             NodeTransaksi nodeTransaksi = new NodeTransaksi(id, user, produks, total2);
             modelTransaksi.addTransaksi(nodeTransaksi);
             System.out.println("Total: "+total2);
-            System.out.println("Berhasil Membeli Barang!");
+            System.out.println("Saldo anda: "+user.getSaldo());
+            System.out.print("Konfirmasi pembelian [y]: ");
+            String con = input.nextLine();
+            System.out.println("\nBerhasil Membeli Barang!");
             System.out.println("Barang akan segera tiba di rumah anda ;)");
             return true;
         }
