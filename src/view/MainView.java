@@ -6,8 +6,10 @@ import controller.TransaksiController;
 import controller.UserController;
 import model.ModelProduk;
 import node.NodeClass.NodeProduk;
+import node.NodeClass.NodeTransaksi;
 import node.NodeClass.NodeUser;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -108,6 +110,15 @@ public class MainView {
 
     public static void addUser(){
         userView2.addUser();
+    }
+
+    public static void viewAllUserTransaksi(NodeUser user){
+        ArrayList<NodeTransaksi> userTransaksi = transaksiController.viewUserTransaksi(user);
+        for (NodeTransaksi transaksi: userTransaksi){
+            transaksi.view();
+        }
+        System.out.print("Tekan n untuk kembali: ");
+        String back = input.nextLine();
     }
 }
 
