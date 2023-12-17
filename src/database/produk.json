@@ -1,17 +1,1 @@
-[
-  {
-    "harga": 9000,
-    "id_barang": 0,
-    "kategori": "olahraga",
-    "namaBarang": "sepeda",
-    "stok": -1,
-    "userObject": {
-      "id_user": 0,
-      "nama": "joko",
-      "username": "wi",
-      "password": "123",
-      "saldo": 9000,
-      "status": false
-    }
-  }
-]
+[]

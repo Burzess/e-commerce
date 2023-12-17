@@ -56,7 +56,6 @@ public class UserController {
             }
 
             if (newSaldo != 0) {
-                System.out.println(newSaldo);
                 int saldo = newSaldo;
                 updatedUser.setSaldo(existingUser.getSaldo() + saldo);
             }

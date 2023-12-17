@@ -1,15 +1,28 @@
 [
   {
-    "idKeranjang": 0,
-    "listBarang": [],
-    "totalHarga": 0,
-    "userObject": {
+    "Id": 0,
+    "user": {
       "id_user": 0,
-      "nama": "joko",
-      "username": "wi",
-      "password": "123",
+      "nama": "lim",
+      "username": "lim",
+      "password": "lim",
       "saldo": 0,
       "status": false
-    }
+    },
+    "listBarang": [],
+    "totalHarga": 0
+  },
+  {
+    "Id": 1,
+    "user": {
+      "id_user": 1,
+      "nama": "cak",
+      "username": "cik",
+      "password": "cok",
+      "saldo": 0,
+      "status": false
+    },
+    "listBarang": [],
+    "totalHarga": 0
   }
 ]
