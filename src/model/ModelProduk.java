@@ -42,8 +42,6 @@ public class ModelProduk {
         }
         return null;
     }
-
-
     public List<NodeProduk> seachProduk(String namaProduk){
         List<NodeProduk> hasilPencarian = new ArrayList<>();
 
@@ -122,7 +120,6 @@ public class ModelProduk {
             return -1;
         } else {
             idx = produkList.size() - 1;
-            System.out.println(idx);
             return produkList.get(idx).getId_barang();
         }
     }

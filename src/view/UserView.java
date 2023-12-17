@@ -60,7 +60,8 @@ public class UserView {
                             4. Update Status
                             5. Tambah Saldo
                             6. Tambah Barang Penjualan
-                            7. Hapus Akun
+                            7. Lihat Barnag Penjualan
+                            8. Hapus Akun
                             0. Back to Home
                             Masukkan Pilihan:\s""");
                     choice = scanner.nextInt();
@@ -85,7 +86,6 @@ public class UserView {
             } else{
                 choice = 0;
             }
-
         } while (choice != 0);
     }
 
@@ -105,7 +105,8 @@ public class UserView {
     private void handleProfileChoice(NodeUser nodeUser, int choice) {
         String name = "", username = "", password = "";
         boolean status = true;
-        int saldo = 0, idUser = nodeUser.getId_user();
+        int saldo = 0;
+        int idUser = nodeUser.getId_user();
 
         switch (choice) {
             case 1 -> name = getUserInput("Name");
@@ -121,6 +122,10 @@ public class UserView {
                 return;
             }
             case 7 -> {
+
+                return;
+            }
+            case 8 -> {
                 userController.deleteUser(idUser);
                 produkController.deletProduk(idUser);
             }
@@ -128,15 +133,20 @@ public class UserView {
 
         }
 
+        if (userController.updateUser(idUser, name, username, password, status, saldo)) {
+
+            displaySuccessMessage(name, username, password, status, saldo);
+        }
 //        if (userController.updateUser(idUser, name, username, password, status, saldo)) {
 //            displaySuccessMessage(name, username, password, status, saldo);
 //        }
+
     }
 
     private void handleProfileChoice(int idUser, int choice) {
         String name = "", username = "", password = "";
-        boolean status = false;
         int saldo = 0;
+        boolean status = false;
 
         switch (choice) {
             case 1 -> name = getUserInput("Name");
@@ -170,9 +180,14 @@ public class UserView {
         System.out.print("""
                 Masukkan Jumlah Saldo yang ingin ditambahkan!
                 Saldo:\s""");
-        int sal = scanner.nextInt();
-        scanner.nextLine();
-        return sal;
+        while (true) {
+            String input = scanner.nextLine();
+            try {
+                return Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.println("Masukkan angka yang valid untuk saldo.");
+            }
+        }
     }
 
     private void displaySuccessMessage(String name, String username, String password, boolean status, int saldo) {
@@ -182,12 +197,16 @@ public class UserView {
             System.out.println("\nUsername Berhasil di Perbarui");
         } else if (!password.isEmpty()) {
             System.out.println("\nPassword berhasil di Perbarui");
-        } else if (status) {
+        }
+
+        if (saldo != 0) {
+            System.out.println("\nSaldo berhasil ditambahkan");
+        }
+
+        if (status) {
             System.out.println("""
                     \nStatus akun anda berhasil di perbarui!
                     Selamat Anda bisa melakukan pembelian dan penjualan barang""");
-        } else if (saldo != 0) {
-            System.out.println("\nSaldo berhasil ditambahkan");
         }
     }
 

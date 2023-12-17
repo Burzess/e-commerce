@@ -1,13 +1,8 @@
 package modelJSON;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import node.NodeClass.NodeUser;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -46,8 +41,8 @@ public class ModelJSONUser {
     }
 
     public static void writeFileJSON(List<NodeUser> listUser) {
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            String jsonString = gson.toJson(listUser);
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String jsonString = gson.toJson(listUser);
 
         try (FileWriter file = new FileWriter(fname)) {
             file.write(jsonString);
@@ -65,18 +60,22 @@ public class ModelJSONUser {
         return gson.fromJson(arrayUser, userListType);
     }
 
-    public static List<NodeUser> readFromFile(){
-        if (!cekFile()){
+    public static List<NodeUser> readFromFile() {
+        if (!cekFile()) {
             createFileJSON();
             return null;
         }
 
         List<NodeUser> userList = null;
         try (Reader reader = new FileReader(fname)) {
-            JsonArray arrayUser = JsonParser.parseReader(reader).getAsJsonArray();
-            userList = convertToArrayLIst(arrayUser);
-        } catch (IOException e){
-            System.out.println("error: " + e.getMessage());
+            JsonElement jsonElement = JsonParser.parseReader(reader);
+
+            if (jsonElement.isJsonArray()) {
+                JsonArray arrayUser = jsonElement.getAsJsonArray();
+                userList = convertToArrayLIst(arrayUser);
+            }
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
         }
         return userList;
     }
