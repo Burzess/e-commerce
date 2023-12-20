@@ -1,23 +1,27 @@
 package model;
 
+import com.google.gson.reflect.TypeToken;
+import modelJSON.ModelJSON;
 import node.NodeClass.NodeUser;
-import modelJSON.ModelJSONUser;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ModelUser {
-    public static List<NodeUser> userList;
+    public static ArrayList<NodeUser> userList;
+    ModelJSON<NodeUser> modelJSON;
 
     public ModelUser() {
-        this.userList = ModelJSONUser.readFromFile();
+        modelJSON = new ModelJSON<>("src/database/user.json");
+        userList = modelJSON.readFromFile(new TypeToken<ArrayList<NodeUser>>() {
+        }.getType());
         if (userList == null){
-            this.userList = new ArrayList<>();
+            userList = new ArrayList<>();
         }
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             System.out.println("\nShutting down. Saving data to JSON file...");
-            ModelJSONUser.writeFileJSON(userList);
+            modelJSON.writeToFile(userList);
         }));
     }
 
@@ -36,13 +40,13 @@ public class ModelUser {
         }
     }
     public void addUser(NodeUser user) {
-        this.userList.add(user);
+        userList.add(user);
     }
 
     public void updateUser(NodeUser updatedUser) {
-        for (int i = 0; i < this.userList.size(); i++) {
-            if (this.userList.get(i).getId_user() == updatedUser.getId_user()) {
-                this.userList.set(i, updatedUser);
+        for (int i = 0; i < userList.size(); i++) {
+            if (userList.get(i).getId_user() == updatedUser.getId_user()) {
+                userList.set(i, updatedUser);
                 break;
             }
         }
@@ -60,7 +64,7 @@ public class ModelUser {
     }
 
     public void deleteUser(int userId) {
-        this.userList.removeIf(user -> user.getId_user() == userId);
+        userList.removeIf(user -> user.getId_user() == userId);
     }
 
     public NodeUser getIdUser(int idUser){

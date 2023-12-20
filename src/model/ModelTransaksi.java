@@ -1,26 +1,28 @@
 package model;
 
-import modelJSON.ModelJSONKeranjang;
-import modelJSON.ModelJSONTransaksi;
-import node.NodeClass.NodeProduk;
+import com.google.gson.reflect.TypeToken;
+import modelJSON.ModelJSON;
 import node.NodeClass.NodeTransaksi;
 import node.NodeClass.NodeUser;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ModelTransaksi {
-    public static List<NodeTransaksi> transaksiList;
+    public static ArrayList<NodeTransaksi> transaksiList;
+    ModelJSON modelJSON;
 
     public ModelTransaksi() {
-        transaksiList = ModelJSONTransaksi.readFromFile();
+        modelJSON = new ModelJSON<>("src/database/transaksi.json");
+        transaksiList = modelJSON.readFromFile(new TypeToken<ArrayList<NodeTransaksi>>() {
+        }.getType());
+
         if (transaksiList == null) {
             transaksiList = new ArrayList<>();
         }
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             System.out.println("\nShutting down. Saving data to JSON file...");
-            ModelJSONTransaksi.writeFileJSON(transaksiList);
+            modelJSON.writeToFile(transaksiList);
         }));
     }
 
