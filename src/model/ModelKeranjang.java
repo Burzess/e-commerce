@@ -1,8 +1,9 @@
 package model;
 
-import modelJSON.ModelJSONKeranjang;
-import node.NodeClass.NodeProduk;
+import com.google.gson.reflect.TypeToken;
+import modelJSON.ModelJSON;
 import node.NodeClass.NodeKeranjang;
+import node.NodeClass.NodeProduk;
 import node.NodeClass.NodeUser;
 
 import java.util.ArrayList;
@@ -12,9 +13,12 @@ import java.util.regex.Pattern;
 public class ModelKeranjang {
     private ArrayList<NodeProduk> barangGlobal;
     private static ArrayList<NodeKeranjang> listKeranjang;
+    ModelJSON modelJSON;
 
     public ModelKeranjang(ArrayList<NodeProduk> listBarang) {
-        listKeranjang = ModelJSONKeranjang.readFromFile();
+        modelJSON = new ModelJSON<>("src/database/keranjang.json");
+        listKeranjang = modelJSON.readFromFile(new TypeToken<ArrayList<NodeKeranjang>>() {
+        }.getType());
         if (listKeranjang == null) {
             listKeranjang = new ArrayList<>();
         }
@@ -22,7 +26,7 @@ public class ModelKeranjang {
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             System.out.println("\nShutting down. Saving data to JSON file...");
-            ModelJSONKeranjang.writeFileJSON(listKeranjang);
+            modelJSON.writeToFile(listKeranjang);
         }));
     }
 

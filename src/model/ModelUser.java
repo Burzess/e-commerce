@@ -1,23 +1,27 @@
 package model;
 
+import com.google.gson.reflect.TypeToken;
+import modelJSON.ModelJSON;
 import node.NodeClass.NodeUser;
-import modelJSON.ModelJSONUser;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ModelUser {
-    public static List<NodeUser> userList;
+    public static ArrayList<NodeUser> userList;
+    ModelJSON<NodeUser> modelJSON;
 
     public ModelUser() {
-        userList = ModelJSONUser.readFromFile();
+        modelJSON = new ModelJSON<>("src/database/user.json");
+        userList = modelJSON.readFromFile(new TypeToken<ArrayList<NodeUser>>() {
+        }.getType());
         if (userList == null){
             userList = new ArrayList<>();
         }
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             System.out.println("\nShutting down. Saving data to JSON file...");
-            ModelJSONUser.writeFileJSON(userList);
+            modelJSON.writeToFile(userList);
         }));
     }
 

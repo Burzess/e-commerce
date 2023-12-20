@@ -1,6 +1,7 @@
 package model;
 
-import modelJSON.ModelJSONProduk;
+import com.google.gson.reflect.TypeToken;
+import modelJSON.ModelJSON;
 import node.NodeClass.NodeProduk;
 import node.NodeClass.NodeUser;
 
@@ -8,17 +9,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ModelProduk {
-    public static List<NodeProduk> produkList;
+    public static ArrayList<NodeProduk> produkList;
+     ModelJSON modelJSON;
 
     public ModelProduk() {
-        this.produkList = ModelJSONProduk.readFromFile();
+        modelJSON = new ModelJSON("src/database/produk.json");
+        this.produkList = modelJSON.readFromFile(new TypeToken<ArrayList<NodeProduk>>() {
+        }.getType());
         if (produkList == null){
             this.produkList = new ArrayList<>();
         }
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             System.out.println("\nShutting down. Saving data to JSON file...");
-            ModelJSONProduk.writeFileJSON(produkList);
+            modelJSON.writeToFile(produkList);
         }));
     }
     public static void addProdukModel(NodeProduk produk){
