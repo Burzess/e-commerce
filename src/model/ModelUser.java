@@ -7,7 +7,7 @@ import node.NodeClass.NodeUser;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ModelUser {
+public class ModelUser implements CRUD<NodeUser> {
     public static ArrayList<NodeUser> userList;
     ModelJSON<NodeUser> modelJSON;
 
@@ -39,11 +39,11 @@ public class ModelUser {
             return userList.get(idx).getId_user();
         }
     }
-    public void addUser(NodeUser user) {
+    public void create(NodeUser user) {
         userList.add(user);
     }
 
-    public void updateUser(NodeUser updatedUser) {
+    public void update(NodeUser updatedUser) {
         for (int i = 0; i < userList.size(); i++) {
             if (userList.get(i).getId_user() == updatedUser.getId_user()) {
                 userList.set(i, updatedUser);
@@ -63,7 +63,7 @@ public class ModelUser {
         System.out.println("Berhasil update!");
     }
 
-    public void deleteUser(int userId) {
+    public void delete(int userId) {
         userList.removeIf(user -> user.getId_user() == userId);
     }
 
@@ -79,6 +79,15 @@ public class ModelUser {
     public static NodeUser searchUserById(int id){
         for (NodeUser user: userList){
             if (user.getId_user()==id){
+                return user;
+            }
+        }
+        return null;
+    }
+
+    public NodeUser read(int idUser){
+        for (NodeUser user : userList) {
+            if (user.getId_user() == idUser){
                 return user;
             }
         }
