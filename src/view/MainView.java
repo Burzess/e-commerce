@@ -80,8 +80,17 @@ public class MainView {
     }
 
     public static void viewAllBarang(NodeUser user){
+        int c = 0;
         for (NodeProduk produk: ModelProduk.produkList){
+            if (produk.getUser().getNama().equals(user.getNama())){
+                continue;
+            }
             System.out.println(produk.viewDataProduk());
+            c++;
+        }
+        if (c==0){
+            System.out.println("Barang tidak ada");
+            return;
         }
         System.out.println("\nMasukkan kode barang dan jumlah bila ingin menambah ke keranjang");
         System.out.println("contoh: 3-1, 1-10");
@@ -95,9 +104,26 @@ public class MainView {
     }
 
     public static void searchProduk(NodeUser user){
-        boolean cek = produkView.searchPrduk();
-        if (cek){
-            System.out.println("Masukkan kode barang dan jumlah bila ingin menambah ke keranjang");
+        int c = 0;
+        System.out.print("""
+                ===========PENCARIAN PRODUK===========
+                masukan nama produk yang ingin di cari:\s""");
+        String namaProduk = input.nextLine();
+        List<NodeProduk> hasilProduk = produkController.searchProduk(namaProduk);
+        System.out.println("hasil pencarian: ");
+        if (hasilProduk != null){
+            for (NodeProduk produk : hasilProduk) {
+                if (produk.getUser().getNama().equals(user.getNama())){
+                    continue;
+                }
+                System.out.println(produk.viewDataProduk());
+                c++;
+            }
+            if (c==0){
+                System.out.println("Barang tidak ada");
+                return;
+            }
+            System.out.println("\nMasukkan kode barang dan jumlah bila ingin menambah ke keranjang");
             System.out.println("contoh: 3-1, 1-10");
             System.out.print("atau input n untuk kembali: ");
             String op = input.nextLine();
@@ -105,6 +131,8 @@ public class MainView {
                 keranjangController.addProduk(user.getId_user(), op);
                 System.out.println("Berhasil menambah wishlist!");
             }
+        } else {
+            System.out.println("Produk yang anda cari tidak ada");
         }
     }
 

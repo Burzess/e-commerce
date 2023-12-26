@@ -19,7 +19,7 @@ public class UserController {
         if (cekUsername(username)) {
             int userId = modelUser.getLasIdUser()+1;
             NodeUser newUser = new NodeUser(userId, name, username, password);
-            modelUser.addUser(newUser);
+            modelUser.create(newUser);
             k.modelKeranjang.addKeranjang(newUser);
         } else {
             System.out.println("Username sudah ada, gunakan username lain.");
@@ -62,7 +62,7 @@ public class UserController {
             if (newStatus) {
                 updatedUser.setStatus(newStatus);
             }
-            modelUser.updateUser(updatedUser);
+            modelUser.update(updatedUser);
             return true;
         }
 
@@ -88,7 +88,7 @@ public class UserController {
         NodeUser existingUser = findUserById(userId);
 
         if (existingUser != null) {
-            modelUser.deleteUser(userId);
+            modelUser.delete(userId);
             return true;
         }
 
