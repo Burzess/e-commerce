@@ -2,18 +2,22 @@ import node.NodeClass.NodeUser;
 import view.MainView;
 import view.MenuView;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
     static Scanner input = new Scanner(System.in);
     public static void main(String[] args) {
-        int opsi;
-
+        int opsi = 0;
         do{
             NodeUser loggedUser;
             MenuView.displayFirstMenu();
-            opsi = input.nextInt();
-            input.nextLine();
+            try {
+                opsi = input.nextInt();
+                input.nextLine();
+            } catch (InputMismatchException e){
+                System.out.println("input integer anjay 😂");
+            }
             switch (opsi){
                 case 1 -> {
                     loggedUser = MainView.login();

@@ -59,9 +59,8 @@ public class ModelKeranjang {
         // convert String to Integer
         int idProduk = Integer.parseInt(strBarang[0]);
         int stokBarang = Integer.parseInt(strBarang[1]);
-//        System.out.println("id "+idProduk+" stok "+stokBarang);
-        //
         NodeProduk trgt = ModelProduk.searchProduk(idProduk,barangGlobal);
+
 //        System.out.println("status " +found);
         if (trgt == null) return false;
         boolean statusProduk = ModelProduk.cekBarang(trgt.getId_barang(),keranjang.listBarang);
