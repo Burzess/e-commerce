@@ -3,6 +3,7 @@ package view;
 public class MenuView {
     public static void displayFirstMenu() {
         System.out.print("""
+                
                 <[Welcome to Aplikasi oren kw]>
                  1. Login
                  2. Daftar Akun
