@@ -28,5 +28,50 @@
     "harga": 1000,
     "kategori": "buah",
     "stok": 1
+  },
+  {
+    "id_barang": 2,
+    "user": {
+      "id_user": 1,
+      "nama": "ab",
+      "username": "bin",
+      "password": "123",
+      "saldo": 17000,
+      "status": true
+    },
+    "namaBarang": "Casing HP",
+    "harga": 8000,
+    "kategori": "aksesoris",
+    "stok": 7
+  },
+  {
+    "id_barang": 3,
+    "user": {
+      "id_user": 1,
+      "nama": "ab",
+      "username": "bin",
+      "password": "123",
+      "saldo": 17000,
+      "status": true
+    },
+    "namaBarang": "Power Bank",
+    "harga": 11000,
+    "kategori": "elektronik",
+    "stok": 4
+  },
+  {
+    "id_barang": 4,
+    "user": {
+      "id_user": 1,
+      "nama": "ab",
+      "username": "bin",
+      "password": "123",
+      "saldo": 17000,
+      "status": true
+    },
+    "namaBarang": "sepatu",
+    "harga": 9000,
+    "kategori": "aksesoris",
+    "stok": 4
   }
 ]

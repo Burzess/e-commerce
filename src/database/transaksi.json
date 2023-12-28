@@ -223,5 +223,35 @@
     ],
     "tanggal": "2023-12-17",
     "totalHarga": 1000
+  },
+  {
+    "id_transaksi": 6,
+    "user": {
+      "id_user": 0,
+      "nama": "joko",
+      "username": "wi",
+      "password": "123",
+      "saldo": 2000,
+      "status": true
+    },
+    "produkList": [
+      {
+        "id_barang": 4,
+        "user": {
+          "id_user": 1,
+          "nama": "ab",
+          "username": "bin",
+          "password": "123",
+          "saldo": 17000,
+          "status": true
+        },
+        "namaBarang": "sepatu",
+        "harga": 9000,
+        "kategori": "aksesoris",
+        "stok": 1
+      }
+    ],
+    "tanggal": "2023-12-27",
+    "totalHarga": 9000
   }
 ]
