@@ -63,6 +63,8 @@ public class ModelUser implements CRUD<NodeUser> {
         System.out.println("Berhasil update!");
     }
 
+
+
     public void delete(int userId) {
         userList.removeIf(user -> user.getId_user() == userId);
     }

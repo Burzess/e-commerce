@@ -25,9 +25,9 @@
       "status": true
     },
     "namaBarang": "kates",
-    "harga": 1000,
+    "harga": 3000,
     "kategori": "buah",
-    "stok": 1
+    "stok": 2
   },
   {
     "id_barang": 2,
@@ -42,7 +42,7 @@
     "namaBarang": "Casing HP",
     "harga": 8000,
     "kategori": "aksesoris",
-    "stok": 7
+    "stok": 5
   },
   {
     "id_barang": 3,
@@ -72,6 +72,6 @@
     "namaBarang": "sepatu",
     "harga": 9000,
     "kategori": "aksesoris",
-    "stok": 4
+    "stok": 1
   }
 ]
