@@ -1,5 +1,7 @@
 package node.NodeClass;
 
+import model.ModelProduk;
+
 import java.util.ArrayList;
 
 public class NodeKeranjang {
@@ -87,12 +89,19 @@ public class NodeKeranjang {
     }
 
     public void viewbarang() {
+        String ANSI_RESET = "\u001B[0m";
+        String ANSI_RED = "\u001B[31m";
         for (NodeProduk g: listBarang) {
 //            System.out.println(g.getId_barang());
             System.out.println("\nID    : "+g.getId_barang());
             System.out.println("Nama  : "+g.getNamaBarang());
             System.out.println("Tumlah: "+g.getStok());
             System.out.println("Total : "+g.getStok()*g.getHarga());
+            int s = ModelProduk.searchProduk(g.getId_barang()).getStok();
+            if (s == 0){
+                System.out.println(ANSI_RED + "Sisa Stok Tersedia: 0"+ANSI_RESET);
+            }
+            System.out.println("Sisa Stok Tersedia: " + s);
         }
     }
 }

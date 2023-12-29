@@ -43,38 +43,7 @@
       "saldo": 6000,
       "status": false
     },
-    "listBarang": [
-      {
-        "id_barang": 2,
-        "user": {
-          "id_user": 1,
-          "nama": "ab",
-          "username": "bin",
-          "password": "123",
-          "saldo": 17000,
-          "status": true
-        },
-        "namaBarang": "Casing HP",
-        "harga": 8000,
-        "kategori": "aksesoris",
-        "stok": 1
-      },
-      {
-        "id_barang": 4,
-        "user": {
-          "id_user": 1,
-          "nama": "ab",
-          "username": "bin",
-          "password": "123",
-          "saldo": 17000,
-          "status": true
-        },
-        "namaBarang": "sepatu",
-        "harga": 9000,
-        "kategori": "aksesoris",
-        "stok": 1
-      }
-    ],
-    "totalHarga": 17000
+    "listBarang": [],
+    "totalHarga": 0
   }
 ]

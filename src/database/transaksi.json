@@ -385,5 +385,110 @@
     ],
     "tanggal": "2023-12-28",
     "totalHarga": 1000
+  },
+  {
+    "id_transaksi": 13,
+    "user": {
+      "id_user": 2,
+      "nama": "alif",
+      "username": "lif",
+      "password": "123",
+      "saldo": 2000,
+      "status": false
+    },
+    "produkList": [
+      {
+        "id_barang": 4,
+        "user": {
+          "id_user": 1,
+          "nama": "ab",
+          "username": "bin",
+          "password": "123",
+          "saldo": 17000,
+          "status": true
+        },
+        "namaBarang": "sepatu",
+        "harga": 9000,
+        "kategori": "aksesoris",
+        "stok": 1
+      }
+    ],
+    "tanggal": "2023-12-29",
+    "totalHarga": 9000
+  },
+  {
+    "id_transaksi": 14,
+    "user": {
+      "id_user": 2,
+      "nama": "alif",
+      "username": "lif",
+      "password": "123",
+      "saldo": 3000,
+      "status": false
+    },
+    "produkList": [
+      {
+        "id_barang": 2,
+        "user": {
+          "id_user": 1,
+          "nama": "ab",
+          "username": "bin",
+          "password": "123",
+          "saldo": 17000,
+          "status": true
+        },
+        "namaBarang": "Casing HP",
+        "harga": 8000,
+        "kategori": "aksesoris",
+        "stok": 1
+      },
+      {
+        "id_barang": 3,
+        "user": {
+          "id_user": 1,
+          "nama": "ab",
+          "username": "bin",
+          "password": "123",
+          "saldo": 17000,
+          "status": true
+        },
+        "namaBarang": "Power Bank",
+        "harga": 11000,
+        "kategori": "elektronik",
+        "stok": 1
+      }
+    ],
+    "tanggal": "2023-12-29",
+    "totalHarga": 19000
+  },
+  {
+    "id_transaksi": 15,
+    "user": {
+      "id_user": 1,
+      "nama": "ab",
+      "username": "bin",
+      "password": "123",
+      "saldo": 48000,
+      "status": true
+    },
+    "produkList": [
+      {
+        "id_barang": 1,
+        "user": {
+          "id_user": 0,
+          "nama": "joko",
+          "username": "wi",
+          "password": "123",
+          "saldo": 10000,
+          "status": true
+        },
+        "namaBarang": "kates",
+        "harga": 3000,
+        "kategori": "buah",
+        "stok": 2
+      }
+    ],
+    "tanggal": "2023-12-29",
+    "totalHarga": 6000
   }
 ]
