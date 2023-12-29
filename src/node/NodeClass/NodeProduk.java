@@ -64,4 +64,36 @@ public class NodeProduk {
         String data = "\nID: "+id_barang+"\nNama: "+namaBarang+"\nHarga: "+harga+"\nKategori: "+kategori+"\nStok: "+stok+"\n"+"seller: "+user.getNama();
         return data;
     }
+
+    public void outData(){
+        String ANSI_RESET = "\u001B[0m";
+        String ANSI_RED = "\u001B[31m";
+
+        System.out.println("\nID: "+id_barang);
+        System.out.println("Nama: "+namaBarang);
+        System.out.println("Harga: "+harga);
+        System.out.println("Kategori: "+kategori);
+        if (stok==0){
+            System.out.println(ANSI_RED + "Jumlah: "+stok + ANSI_RESET);
+        } else {
+            System.out.println("Jumlah: "+stok);
+        }
+        System.out.println("seller: "+user.getNama());
+    }
+
+    public void outData2(){
+        String ANSI_RESET = "\u001B[0m";
+        String ANSI_RED = "\u001B[31m";
+
+        System.out.println("\nID: "+id_barang);
+        System.out.println("Nama: "+namaBarang);
+        System.out.println("Harga: "+harga);
+        System.out.println("Kategori: "+kategori);
+        if (stok==0){
+            System.out.println(ANSI_RED + "Stok: "+stok + ANSI_RESET);
+        } else {
+            System.out.println("Stok: "+stok);
+        }
+        System.out.println("seller: "+user.getNama());
+    }
 }

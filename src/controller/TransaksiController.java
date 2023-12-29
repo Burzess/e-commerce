@@ -18,6 +18,7 @@ public class TransaksiController {
 
 
     public void addTransaksi(NodeUser user, String idProduks){
+        ArrayList<Thread>cashflow = new ArrayList<>();
         String stuff[] = idProduks.split(",");
         ArrayList<NodeProduk> produks = new ArrayList<>();
         NodeKeranjang keranjang = ModelKeranjang.searchIdKeranjang(user.getId_user());
@@ -36,26 +37,35 @@ public class TransaksiController {
                 int total = toTransaksi.getHarga()*toTransaksi.getStok();
                 total2 += total;
 
-                produks.add(toTransaksi);
-                System.out.println("Total: " + total2);
-                System.out.println("Saldo anda: "+ user.getSaldo());
-                System.out.print("Konfirmasi pembelian? [y/n]: ");
-                String con = input.nextLine();
-                if (con.equals("y")){
-                    NodeTransaksi nodeTransaksi = new NodeTransaksi(id, user, produks, total2);
-                    modelTransaksi.addTransaksi(nodeTransaksi);
-
+                Thread thread = new Thread(() -> {
                     cashFlow(user, seller, total);
-
                     KeranjangController.delProduk(keranjang.getId(), toTransaksi.getId_barang());
+                });
 
-                    System.out.println("\nBerhasil Membeli Barang!");
-                    System.out.println("Barang akan segera tiba di rumah anda ;)");
-                    return;
-                }else {
-                    System.out.println("Tidak jadi membeli barang 😔");
-                }
+                cashflow.add(thread);
+
+                produks.add(toTransaksi);
             }
+        }
+
+        System.out.println("Total: " + total2);
+        System.out.println("Saldo anda: "+ user.getSaldo());
+        System.out.print("Konfirmasi pembelian? [y/n]: ");
+        String con = input.nextLine();
+        if (con.equals("y")){
+            NodeTransaksi nodeTransaksi = new NodeTransaksi(id, user, produks, total2);
+            modelTransaksi.addTransaksi(nodeTransaksi);
+
+            for (Thread thrd: cashflow){
+                thrd.start();
+            }
+
+
+            System.out.println("\nBerhasil Membeli Barang!");
+            System.out.println("Barang akan segera tiba di rumah anda ;)");
+//                    return;
+        }else {
+            System.out.println("Tidak jadi membeli barang 😔");
         }
 
 
