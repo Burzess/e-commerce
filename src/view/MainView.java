@@ -88,7 +88,8 @@ public class MainView {
             if (produk.getUser().getNama().equals(user.getNama())){
                 continue;
             }
-            System.out.println(produk.viewDataProduk());
+//            System.out.println(produk.viewDataProduk());
+            produk.outData2();
             c++;
         }
         if (c==0){
@@ -123,7 +124,8 @@ public class MainView {
                 if (produk.getUser().getNama().equals(user.getNama())){
                     continue;
                 }
-                System.out.println(produk.viewDataProduk());
+//                System.out.println(produk.viewDataProduk());
+                produk.outData2();
                 c++;
             }
             if (c==0){
