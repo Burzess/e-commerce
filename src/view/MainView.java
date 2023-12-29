@@ -45,7 +45,8 @@ public class MainView {
     public static void viewKeranjang(NodeUser user){
         boolean cek = keranjangController.vieww(user);
         if (cek){
-            System.out.println("\nGunakan koma bila perlu (2,8,7): ");
+            System.out.println("\nSaldo anda: "+ user.getSaldo());
+            System.out.println("Gunakan koma bila perlu (2,8,7): ");
             System.out.println("Pilih id barang yang akan di checkout: ");
             System.out.print("atau input n untuk kembali: ");
             String barang = input.nextLine();
@@ -53,6 +54,8 @@ public class MainView {
                 return;
             }
             transaksiController.addTransaksi(user, barang);
+            System.out.print("Ketik n untuk kembali ke beranda: ");
+            String bak = input.nextLine();
         }
     }
 
@@ -97,7 +100,11 @@ public class MainView {
         System.out.print("atau input n untuk kembali: ");
         String op = input.nextLine();
         if (!op.equals("n")){
-            keranjangController.addProduk(user.getId_user(), op);
+            boolean stat = keranjangController.addProduk(user.getId_user(), op);
+            if (!stat){
+                System.out.println("Id barang not found/stok habis🙏");
+                return;
+            }
             System.out.println("Berhasil menambah wishlist!");
         }
 

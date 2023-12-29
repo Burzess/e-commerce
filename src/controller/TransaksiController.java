@@ -10,7 +10,6 @@ import node.NodeClass.NodeTransaksi;
 import node.NodeClass.NodeUser;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class TransaksiController {
@@ -18,7 +17,7 @@ public class TransaksiController {
     static Scanner input = new Scanner(System.in);
 
 
-    public boolean addTransaksi(NodeUser user, String idProduks){
+    public void addTransaksi(NodeUser user, String idProduks){
         String stuff[] = idProduks.split(",");
         ArrayList<NodeProduk> produks = new ArrayList<>();
         NodeKeranjang keranjang = ModelKeranjang.searchIdKeranjang(user.getId_user());
@@ -28,7 +27,7 @@ public class TransaksiController {
         for (String t: stuff){
             NodeProduk toTransaksi = addKeranjangToTransaksi(keranjang, Integer.parseInt(t));
             if (toTransaksi == null){
-                return false;
+                return;
             }
             boolean cek2 = modelTransaksi.isUangCukup(user, toTransaksi.getHarga()* toTransaksi.getStok());
             if (cek2){
@@ -36,26 +35,30 @@ public class TransaksiController {
                 NodeUser seller = ModelUser.searchUserById(idSeller);
                 int total = toTransaksi.getHarga()*toTransaksi.getStok();
                 total2 += total;
-                cashFlow(user, seller, total);
 
                 produks.add(toTransaksi);
-                KeranjangController.delProduk(keranjang.getId(), toTransaksi.getId_barang());
+                System.out.println("Total: " + total2);
+                System.out.println("Saldo anda: "+ user.getSaldo());
+                System.out.print("Konfirmasi pembelian? [y/n]: ");
+                String con = input.nextLine();
+                if (con.equals("y")){
+                    NodeTransaksi nodeTransaksi = new NodeTransaksi(id, user, produks, total2);
+                    modelTransaksi.addTransaksi(nodeTransaksi);
+
+                    cashFlow(user, seller, total);
+
+                    KeranjangController.delProduk(keranjang.getId(), toTransaksi.getId_barang());
+
+                    System.out.println("\nBerhasil Membeli Barang!");
+                    System.out.println("Barang akan segera tiba di rumah anda ;)");
+                    return;
+                }else {
+                    System.out.println("Tidak jadi membeli barang 😔");
+                }
             }
-//            System.out.println(t);
         }
 
-        if (produks!=null){
-            NodeTransaksi nodeTransaksi = new NodeTransaksi(id, user, produks, total2);
-            modelTransaksi.addTransaksi(nodeTransaksi);
-            System.out.println("Total: "+total2);
-            System.out.println("Saldo anda: "+user.getSaldo());
-            System.out.print("Konfirmasi pembelian [y]: ");
-            String con = input.nextLine();
-            System.out.println("\nBerhasil Membeli Barang!");
-            System.out.println("Barang akan segera tiba di rumah anda ;)");
-            return true;
-        }
-        return true;
+
     }
 
     public NodeProduk addKeranjangToTransaksi(NodeKeranjang keranjang, int idBarang){

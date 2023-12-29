@@ -33,17 +33,21 @@ public class KeranjangController {
         modelKeranjang.addKeranjang(target);
     }
 
-    public void addProduk(int idKeranjang, String Stuff) {
+    public boolean addProduk(int idKeranjang, String Stuff) {
         NodeKeranjang target = modelKeranjang.searchIdKeranjang(idKeranjang);
         if (target == null) {
             System.out.println("Maaf Id Kerajang tidak ditemukan");
-            return;
+            return false;
         }
         String[] filter = Stuff.split(",\\s+");
         for (String p: filter) {
             boolean status = modelKeranjang.addBarang(target.getId(),p);
-            if (!status) System.out.println("Id barang not found");
+            if (!status){
+                return false;
+            }
+
         }
+        return true;
     }
 
     public void delKeranjang(int idKeranjang) {

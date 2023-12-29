@@ -3,22 +3,22 @@
     "Id": 0,
     "listBarang": [
       {
-        "id_barang": 1,
+        "id_barang": 3,
         "user": {
-          "id_user": 0,
-          "nama": "joko",
-          "username": "wi",
+          "id_user": 1,
+          "nama": "ab",
+          "username": "bin",
           "password": "123",
-          "saldo": 10000,
+          "saldo": 17000,
           "status": true
         },
-        "namaBarang": "kates",
-        "harga": 1000,
-        "kategori": "buah",
-        "stok": 1
+        "namaBarang": "Power Bank",
+        "harga": 11000,
+        "kategori": "elektronik",
+        "stok": 2
       }
     ],
-    "totalHarga": 1000
+    "totalHarga": 22000
   },
   {
     "Id": 1,
@@ -28,6 +28,19 @@
       "username": "bin",
       "password": "123",
       "saldo": 8000,
+      "status": false
+    },
+    "listBarang": [],
+    "totalHarga": 0
+  },
+  {
+    "Id": 2,
+    "user": {
+      "id_user": 2,
+      "nama": "alif",
+      "username": "lif",
+      "password": "123",
+      "saldo": 6000,
       "status": false
     },
     "listBarang": [],
