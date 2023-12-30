@@ -102,27 +102,27 @@ public class TransaksiController {
         int total2 = 0;
         int id = modelTransaksi.getLastCode() + 1;
 
-            NodeProduk a = ModelProduk.searchProduk(idProduks);
-            if (a == null){
-                return;
-            }
-            boolean cek2 = modelTransaksi.isUangCukup(user, a.getHarga()* jumlah);
-            if (cek2){
-                int idSeller = a.getUser().getId_user();
-                NodeUser seller = ModelUser.searchUserById(idSeller);
-                int total = a.getHarga()*jumlah;
-                total2 += total;
+        NodeProduk a = ModelProduk.searchProduk(idProduks);
+        if (a == null){
+            return;
+        }
+        boolean cek2 = modelTransaksi.isUangCukup(user, a.getHarga()* jumlah);
+        if (cek2){
+            int idSeller = a.getUser().getId_user();
+            NodeUser seller = ModelUser.searchUserById(idSeller);
+            int total = a.getHarga()*jumlah;
+            total2 += total;
 
-                NodeProduk copy = new NodeProduk(a.getId_barang(), a.getNamaBarang(), a.getHarga(), a.getKategori(), jumlah, a.getUser());
+            NodeProduk copy = new NodeProduk(a.getId_barang(), a.getNamaBarang(), a.getHarga(), a.getKategori(), jumlah, a.getUser());
 
-                thread = new Thread(() -> {
-                    cashFlow(user, seller, total);
-                });
+            thread = new Thread(() -> {
+                cashFlow(user, seller, total);
+            });
 
-                produks.add(copy);
-            } else {
-                return;
-            }
+            produks.add(copy);
+        } else {
+            return;
+        }
         System.out.println("Total: " + total2);
         System.out.println("Saldo anda: "+ user.getSaldo());
         System.out.print("Konfirmasi pembelian? [y/n]: ");
