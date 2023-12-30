@@ -39,15 +39,17 @@ public class TransaksiController {
 
                 Thread thread = new Thread(() -> {
                     cashFlow(user, seller, total);
+                    stokFlow(keranjang, Integer.parseInt(t));
                     KeranjangController.delProduk(keranjang.getId(), toTransaksi.getId_barang());
                 });
 
                 cashflow.add(thread);
 
                 produks.add(toTransaksi);
+            } else {
+                return;
             }
         }
-
         System.out.println("Total: " + total2);
         System.out.println("Saldo anda: "+ user.getSaldo());
         System.out.print("Konfirmasi pembelian? [y/n]: ");
@@ -63,11 +65,9 @@ public class TransaksiController {
 
             System.out.println("\nBerhasil Membeli Barang!");
             System.out.println("Barang akan segera tiba di rumah anda ;)");
-//                    return;
         }else {
             System.out.println("Tidak jadi membeli barang 😔");
         }
-
 
     }
 
@@ -77,10 +77,16 @@ public class TransaksiController {
 
         boolean cek = ProdukController.cekSisaStok(barangReal, barang.getStok());
         if (cek){
-            barangReal.setStok(-barang.getStok());
             return barang;
         }
         return null;
+    }
+
+    public void stokFlow(NodeKeranjang keranjang, int idBarang){
+        NodeProduk barang = ModelKeranjang.searchBarangInKeranjang(keranjang, idBarang);
+        NodeProduk barangReal = ModelProduk.searchProduk(idBarang);
+
+        barangReal.setStok(-barang.getStok());
     }
 
     public void cashFlow(NodeUser buyer, NodeUser seller, int total){
@@ -88,6 +94,54 @@ public class TransaksiController {
         NodeUser seler = ModelUser.userList.get(seller.getId_user());
         pembeli.setSaldo(-total);
         seler.setSaldo(total);
+    }
+
+    public void directTransaksi(NodeUser user, int idProduks, int jumlah){
+        Thread thread = null;
+        ArrayList<NodeProduk> produks = new ArrayList<>();
+        int total2 = 0;
+        int id = modelTransaksi.getLastCode() + 1;
+
+            NodeProduk a = ModelProduk.searchProduk(idProduks);
+            if (a == null){
+                return;
+            }
+            boolean cek2 = modelTransaksi.isUangCukup(user, a.getHarga()* jumlah);
+            if (cek2){
+                int idSeller = a.getUser().getId_user();
+                NodeUser seller = ModelUser.searchUserById(idSeller);
+                int total = a.getHarga()*jumlah;
+                total2 += total;
+
+                NodeProduk copy = new NodeProduk(a.getId_barang(), a.getNamaBarang(), a.getHarga(), a.getKategori(), jumlah, a.getUser());
+
+                thread = new Thread(() -> {
+                    cashFlow(user, seller, total);
+                });
+
+                produks.add(copy);
+            } else {
+                return;
+            }
+        System.out.println("Total: " + total2);
+        System.out.println("Saldo anda: "+ user.getSaldo());
+        System.out.print("Konfirmasi pembelian? [y/n]: ");
+        String con = input.nextLine();
+        if (con.equals("y")){
+            NodeTransaksi nodeTransaksi = new NodeTransaksi(id, user, produks, total2);
+            modelTransaksi.addTransaksi(nodeTransaksi);
+
+            thread.start();
+
+
+            System.out.println("\nBerhasil Membeli Barang!");
+            System.out.println("Barang akan segera tiba di rumah anda ;)");
+//                    return;
+        }else {
+            System.out.println("Tidak jadi membeli barang 😔");
+        }
+
+
     }
 
 
