@@ -4,15 +4,15 @@
     "nama": "joko",
     "username": "wi",
     "password": "123",
-    "saldo": 10000,
+    "saldo": 39000,
     "status": true
   },
   {
     "id_user": 1,
-    "nama": "ab",
+    "nama": "Bintang",
     "username": "bin",
     "password": "123",
-    "saldo": 48000,
+    "saldo": 4000,
     "status": true
   },
   {
@@ -20,7 +20,7 @@
     "nama": "alif",
     "username": "lif",
     "password": "123",
-    "saldo": 3000,
-    "status": false
+    "saldo": 26000,
+    "status": true
   }
 ]

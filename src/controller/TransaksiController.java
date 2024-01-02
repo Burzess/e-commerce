@@ -71,33 +71,21 @@ public class TransaksiController {
 
     }
 
-    public NodeProduk addKeranjangToTransaksi(NodeKeranjang keranjang, int idBarang){
-        NodeProduk barang = ModelKeranjang.searchBarangInKeranjang(keranjang, idBarang);
-        NodeProduk barangReal = ModelProduk.searchProduk(idBarang);
 
-        boolean cek = ProdukController.cekSisaStok(barangReal, barang.getStok());
-        if (cek){
-            return barang;
-        }
-        return null;
-    }
-
-    public void stokFlow(NodeKeranjang keranjang, int idBarang){
-        NodeProduk barang = ModelKeranjang.searchBarangInKeranjang(keranjang, idBarang);
-        NodeProduk barangReal = ModelProduk.searchProduk(idBarang);
-
-        barangReal.setStok(-barang.getStok());
-    }
-
-    public void cashFlow(NodeUser buyer, NodeUser seller, int total){
-        NodeUser pembeli = ModelUser.searchUserById(buyer.getId_user());
-        NodeUser seler = ModelUser.userList.get(seller.getId_user());
-        pembeli.setSaldo(-total);
-        seler.setSaldo(total);
-    }
-
-    public void directTransaksi(NodeUser user, int idProduks, int jumlah){
+    public void directTransaksi(NodeUser user, String code){
         Thread thread = null;
+        String stuff[] = null;
+        try {
+            stuff = code.split("-");
+        }catch (ArrayIndexOutOfBoundsException e){
+            System.out.println("code salah");
+        }
+        int idProduks = Integer.parseInt(stuff[1]);
+        int jumlah = Integer.parseInt(stuff[2]);
+        if (jumlah<=0){
+            System.out.println("Jumlah salah 😭");
+            return;
+        }
         ArrayList<NodeProduk> produks = new ArrayList<>();
         int total2 = 0;
         int id = modelTransaksi.getLastCode() + 1;
@@ -116,6 +104,7 @@ public class TransaksiController {
             NodeProduk copy = new NodeProduk(a.getId_barang(), a.getNamaBarang(), a.getHarga(), a.getKategori(), jumlah, a.getUser());
 
             thread = new Thread(() -> {
+                stokFlow2(idProduks, jumlah);
                 cashFlow(user, seller, total);
             });
 
@@ -142,6 +131,37 @@ public class TransaksiController {
         }
 
 
+    }
+
+    public NodeProduk addKeranjangToTransaksi(NodeKeranjang keranjang, int idBarang){
+        NodeProduk barang = ModelKeranjang.searchBarangInKeranjang(keranjang, idBarang);
+        NodeProduk barangReal = ModelProduk.searchProduk(idBarang);
+
+        boolean cek = ProdukController.cekSisaStok(barangReal, barang.getStok());
+        if (cek){
+            return barang;
+        }
+        return null;
+    }
+
+    public void stokFlow(NodeKeranjang keranjang, int idBarang){
+        NodeProduk barang = ModelKeranjang.searchBarangInKeranjang(keranjang, idBarang);
+        NodeProduk barangReal = ModelProduk.searchProduk(idBarang);
+
+        barangReal.setStok(-barang.getStok());
+    }
+
+    public void stokFlow2(int idBarang, int jum){
+        NodeProduk barangReal = ModelProduk.searchProduk(idBarang);
+
+        barangReal.setStok(-jum);
+    }
+
+    public void cashFlow(NodeUser buyer, NodeUser seller, int total){
+        NodeUser pembeli = ModelUser.searchUserById(buyer.getId_user());
+        NodeUser seler = ModelUser.userList.get(seller.getId_user());
+        pembeli.setSaldo(-total);
+        seler.setSaldo(total);
     }
 
 

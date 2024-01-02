@@ -43,7 +43,7 @@ public class KeranjangController {
         for (String p: filter) {
             boolean status = modelKeranjang.addBarang(target.getId(),p);
             if (!status){
-                return false;
+                continue;
             }
 
         }
@@ -71,7 +71,7 @@ public class KeranjangController {
             System.out.println("Maaf Id produk not found");
             return;
         }
-        boolean status = modelKeranjang.delBarang(idKeranjang,idProduk);
+        modelKeranjang.delBarang(idKeranjang,idProduk);
 //        System.out.println("delete contro status "+status);
     }
 

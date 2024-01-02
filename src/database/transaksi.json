@@ -490,5 +490,424 @@
     ],
     "tanggal": "2023-12-29",
     "totalHarga": 6000
+  },
+  {
+    "id_transaksi": 16,
+    "user": {
+      "id_user": 1,
+      "nama": "ab",
+      "username": "bin",
+      "password": "123",
+      "saldo": 45000,
+      "status": true
+    },
+    "produkList": [
+      {
+        "id_barang": 1,
+        "user": {
+          "id_user": 0,
+          "nama": "joko",
+          "username": "wi",
+          "password": "123",
+          "saldo": 10000,
+          "status": true
+        },
+        "namaBarang": "kates",
+        "harga": 3000,
+        "kategori": "buah",
+        "stok": 1
+      }
+    ],
+    "tanggal": "2023-12-29",
+    "totalHarga": 3000
+  },
+  {
+    "id_transaksi": 17,
+    "user": {
+      "id_user": 1,
+      "nama": "ab",
+      "username": "bin",
+      "password": "123",
+      "saldo": 39000,
+      "status": true
+    },
+    "produkList": [
+      {
+        "id_barang": 6,
+        "user": {
+          "id_user": 2,
+          "nama": "alif",
+          "username": "lif",
+          "password": "123",
+          "saldo": 3000,
+          "status": true
+        },
+        "namaBarang": "barbel",
+        "harga": 3000,
+        "kategori": "olahraga",
+        "stok": 1
+      },
+      {
+        "id_barang": 1,
+        "user": {
+          "id_user": 0,
+          "nama": "joko",
+          "username": "wi",
+          "password": "123",
+          "saldo": 10000,
+          "status": true
+        },
+        "namaBarang": "kates",
+        "harga": 3000,
+        "kategori": "buah",
+        "stok": 1
+      }
+    ],
+    "tanggal": "2023-12-29",
+    "totalHarga": 3000
+  },
+  {
+    "id_transaksi": 17,
+    "user": {
+      "id_user": 1,
+      "nama": "ab",
+      "username": "bin",
+      "password": "123",
+      "saldo": 39000,
+      "status": true
+    },
+    "produkList": [
+      {
+        "id_barang": 6,
+        "user": {
+          "id_user": 2,
+          "nama": "alif",
+          "username": "lif",
+          "password": "123",
+          "saldo": 3000,
+          "status": true
+        },
+        "namaBarang": "barbel",
+        "harga": 3000,
+        "kategori": "olahraga",
+        "stok": 1
+      },
+      {
+        "id_barang": 1,
+        "user": {
+          "id_user": 0,
+          "nama": "joko",
+          "username": "wi",
+          "password": "123",
+          "saldo": 10000,
+          "status": true
+        },
+        "namaBarang": "kates",
+        "harga": 3000,
+        "kategori": "buah",
+        "stok": 1
+      }
+    ],
+    "tanggal": "2023-12-29",
+    "totalHarga": 6000
+  },
+  {
+    "id_transaksi": 18,
+    "user": {
+      "id_user": 1,
+      "nama": "ab",
+      "username": "bin",
+      "password": "123",
+      "saldo": 24000,
+      "status": true
+    },
+    "produkList": [
+      {
+        "id_barang": 6,
+        "user": {
+          "id_user": 2,
+          "nama": "alif",
+          "username": "lif",
+          "password": "123",
+          "saldo": 3000,
+          "status": true
+        },
+        "namaBarang": "barbel",
+        "harga": 3000,
+        "kategori": "olahraga",
+        "stok": 5
+      }
+    ],
+    "tanggal": "2023-12-29",
+    "totalHarga": 15000
+  },
+  {
+    "id_transaksi": 19,
+    "user": {
+      "id_user": 1,
+      "nama": "ab",
+      "username": "bin",
+      "password": "123",
+      "saldo": 14000,
+      "status": true
+    },
+    "produkList": [
+      {
+        "id_barang": 5,
+        "user": {
+          "id_user": 2,
+          "nama": "alif",
+          "username": "lif",
+          "password": "123",
+          "saldo": 3000,
+          "status": true
+        },
+        "namaBarang": "mouse xiamoi",
+        "harga": 7000,
+        "kategori": "elektronik",
+        "stok": 1
+      },
+      {
+        "id_barang": 1,
+        "user": {
+          "id_user": 0,
+          "nama": "joko",
+          "username": "wi",
+          "password": "123",
+          "saldo": 10000,
+          "status": true
+        },
+        "namaBarang": "kates",
+        "harga": 3000,
+        "kategori": "buah",
+        "stok": 1
+      }
+    ],
+    "tanggal": "2023-12-29",
+    "totalHarga": 10000
+  },
+  {
+    "id_transaksi": 20,
+    "user": {
+      "id_user": 1,
+      "nama": "ab",
+      "username": "bin",
+      "password": "123",
+      "saldo": 14000,
+      "status": true
+    },
+    "produkList": [],
+    "tanggal": "2023-12-30",
+    "totalHarga": 0
+  },
+  {
+    "id_transaksi": 21,
+    "user": {
+      "id_user": 1,
+      "nama": "Bintang",
+      "username": "bin",
+      "password": "123",
+      "saldo": 16000,
+      "status": true
+    },
+    "produkList": [
+      {
+        "id_barang": 7,
+        "user": {
+          "id_user": 0,
+          "nama": "joko",
+          "username": "wi",
+          "password": "123",
+          "saldo": 22000,
+          "status": true
+        },
+        "namaBarang": "kacang",
+        "harga": 3000,
+        "kategori": "sayuran",
+        "stok": 1
+      }
+    ],
+    "tanggal": "2024-01-01",
+    "totalHarga": 3000
+  },
+  {
+    "id_transaksi": 22,
+    "user": {
+      "id_user": 0,
+      "nama": "joko",
+      "username": "wi",
+      "password": "123",
+      "saldo": 18000,
+      "status": true
+    },
+    "produkList": [
+      {
+        "id_barang": 5,
+        "user": {
+          "id_user": 2,
+          "nama": "alif",
+          "username": "lif",
+          "password": "123",
+          "saldo": 3000,
+          "status": true
+        },
+        "namaBarang": "mouse xiamoi",
+        "harga": 7000,
+        "kategori": "elektronik",
+        "stok": 1
+      }
+    ],
+    "tanggal": "2024-01-02",
+    "totalHarga": 7000
+  },
+  {
+    "id_transaksi": 23,
+    "user": {
+      "id_user": 0,
+      "nama": "joko",
+      "username": "wi",
+      "password": "123",
+      "saldo": 10000,
+      "status": true
+    },
+    "produkList": [
+      {
+        "id_barang": 2,
+        "user": {
+          "id_user": 1,
+          "nama": "ab",
+          "username": "bin",
+          "password": "123",
+          "saldo": 17000,
+          "status": true
+        },
+        "namaBarang": "Casing HP",
+        "harga": 8000,
+        "kategori": "aksesoris",
+        "stok": 1
+      }
+    ],
+    "tanggal": "2024-01-02",
+    "totalHarga": 8000
+  },
+  {
+    "id_transaksi": 24,
+    "user": {
+      "id_user": 2,
+      "nama": "alif",
+      "username": "lif",
+      "password": "123",
+      "saldo": 26000,
+      "status": true
+    },
+    "produkList": [
+      {
+        "id_barang": 4,
+        "user": {
+          "id_user": 1,
+          "nama": "ab",
+          "username": "bin",
+          "password": "123",
+          "saldo": 17000,
+          "status": true
+        },
+        "namaBarang": "sepatu",
+        "harga": 9000,
+        "kategori": "aksesoris",
+        "stok": 1
+      }
+    ],
+    "tanggal": "2024-01-02",
+    "totalHarga": 9000
+  },
+  {
+    "id_transaksi": 25,
+    "user": {
+      "id_user": 1,
+      "nama": "Bintang",
+      "username": "bin",
+      "password": "123",
+      "saldo": 27000,
+      "status": true
+    },
+    "produkList": [
+      {
+        "id_barang": 7,
+        "user": {
+          "id_user": 0,
+          "nama": "joko",
+          "username": "wi",
+          "password": "123",
+          "saldo": 22000,
+          "status": true
+        },
+        "namaBarang": "kacang",
+        "harga": 3000,
+        "kategori": "sayuran",
+        "stok": 2
+      }
+    ],
+    "tanggal": "2024-01-02",
+    "totalHarga": 6000
+  },
+  {
+    "id_transaksi": 26,
+    "user": {
+      "id_user": 1,
+      "nama": "Bintang",
+      "username": "bin",
+      "password": "123",
+      "saldo": 4000,
+      "status": true
+    },
+    "produkList": [
+      {
+        "id_barang": 7,
+        "user": {
+          "id_user": 0,
+          "nama": "joko",
+          "username": "wi",
+          "password": "123",
+          "saldo": 22000,
+          "status": true
+        },
+        "namaBarang": "kacang",
+        "harga": 3000,
+        "kategori": "sayuran",
+        "stok": 1
+      }
+    ],
+    "tanggal": "2024-01-02",
+    "totalHarga": 3000
+  },
+  {
+    "id_transaksi": 27,
+    "user": {
+      "id_user": 1,
+      "nama": "Bintang",
+      "username": "bin",
+      "password": "123",
+      "saldo": 4000,
+      "status": true
+    },
+    "produkList": [
+      {
+        "id_barang": 0,
+        "user": {
+          "id_user": 0,
+          "nama": "joko",
+          "username": "wi",
+          "password": "123",
+          "saldo": 10000,
+          "status": true
+        },
+        "namaBarang": "botol",
+        "harga": 4000,
+        "kategori": "minum",
+        "stok": 5
+      }
+    ],
+    "tanggal": "2024-01-02",
+    "totalHarga": 20000
   }
 ]
