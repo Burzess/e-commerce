@@ -1,7 +1,7 @@
 
 ### IntelliJ IDEA ###
 .idea/
-*.json
+database/
 *.iml
 out/
 !**/src/main/**/out/

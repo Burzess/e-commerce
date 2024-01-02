@@ -12,7 +12,7 @@
     "namaBarang": "botol",
     "harga": 4000,
     "kategori": "minum",
-    "stok": 0
+    "stok": 1
   },
   {
     "id_barang": 1,
@@ -27,7 +27,7 @@
     "namaBarang": "kates",
     "harga": 3000,
     "kategori": "buah",
-    "stok": 0
+    "stok": 5
   },
   {
     "id_barang": 2,
@@ -42,7 +42,7 @@
     "namaBarang": "Casing HP",
     "harga": 8000,
     "kategori": "aksesoris",
-    "stok": 4
+    "stok": 3
   },
   {
     "id_barang": 3,
@@ -57,7 +57,7 @@
     "namaBarang": "Power Bank",
     "harga": 11000,
     "kategori": "elektronik",
-    "stok": 3
+    "stok": 0
   },
   {
     "id_barang": 4,
@@ -72,6 +72,51 @@
     "namaBarang": "sepatu",
     "harga": 9000,
     "kategori": "aksesoris",
+    "stok": 4
+  },
+  {
+    "id_barang": 5,
+    "user": {
+      "id_user": 2,
+      "nama": "alif",
+      "username": "lif",
+      "password": "123",
+      "saldo": 3000,
+      "status": true
+    },
+    "namaBarang": "mouse xiamoi",
+    "harga": 7000,
+    "kategori": "elektronik",
     "stok": 0
+  },
+  {
+    "id_barang": 6,
+    "user": {
+      "id_user": 2,
+      "nama": "alif",
+      "username": "lif",
+      "password": "123",
+      "saldo": 3000,
+      "status": true
+    },
+    "namaBarang": "barbel",
+    "harga": 3000,
+    "kategori": "olahraga",
+    "stok": 0
+  },
+  {
+    "id_barang": 7,
+    "user": {
+      "id_user": 0,
+      "nama": "joko",
+      "username": "wi",
+      "password": "123",
+      "saldo": 22000,
+      "status": true
+    },
+    "namaBarang": "kacang",
+    "harga": 3000,
+    "kategori": "sayuran",
+    "stok": 5
   }
 ]

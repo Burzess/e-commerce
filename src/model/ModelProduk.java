@@ -131,7 +131,7 @@ public class ModelProduk {
     public List<NodeProduk> getBarangUser(NodeUser user){
         List<NodeProduk> barang = new ArrayList<>();
         for (NodeProduk produk: produkList){
-            if (produk.getUser().getNama().equals(user.getNama())){
+            if (produk.getUser().getId_user() == (user.getId_user())){
                 barang.add(produk);
             }
         }

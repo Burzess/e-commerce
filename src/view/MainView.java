@@ -97,10 +97,14 @@ public class MainView {
         System.out.println("kode beli sekarang: *-3-1");
         System.out.print("atau input n untuk kembali: ");
         String op = input.nextLine();
-        if (!op.equals("n")){
-            if (op.startsWith("*")){
-                transaksiController.directTransaksi(user, op);
-            }
+        if (op.equals("n")){
+            return;
+        }
+        if (op.startsWith("*")){
+            transaksiController.directTransaksi(user, op);
+            System.out.print("Ketik n untuk kembali ke beranda: ");
+            String bak = input.nextLine();
+        } else {
             boolean stat = keranjangController.addProduk(user.getId_user(), op);
             if (!stat){
                 System.out.println("Id barang not found/stok habis/input jumlah anda salah🙏");
@@ -109,8 +113,9 @@ public class MainView {
             System.out.println("Berhasil menambah wishlist!");
         }
 
+
     }
-// ***************   case 3 **********************************
+// ***************   case 4 **********************************
     public static void viewKeranjang(NodeUser user){
         boolean cek = keranjangController.vieww(user);
         if (cek){
@@ -127,7 +132,7 @@ public class MainView {
             String bak = input.nextLine();
         }
     }
-// ***************   case 4 **********************************
+// ***************   case 5 **********************************
     public static void viewAllUserTransaksi(NodeUser user){
         ArrayList<NodeTransaksi> userTransaksi = transaksiController.viewUserTransaksi(user);
         int c = 0;
@@ -141,11 +146,11 @@ public class MainView {
         System.out.print("\nTekan n untuk kembali: ");
         String back = input.nextLine();
     }
-// ***************   case 5 **********************************
+// ***************   case 6 **********************************
     public static void sellBarang(NodeUser user){
         produkView.addProdukView(user);
     }
-// ***************   case 6 **********************************
+// ***************   case 7 **********************************
     public static void getBarangDagangan(NodeUser user){
         List<NodeProduk> barang = produkController.getDaganganUser(user);
         if (barang!=null){
