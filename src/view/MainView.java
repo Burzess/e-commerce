@@ -92,10 +92,15 @@ public class MainView {
             return;
         }
         System.out.println("\nMasukkan kode barang dan jumlah bila ingin menambah ke keranjang");
-        System.out.println("contoh: 3-1, 1-10");
+        System.out.println("kode masukkan keranjang: 3-1, 1-10");
+        System.out.println("⬇️Atau bila ingin beli sekarang (Max 1 barang)");
+        System.out.println("kode beli sekarang: *-3-1");
         System.out.print("atau input n untuk kembali: ");
         String op = input.nextLine();
         if (!op.equals("n")){
+            if (op.startsWith("*")){
+                transaksiController.directTransaksi(user, op);
+            }
             boolean stat = keranjangController.addProduk(user.getId_user(), op);
             if (!stat){
                 System.out.println("Id barang not found/stok habis/input jumlah anda salah🙏");
