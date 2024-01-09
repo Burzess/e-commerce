@@ -33,7 +33,7 @@ public class ModelTransaksi {
     public ArrayList<NodeTransaksi> viewAllTransaksi(NodeUser user){
         ArrayList<NodeTransaksi> listTransaksi = new ArrayList<>();
         for (NodeTransaksi transaksi: transaksiList){
-            if (transaksi.user.getNama().equals(user.getNama())){
+            if (transaksi.user.getId_user()==(user.getId_user())){
                 listTransaksi.add(transaksi);
             }
         }
